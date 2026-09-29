@@ -1,19 +1,19 @@
 import Boton from "../atoms/Boton";
 import CampoTexto from "../atoms/CampoTexto";
 
-function CampoCorreo(props) {
+function CampoFormulario(props) {
   return (
     <div className="form-group mb-3">
-      <label className="form-label">Correo electrónico</label>
+      <label className="form-label">{props.etiqueta || "Correo electrónico"}</label>
       <CampoTexto
-        tipo="email"
-        placeholder="ejemplo@correo.com"
-        value={props.correo}
+        tipo={props.tipo || "email"}
+        placeholder={props.placeholder || "ejemplo@correo.com"}
+        value={props.value}
         onChange={props.onChange}
       />
-      <Boton texto="Enviar" onClick={props.onEnviar} />
+      <Boton texto={props.textoBoton || "Enviar"} onClick={props.onSubmit} />
     </div>
   );
 }
 
-export default CampoCorreo;
+export default CampoFormulario;
