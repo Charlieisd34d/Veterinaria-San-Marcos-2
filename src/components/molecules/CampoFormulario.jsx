@@ -3,15 +3,20 @@ import CampoTexto from "../atoms/CampoTexto";
 
 function CampoFormulario(props) {
   return (
-    <div className="form-group mb-3">
-      <label className="form-label">{props.etiqueta || "Correo electrónico"}</label>
+    <div className="card p-3">
       <CampoTexto
-        tipo={props.tipo || "email"}
-        placeholder={props.placeholder || "ejemplo@correo.com"}
-        value={props.value}
-        onChange={props.onChange}
+        tipo="text"
+        placeholder="Nombre"
+        value={props.nombre}
+        onChange={props.onChangeNombre}
       />
-      <Boton texto={props.textoBoton || "Enviar"} onClick={props.onSubmit} />
+      <CampoTexto
+        tipo="password"
+        placeholder="Contraseña"
+        value={props.password}
+        onChange={props.onChangePassword}
+      />
+      <Boton texto="Enviar" onClick={props.onEnviar} />
     </div>
   );
 }
