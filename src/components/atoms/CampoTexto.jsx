@@ -11,5 +11,4 @@ function CampoTexto(props){
     );
 }
 
-
 export default CampoTexto;
