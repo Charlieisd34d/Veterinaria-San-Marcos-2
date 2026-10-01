@@ -6,9 +6,9 @@ function CampoFormulario(props) {
     <div className="card p-3">
       <CampoTexto
         tipo="text"
-        placeholder="Nombre"
-        value={props.nombre}
-        onChange={props.onChangeNombre}
+        placeholder="Correo"
+        value={props.correo}
+        onChange={props.onChange}
       />
       <CampoTexto
         tipo="password"
