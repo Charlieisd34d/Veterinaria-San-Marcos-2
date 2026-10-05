@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+<<<<<<< HEAD
+    "bootstrap-icons": "^1.13.1",
+=======
+>>>>>>> 069772b3fe87d28b1c186c5f005783f3634d75dc
     "react": "^19.2.8",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.8",
