@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Imports de tus componentes
 import TituloPrincipal from '../components/atoms/TituloPrincipal';
 import Parrafo from '../components/atoms/Parrafo';
 import Boton from '../components/atoms/Boton';
@@ -9,7 +8,6 @@ import BarraSuperior from '../components/organisms/BarraSuperior';
 import NavBar from '../components/organisms/NavBar';
 import Footer from '../components/organisms/Footer';
 
-// Lista de enlaces para el menú de navegación
 const enlacesNavegacion = [
   { etiqueta: 'Inicio', enlace: '/', activo: false },
   { etiqueta: 'Servicios', enlace: '/servicios', activo: true },
@@ -19,7 +17,6 @@ const enlacesNavegacion = [
   { etiqueta: 'Contacto', enlace: '/contacto', activo: false }
 ];
 
-// Lista de servicios con iconos de Bootstrap Icons
 const serviciosData = [
   {
     id: 1,
