@@ -1,4 +1,3 @@
-import React from 'react';
 import Logotipo from '../atoms/Logotipo';
 import EnlaceNavegacion from '../atoms/EnlaceNavegacion';
 import AccionesNavegacion from '../molecules/AccionesNavegacion';

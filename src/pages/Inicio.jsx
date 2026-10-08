@@ -1,4 +1,3 @@
-import React from 'react';
 import PlantillaInicio from '../components/templates/PlantillaInicio';
 
 const PaginaInicio = () => {

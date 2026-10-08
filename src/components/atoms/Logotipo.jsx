@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Logotipo = ({ titulo, subtitulo, claseIcono }) => {
   return (
     <div className="d-flex align-items-center gap-2">

@@ -1,4 +1,3 @@
-import React from 'react';
 import EnlaceNavegacion from '../atoms/EnlaceNavegacion';
 import Boton from '../atoms/Boton'
 

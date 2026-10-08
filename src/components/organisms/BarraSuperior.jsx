@@ -1,4 +1,3 @@
-import React from 'react';
 import ElementoBarraSuperior from '../molecules/ElementoBarraSuperior';
 
 const BarraSuperior = ({ ciudadTelefono, horarioAcceso, etiquetaAcceso }) => {

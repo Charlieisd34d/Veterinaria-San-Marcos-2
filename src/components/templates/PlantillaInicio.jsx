@@ -1,4 +1,3 @@
-import React from 'react';
 import BarraSuperior from '../organisms/BarraSuperior';
 import NavBar from '../organisms/NavBar';
 import Footer from '../organisms/Footer';

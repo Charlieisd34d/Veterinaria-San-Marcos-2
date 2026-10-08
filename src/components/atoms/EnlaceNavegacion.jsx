@@ -1,5 +1,3 @@
-import React from 'react';
-
 const EnlaceNavegacion = ({ enlace = "#", etiqueta, activo = false, claseIcono }) => {
   return (
     <a 

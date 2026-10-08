@@ -1,4 +1,3 @@
-import React from 'react';
 import Imagen from '../atoms/Imagen';
 
 const ElementoBarraSuperior = ({ rutaImagen, textoAlternativo, clasePersonalizada = "img-fluid" }) => {

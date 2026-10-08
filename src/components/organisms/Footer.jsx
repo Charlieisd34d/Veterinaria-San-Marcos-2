@@ -1,4 +1,3 @@
-import React from 'react';
 import TextoDerechosAutor from '../atoms/TextoDerechosAutor';
 import IconoTexto from '../atoms/IconoTexto'
 
