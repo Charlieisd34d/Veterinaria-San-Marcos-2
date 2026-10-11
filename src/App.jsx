@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useState } from 'react'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
@@ -118,5 +119,23 @@ function App() {
     </>
   )
 }
+=======
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PaginaInicio from './pages/Inicio';
+import PaginaProductos from './pages/Productos';
+import './App.css';
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PaginaInicio />} />
+        <Route path="/productos" element={<PaginaProductos />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+>>>>>>> Stashed changes
 
 export default App
