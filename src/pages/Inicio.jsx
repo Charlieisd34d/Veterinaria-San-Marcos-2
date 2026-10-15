@@ -1,5 +1,10 @@
 import React from 'react';
-import PlantillaInicio from '../components/templates/PlantillaInicio';
+import PlantillaPublica from '../components/templates/PlantillaPublica';
+import EtiquetaSeccion from '../components/atoms/EtiquetaSeccion';
+import TituloPrincipal from '../components/atoms/TituloPrincipal';
+import Parrafo from '../components/atoms/Parrafo';
+import Boton from '../components/atoms/Boton';
+import Imagen from '../components/atoms/Imagen';
 
 const PaginaInicio = () => {
   const datosBarraSuperior = {
@@ -12,15 +17,15 @@ const PaginaInicio = () => {
     subtituloMarca: "CLÍNICA VETERINARIA",
     iconoMarca: "bi bi-heart-fill",
     listaEnlaces: [
-      { etiqueta: "Inicio", enlace: "#", activo: true },
-      { etiqueta: "Servicios", enlace: "#", activo: false },
-      { etiqueta: "Productos", enlace: "#", activo: false },
-      { etiqueta: "Nosotros", enlace: "#", activo: false },
-      { etiqueta: "Blog", enlace: "#", activo: false },
-      { etiqueta: "Contacto", enlace: "#", activo: false }
+      { etiqueta: "Inicio", enlace: "/", activo: true },
+      { etiqueta: "Servicios", enlace: "/servicios", activo: false },
+      { etiqueta: "Productos", enlace: "/productos", activo: false },
+      { etiqueta: "Nosotros", enlace: "/nosotros", activo: false },
+      { etiqueta: "Blog", enlace: "/blog", activo: false },
+      { etiqueta: "Contacto", enlace: "/contacto", activo: false }
     ],
     etiquetaCarrito: "Carrito",
-    enlaceCarrito: "#",
+    enlaceCarrito: "/carrito",
     etiquetaBotonCita: "Solicitar cita"
   };
 
@@ -41,12 +46,47 @@ const PaginaInicio = () => {
   };
 
   return (
-    <PlantillaInicio 
+    <PlantillaPublica 
       datosBarraSuperior={datosBarraSuperior}
       datosNavBar={datosNavBar}
-      datosSeccionPrincipal={datosSeccionPrincipal}
       datosFooter={datosFooter}
-    />
+    >
+      {/* Todo el contenido de inicio entra aquí como children */}
+      <section className="row align-items-center g-4">
+        <div className="col-lg-6">
+          {datosSeccionPrincipal.etiqueta && (
+            <EtiquetaSeccion texto={datosSeccionPrincipal.etiqueta} />
+          )}
+
+          <TituloPrincipal texto={datosSeccionPrincipal.titulo} />
+
+          <Parrafo texto={datosSeccionPrincipal.descripcion} />
+
+          <div className="d-flex gap-3 mt-4">
+            <Boton
+              etiqueta={datosSeccionPrincipal.etiquetaBotonPrimario}
+              variante="success"
+              alHacerClic={() => console.log("Cita")}
+            />
+
+            {datosSeccionPrincipal.etiquetaBotonSecundario && (
+              <Boton
+                etiqueta={datosSeccionPrincipal.etiquetaBotonSecundario}
+                variante="outline-success"
+                alHacerClic={() => console.log("Servicios")}
+              />
+            )}
+          </div>
+        </div>
+
+        <div className="col-lg-6 text-center">
+          <Imagen
+            ruta={datosSeccionPrincipal.rutaImagen}
+            textoAlternativo={datosSeccionPrincipal.textoAlternativoImagen}
+          />
+        </div>
+      </section>
+    </PlantillaPublica>
   );
 };
 

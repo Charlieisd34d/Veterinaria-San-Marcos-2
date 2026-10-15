@@ -1,15 +1,19 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Servicios from './pages/Servicios';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Inicio from './pages/Inicio';
+import Servicios from './pages/Servicios';
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Servicios />} />
+        {/* Ruta para la página principal / Inicio */}
+        <Route path="/" element={<Inicio />} />
+
+        {/* Ruta para la vista de Servicios */}
         <Route path="/servicios" element={<Servicios />} />
-        <Route path="/inicio" element={<Inicio />} />
+
       </Routes>
     </BrowserRouter>
   );
