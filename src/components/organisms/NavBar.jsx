@@ -1,49 +1,24 @@
-import React from 'react';
 import Logotipo from '../atoms/Logotipo';
 import EnlaceNavegacion from '../atoms/EnlaceNavegacion';
 import AccionesNavegacion from '../molecules/AccionesNavegacion';
 
-const NavegacionPrincipal = ({ 
-  tituloMarca, 
-  subtituloMarca, 
-  iconoMarca, 
-  listaEnlaces, 
-  etiquetaCarrito, 
-  enlaceCarrito, 
-  activoCarrito, 
-  etiquetaBotonCita, 
-  alHacerClicCita 
-}) => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
-      <div className="container">
-        <Logotipo 
-          titulo={tituloMarca} 
-          subtitulo={subtituloMarca} 
-          claseIcono={iconoMarca} 
-        />
-        
-        <div className="d-flex align-items-center gap-2">
-          {listaEnlaces.map((item, indice) => (
-            <EnlaceNavegacion 
-              key={indice} 
-              etiqueta={item.etiqueta} 
-              enlace={item.enlace} 
-              activo={item.activo} 
-            />
-          ))}
-        </div>
+// Los enlaces son <a> reales (se ven y se comportan como enlaces), pero en vez de
+  // recargar la página avisamos a props.onNavegar. preventDefault() cancela la recarga.
+  function ir(evento, ruta) {
+    evento.preventDefault()
+    props.onNavegar(ruta)
+  }
 
-        <AccionesNavegacion 
-          etiquetaCarrito={etiquetaCarrito} 
-          enlaceCarrito={enlaceCarrito} 
-          activoCarrito={activoCarrito} 
-          etiquetaBoton={etiquetaBotonCita} 
-          alHacerClicBoton={alHacerClicCita} 
-        />
-      </div>
-    </nav>
-  );
-};
+  // ...más abajo, dentro del return, cada enlace usa esa función:
+  <nav className="enlaces">
+    <a href="/catalogo" onClick={(e) => ir(e, '/catalogo')}>
+      Catálogo
+    </a>
+    {props.categorias.map((c) => (
+      <a key={c} href={`/categoria/${c}`} onClick={(e) => ir(e, `/categoria/${c}`)}>
+        {c}
+      </a>
+    ))}
+  </nav>
 
 export default NavegacionPrincipal;

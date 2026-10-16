@@ -1,13 +1,12 @@
-import { StrictMode } from 'react'
+import React from 'react'
 import { createRoot } from 'react-dom/client'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
-import App from './App.jsx'
-import 'bootstrap/dist/css/bootstrap.min.css' 
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import App from './App'
 
+// main.jsx solo monta la aplicación en el <div id="root"> de index.html.
+// El router NO va aquí: vive en App.jsx, junto al mapa de rutas.
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <React.StrictMode>
     <App />
-  </StrictMode>,
+  </React.StrictMode>,
 )
