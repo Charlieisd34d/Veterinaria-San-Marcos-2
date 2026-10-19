@@ -1,7 +1,9 @@
 import React from 'react';
 import PlantillaInicio from '../components/templates/PlantillaInicio';
+import { useCarrito } from '../context/CarritoContext';
 
 const PaginaInicio = () => {
+  const { totalProductos } = useCarrito();
   const datosBarraSuperior = {
     ciudadTelefono: "Rancagua +56 72 223 4488",
     etiquetaAcceso: "Acceso privado"
@@ -14,13 +16,13 @@ const PaginaInicio = () => {
     listaEnlaces: [
       { etiqueta: "Inicio", enlace: "#", activo: true },
       { etiqueta: "Servicios", enlace: "#", activo: false },
-      { etiqueta: "Productos", enlace: "#", activo: false },
+      { etiqueta: "Productos", enlace: "/productos", activo: false },
       { etiqueta: "Nosotros", enlace: "#", activo: false },
       { etiqueta: "Blog", enlace: "#", activo: false },
       { etiqueta: "Contacto", enlace: "#", activo: false }
     ],
-    etiquetaCarrito: "Carrito",
-    enlaceCarrito: "#",
+    etiquetaCarrito: `Carrito (${totalProductos})`,
+    enlaceCarrito: "/carrito",
     etiquetaBotonCita: "Solicitar cita"
   };
 

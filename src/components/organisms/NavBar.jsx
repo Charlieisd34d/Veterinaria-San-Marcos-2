@@ -2,18 +2,20 @@ import React from 'react';
 import Logotipo from '../atoms/Logotipo';
 import EnlaceNavegacion from '../atoms/EnlaceNavegacion';
 import AccionesNavegacion from '../molecules/AccionesNavegacion';
+import { useCarrito } from '../../context/CarritoContext';
 
 const NavegacionPrincipal = ({ 
   tituloMarca, 
   subtituloMarca, 
   iconoMarca, 
-  listaEnlaces, 
-  etiquetaCarrito, 
-  enlaceCarrito, 
+  listaEnlaces = [], 
+  enlaceCarrito = "/carrito", 
   activoCarrito, 
   etiquetaBotonCita, 
   alHacerClicCita 
 }) => {
+  const { totalProductos } = useCarrito(); // <-- Estado reactivo en tiempo real
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
       <div className="container">
@@ -35,7 +37,7 @@ const NavegacionPrincipal = ({
         </div>
 
         <AccionesNavegacion 
-          etiquetaCarrito={etiquetaCarrito} 
+          etiquetaCarrito={`(${totalProductos})`} 
           enlaceCarrito={enlaceCarrito} 
           activoCarrito={activoCarrito} 
           etiquetaBoton={etiquetaBotonCita} 

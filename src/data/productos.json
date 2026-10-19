@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ME001",
+    "categoria": "Antibióticos",
+    "nombre": "Amoxibay 250mg",
+    "descripcion": "Amoxicilina • Blíster 10 comp. • Perro / Gato",
+    "precio": 4200,
+    "imagen": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500"
+  },
+  {
+    "id": "ME002",
+    "categoria": "Antibióticos",
+    "nombre": "Enrox 50mg",
+    "descripcion": "Enrofloxacino • Blíster 10 comp. • Perro / Gato",
+    "precio": 6800,
+    "imagen": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500"
+  },
+  {
+    "id": "ME003",
+    "categoria": "Antibióticos",
+    "nombre": "Metrobay 250mg",
+    "descripcion": "Metronidazol • Blíster 10 comp. • Perro / Gato",
+    "precio": 3900,
+    "imagen": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500"
+  },
+  {
+    "id": "ME004",
+    "categoria": "Antiparasitarios",
+    "nombre": "Nexgard",
+    "descripcion": "Afoxolaner • Masticable 1 unid. • Perro",
+    "precio": 9500,
+    "imagen": "https://images.unsplash.com/photo-1582798358481-d199fb7347bb?auto=format&fit=crop&q=80&w=500"
+  },
+  {
+    "id": "ME005",
+    "categoria": "Antiparasitarios",
+    "nombre": "Bravecto",
+    "descripcion": "Fluralaner • Masticable 1 unid. • Perro",
+    "precio": 18900,
+    "imagen": "https://images.unsplash.com/photo-1582798358481-d199fb7347bb?auto=format&fit=crop&q=80&w=500"
+  },
+  {
+    "id": "ME006",
+    "categoria": "Antiparasitarios",
+    "nombre": "Revolution Plus",
+    "descripcion": "Selamectina+Sarolaner • Pipeta 1 unid. • Gato",
+    "precio": 14500,
+    "imagen": "https://images.unsplash.com/photo-1582798358481-d199fb7347bb?auto=format&fit=crop&q=80&w=500"
+  },
+  {
+    "id": "ME007",
+    "categoria": "Antiinflamatorios",
+    "nombre": "Meloxicam 1mg",
+    "descripcion": "Meloxicam • Blíster 10 comp. • Perro / Gato",
+    "precio": 4500,
+    "imagen": "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&q=80&w=500"
+  },
+  {
+    "id": "ME008",
+    "categoria": "Dermatología",
+    "nombre": "Clorhexidina shampoo",
+    "descripcion": "Clorhexidina 2% • Frasco 250ml • Perro / Gato",
+    "precio": 8900,
+    "imagen": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=500"
+  }
+]
