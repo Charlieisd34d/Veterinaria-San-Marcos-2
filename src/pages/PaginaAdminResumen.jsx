@@ -1,10 +1,10 @@
-import PlantillaAdminResumen from "../components/templates/PlantillaAdminResumen";
+import PlantillaAdmin from "../components/templates/PlantillaAdmin";
+import PanelResumen from "../components/organisms/PanelResumen";
 import { useTituloPagina } from "../hooks/useTituloPagina";
 import { useProductos } from "../context/ProductosContext";
 import { useClientes } from "../context/ClientesContext";
 import { useUsuarios } from "../context/UsuariosContext";
 
-import admin from "../data/admin/navegacionAdmin.json";
 import resumen from "../data/admin/resumen.json";
 
 function PaginaAdminResumen() {
@@ -21,11 +21,14 @@ function PaginaAdminResumen() {
   };
 
   return (
-    <PlantillaAdminResumen
-      admin={admin}
-      resumen={resumen}
-      totales={totales}
-    />
+    <PlantillaAdmin>
+      <PanelResumen
+        titulo={resumen.titulo}
+        descripcion={resumen.descripcion}
+        tarjetas={resumen.tarjetas}
+        totales={totales}
+      />
+    </PlantillaAdmin>
   );
 }
 

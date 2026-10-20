@@ -4,6 +4,6 @@
   "descripcion": "Atención veterinaria, peluquería y tienda en un solo lugar.",
   "botonPrimario": { "texto": "Agendar cita", "variante": "success" },
   "botonSecundario": { "texto": "Ver servicios", "variante": "outline-success" },
-  "rutaImagen": "assets/hero.jpg",
+  "rutaImagen": "./assets/logo_veterinaria.png",
   "textoAlternativo": "Veterinaria revisando a un perro"
 }

@@ -1,16 +1,20 @@
 import EncabezadoPublico from "../organisms/EncabezadoPublico";
 import AvisoPagina from "../organisms/AvisoPagina";
-import SeccionHero from "../organisms/SeccionHero";
 import PiePagina from "../organisms/PiePagina";
 import { useNavegacionPublica } from "../../hooks/useNavegacionPublica";
 
-function PlantillaInicio(props) {
-  const nav = useNavegacionPublica(props.navegacion);
+import barraSuperior from "../../data/barraSuperior.json";
+import navegacion from "../../data/navegacion.json";
+import pie from "../../data/piePagina.json";
+import mensajes from "../../data/mensajes.json";
+
+function PlantillaPublica(props) {
+  const nav = useNavegacionPublica(navegacion);
 
   return (
     <div className="d-flex flex-column min-vh-100">
       <EncabezadoPublico
-        barraSuperior={props.barraSuperior}
+        barraSuperior={barraSuperior}
         navegacion={nav.navegacion}
         onNavegar={nav.navegar}
         onClickCita={props.onClickCita}
@@ -18,34 +22,22 @@ function PlantillaInicio(props) {
 
       <AvisoPagina
         mensaje={props.mensaje}
-        textoCerrar={props.textoCerrar}
+        textoCerrar={mensajes.textoCerrar}
         onCerrar={props.onCerrarMensaje}
       />
 
       <main className="flex-grow-1 py-5">
-        <div className="container-fluid">
-          <SeccionHero
-            etiqueta={props.hero.etiqueta}
-            titulo={props.hero.titulo}
-            descripcion={props.hero.descripcion}
-            botonPrimario={props.hero.botonPrimario}
-            botonSecundario={props.hero.botonSecundario}
-            rutaImagen={props.hero.rutaImagen}
-            textoAlternativo={props.hero.textoAlternativo}
-            onClickPrimario={props.onClickPrimario}
-            onClickSecundario={props.onClickSecundario}
-          />
-        </div>
+        <div className="container">{props.children}</div>
       </main>
 
       <PiePagina
-        nombre={props.pie.nombre}
-        descripcion={props.pie.descripcion}
-        contactos={props.pie.contactos}
-        textoDerechos={props.pie.textoDerechos}
+        nombre={pie.nombre}
+        descripcion={pie.descripcion}
+        contactos={pie.contactos}
+        textoDerechos={pie.textoDerechos}
       />
     </div>
   );
 }
 
-export default PlantillaInicio;
+export default PlantillaPublica;

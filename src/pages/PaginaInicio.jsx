@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PlantillaInicio from "../components/templates/PlantillaPublica";
+import PlantillaPublica from "../components/templates/PlantillaPublica";
+import SeccionHero from "../components/organisms/SeccionHero";
 import { useTituloPagina } from "../hooks/useTituloPagina";
 import { useAutoCierre } from "../hooks/useAutoCierre";
 
-import barraSuperior from "../data/barraSuperior.json";
-import navegacion from "../data/navegacion.json";
 import hero from "../data/hero.json";
-import pie from "../data/piePagina.json";
 import mensajes from "../data/mensajes.json";
 
 function PaginaInicio() {
@@ -30,18 +28,23 @@ function PaginaInicio() {
   }
 
   return (
-    <PlantillaInicio
-      barraSuperior={barraSuperior}
-      navegacion={navegacion}
-      hero={hero}
-      pie={pie}
+    <PlantillaPublica
       mensaje={mensaje}
-      textoCerrar={mensajes.textoCerrar}
       onClickCita={alAgendarCita}
-      onClickPrimario={alAgendarCita}
-      onClickSecundario={alVerServicios}
       onCerrarMensaje={alCerrarMensaje}
-    />
+    >
+      <SeccionHero
+        etiqueta={hero.etiqueta}
+        titulo={hero.titulo}
+        descripcion={hero.descripcion}
+        botonPrimario={hero.botonPrimario}
+        botonSecundario={hero.botonSecundario}
+        rutaImagen={hero.rutaImagen}
+        textoAlternativo={hero.textoAlternativo}
+        onClickPrimario={alAgendarCita}
+        onClickSecundario={alVerServicios}
+      />
+    </PlantillaPublica>
   );
 }
 

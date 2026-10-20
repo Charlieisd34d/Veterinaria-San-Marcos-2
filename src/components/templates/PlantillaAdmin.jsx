@@ -1,10 +1,12 @@
 import BarraLateralAdmin from "../organisms/BarraLateralAdmin";
 import AvisoPagina from "../organisms/AvisoPagina";
-import SeccionCrud from "../organisms/SeccionCrud";
 import { useNavegacionAdmin } from "../../hooks/useNavegacionAdmin";
 
-function PlantillaAdminCrud(props) {
-  const nav = useNavegacionAdmin(props.admin);
+import admin from "../../data/admin/navegacionAdmin.json";
+import textos from "../../data/admin/textosAdmin.json";
+
+function PlantillaAdmin(props) {
+  const nav = useNavegacionAdmin(admin);
 
   return (
     <div className="d-flex min-vh-100">
@@ -20,28 +22,14 @@ function PlantillaAdminCrud(props) {
       <div className="flex-grow-1 bg-light">
         <AvisoPagina
           mensaje={props.mensaje}
-          textoCerrar={props.textos.textoCerrar}
+          textoCerrar={textos.textoCerrar}
           onCerrar={props.onCerrarMensaje}
         />
 
-        <main className="container-fluid py-4 px-4">
-          <SeccionCrud
-            config={props.config}
-            textos={props.textos}
-            filas={props.filas}
-            cargando={props.cargando}
-            formularioAbierto={props.formularioAbierto}
-            itemEditando={props.itemEditando}
-            onNuevo={props.onNuevo}
-            onEditar={props.onEditar}
-            onEliminar={props.onEliminar}
-            onGuardar={props.onGuardar}
-            onCancelar={props.onCancelar}
-          />
-        </main>
+        <main className="container-fluid py-4 px-4">{props.children}</main>
       </div>
     </div>
   );
 }
 
-export default PlantillaAdminCrud;
+export default PlantillaAdmin;

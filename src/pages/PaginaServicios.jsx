@@ -1,14 +1,11 @@
 import { useState } from "react";
-import PlantillaServicios from "../components/templates/PlantillaServicios";
+import PlantillaPublica from "../components/templates/PlantillaPublica";
+import SeccionServicios from "../components/organisms/SeccionServicios";
 import { useTituloPagina } from "../hooks/useTituloPagina";
 import { useAutoCierre } from "../hooks/useAutoCierre";
 
-import barraSuperior from "../data/barraSuperior.json";
-import navegacion from "../data/navegacion.json";
 import servicios from "../data/servicios.json";
-import pie from "../data/piePagina.json";
 import mensajes from "../data/mensajes.json";
-import PiePagina from "../components/organisms/PiePagina";
 
 function PaginaServicios() {
   const [mensaje, setMensaje] = useState(null);
@@ -33,18 +30,21 @@ function PaginaServicios() {
   }
 
   return (
-    <PlantillaServicios
-      barraSuperior={barraSuperior}
-      navegacion={navegacion}
-      servicios={servicios}
-      pie={pie}
+    <PlantillaPublica
       mensaje={mensaje}
-      textoCerrar={mensajes.textoCerrar}
       onClickCita={alAgendarCita}
-      onClickAgendar={alAgendarCita}
-      onSolicitarServicio={alSolicitarServicio}
       onCerrarMensaje={alCerrarMensaje}
-    />
+    >
+      <SeccionServicios
+        titulo={servicios.titulo}
+        descripcion={servicios.descripcion}
+        servicios={servicios.servicios}
+        textoBotonServicio={servicios.textoBotonServicio}
+        botonAgendar={servicios.botonAgendar}
+        onSolicitar={alSolicitarServicio}
+        onClickAgendar={alAgendarCita}
+      />
+    </PlantillaPublica>
   );
 }
 

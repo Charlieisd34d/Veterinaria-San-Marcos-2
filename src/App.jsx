@@ -4,8 +4,10 @@ import { ClientesProvider } from "./context/ClientesContext";
 import { UsuariosProvider } from "./context/UsuariosContext";
 import PaginaInicio from "./pages/PaginaInicio";
 import PaginaServicios from "./pages/PaginaServicios";
-import PaginaAdminResumen from "./pages/PaginaAdminResumen"
-import PaginaAdminProductos from "./pages/PaginaAdminProductos"
+import PaginaAdminResumen from "./pages/PaginaAdminResumen";
+import PaginaAdminProductos from "./pages/PaginaAdminProductos";
+import PaginaAdminClientes from "./pages/PaginaAdminClientes";
+import PaginaAdminUsuarios from "./pages/PaginaAdminUsuarios";
 import PaginaNoEncontrada from "./pages/PaginaNoEncontrada";
 
 function App() {
@@ -18,7 +20,9 @@ function App() {
               <Route path="/" element={<PaginaInicio />} />
               <Route path="/servicios" element={<PaginaServicios />} />
               <Route path="/admin" element={<PaginaAdminResumen />} />
-               <Route path="/admin/productos" element={<PaginaAdminProductos />} />
+              <Route path="/admin/productos" element={<PaginaAdminProductos />} />
+              <Route path="/admin/clientes" element={<PaginaAdminClientes />} />
+              <Route path="/admin/usuarios" element={<PaginaAdminUsuarios />} />
               <Route path="*" element={<PaginaNoEncontrada />} />
             </Routes>
           </BrowserRouter>
