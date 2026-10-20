@@ -1,0 +1,10 @@
+{
+  "titulo": "Crear Cuenta",
+  "textoBoton": "Registrarse",
+  "varianteBoton": "success",
+  "campos": [
+    { "id": "nombre", "etiqueta": "Nombre Completo", "tipo": "text", "placeholder": "Tu nombre" },
+    { "id": "correo", "etiqueta": "Correo", "tipo": "email", "placeholder": "tu@correo.cl" },
+    { "id": "password", "etiqueta": "Contraseña", "tipo": "password", "placeholder": "••••••••" }
+  ]
+}

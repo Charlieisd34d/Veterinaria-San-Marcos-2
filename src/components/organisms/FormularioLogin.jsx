@@ -1,91 +1,83 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
-import { validarEmail, validarClave } from '../../utils/validaciones';
-
-const FormularioLogin = ({ alEnviarExitoso }) => {
-    const [email, setEmail] = useState('');
-    const [clave, setClave] = useState('');
-    const [errores, setErrores] = useState({
-    email: '',
-    clave: ''
-});
-
-const manejarEnvio = (evento) => {
-    evento.preventDefault(); // Evita que la página se recargue
-    // Ejecuta las validaciones
-    const errorEmail = validarEmail(email);
-    const errorClave = validarClave(clave);
-    setErrores({
-    email: errorEmail,
-    clave: errorClave
-});
-
-// Si no hay errores, se comunica el éxito a la página
-    if (!errorEmail && !errorClave) {
-    alEnviarExitoso({ email, clave });
-    }
-};
-return (
-    <form onSubmit={manejarEnvio} className="w-100" style={{ maxWidth: '400px' }}>
-        <div className="mb-3">
-        <label className="form-label">Correo electrónico</label>
-        <input type="email" className={`form-control ${errores.email ? 'is-invalid' : ''}`}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="ejemplo@sanmarcos.cl"
-    />
-        {errores.email && <div className="invalid-feedback">{errores.email}</div>}
-        </div>
-        <div className="mb-3">
-        <label className="form-label">Contraseña</label>
-        <input type="password" className={`form-control ${errores.clave ? 'is-invalid' : ''}`}
-        value={clave}
-        onChange={(e) => setClave(e.target.value)}
-        placeholder="********"
-    />
-        {errores.clave && <div className="invalid-feedback">{errores.clave}</div>}
-    </div>
-        <button type="submit" className="btn text-white w-100" style={{ backgroundColor: '#0d5c4d' }}>
-        Ingresar
-        </button>
-        </form>
-    );
-};
-=======
-import { useState } from "react";
-import CampoConEtiqueta from "../molecules/CampoConEtiqueta";
-import Boton from "../atoms/Boton";
+import { useNavigate } from 'react-router-dom';
+import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
+import Boton from '../atoms/Boton';
+import { validarObligatorio, validarCorreo } from "../../utils/validaciones"; 
 
 function FormularioLogin(props) {
-  const [valores, setValores] = useState({});
+  const [valores, setValores] = useState({ email: '', password: '' });
+  const [errores, setErrores] = useState({});
+  const navigate = useNavigate();
 
   function alCambiar(id, texto) {
     setValores({ ...valores, [id]: texto });
+    setErrores({ ...errores, [id]: '' });
   }
 
   function alEnviar(evento) {
-    evento.preventDefault();
-    props.onEnviar(valores);
+    evento.preventDefault(); 
+
+  
+    const errorEmail = validarObligatorio(valores.email) || validarCorreo(valores.email);
+    const errorPassword = validarObligatorio(valores.password);
+
+    const nuevosErrores = {};
+    if (errorEmail) nuevosErrores.email = errorEmail;
+    if (errorPassword) nuevosErrores.password = errorPassword;
+
+    if (Object.keys(nuevosErrores).length > 0) {
+      setErrores(nuevosErrores);
+      return;
+    }
+
+    if (props.onEnviar) {
+      props.onEnviar(valores);
+    }
   }
 
   return (
-    <form className="card p-4" onSubmit={alEnviar}>
-      <h2 className="h4 mb-3">{props.titulo}</h2>
-      {props.campos.map((campo) => (
-        <CampoConEtiqueta
-          key={campo.id}
-          id={campo.id}
-          etiqueta={campo.etiqueta}
-          tipo={campo.tipo}
-          placeholder={campo.placeholder}
-          value={valores[campo.id] || ""}
-          onChange={(evento) => alCambiar(campo.id, evento.target.value)}
+    <form className="card p-4 border-0 shadow-sm" onSubmit={alEnviar}>
+      <h2 className="h4 mb-3 fw-bold text-center" style={{ color: '#0f4c42' }}>
+        {props.titulo}
+      </h2>
+
+      {props.campos && props.campos.map((campo) => (
+  <div key={campo.id} className="mb-3">
+    <CampoConEtiqueta
+      id={campo.id}
+      etiqueta={campo.etiqueta}
+      tipo={campo.tipo}
+      placeholder={campo.placeholder}
+      value={valores[campo.id] || ""}
+      onChange={(evento) => alCambiar(campo.id, evento.target.value)}
+    />
+    {errores[campo.id] && (
+      <div className="text-danger small mt-1">{errores[campo.id]}</div>
+    )}
+  </div>
+))}
+
+      <div className="mt-3 d-grid">
+        <Boton 
+          tipo="submit" 
+          texto={props.textoBoton} 
+          variante={props.varianteBoton} 
         />
-      ))}
-      <Boton tipo="submit" texto={props.textoBoton} variante={props.varianteBoton} />
+      </div>
+    <div className="text-center mt-3">
+        <span className="text-muted small">¿No tienes una cuenta? </span>
+        <a 
+          href="/registro" 
+          className="small text-decoration-none fw-bold text-success"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/registro');
+          }}
+        >
+          Regístrate aquí
+        </a>
+      </div>
     </form>
   );
 }
-
->>>>>>> origin/main
 export default FormularioLogin;

@@ -1,73 +1,3 @@
-<<<<<<< HEAD
-[
-  {
-    "id": 1,
-    "codigo": "SERV-001",
-    "categoria": "Medicina General",
-    "nombre": "Consulta general",
-    "especie": "General",
-    "duracion": "30 min",
-    "precio": 25000,
-    "observaciones": "Evaluación integral, diagnóstico y seguimiento para cuidar su salud en cada etapa.",
-    "icono": "bi bi-heart"
-  },
-  {
-    "id": 2,
-    "codigo": "SERV-002",
-    "categoria": "Prevención",
-    "nombre": "Vacunación",
-    "especie": "General",
-    "duracion": "20 min",
-    "precio": 20000,
-    "observaciones": "Calendario personalizado y recordatorios para que ninguna vacuna quede pendiente.",
-    "icono": "bi bi-virus"
-  },
-  {
-    "id": 3,
-    "codigo": "SERV-003",
-    "categoria": "Cirugía",
-    "nombre": "Cirugía menor",
-    "especie": "General",
-    "duracion": "60 min",
-    "precio": 65000,
-    "observaciones": "Procedimientos seguros con un equipo experimentado y acompañamiento cercano.",
-    "icono": "bi bi-shield-check"
-  },
-  {
-    "id": 4,
-    "codigo": "SERV-004",
-    "categoria": "Bienestar",
-    "nombre": "Bienestar preventivo",
-    "especie": "General",
-    "duracion": "30 min",
-    "precio": 18000,
-    "observaciones": "Desparasitación, control de peso y hábitos para una vida larga y saludable.",
-    "icono": "bi bi-activity"
-  },
-  {
-    "id": 5,
-    "codigo": "SERV-005",
-    "categoria": "Administración",
-    "nombre": "Ficha clínica digital",
-    "especie": "General",
-    "duracion": "15 min",
-    "precio": 0,
-    "observaciones": "Registro organizado de consultas, diagnósticos, medicamentos y próximos controles.",
-    "icono": "bi bi-file-earmark-text"
-  },
-  {
-    "id": 6,
-    "codigo": "SERV-006",
-    "categoria": "Atención",
-    "nombre": "Solicitud de citas",
-    "especie": "General",
-    "duracion": "15 min",
-    "precio": 0,
-    "observaciones": "Solicita una hora en línea y recibe la confirmación de nuestra recepción.",
-    "icono": "bi bi-calendar-check"
-  }
-]
-=======
 {
   "titulo": "Servicios veterinarios",
   "descripcion": "Atenciones esenciales para prevenir, diagnosticar y tratar problemas de salud.",
@@ -82,4 +12,3 @@
     { "id": 6, "icono": "bi bi-calendar-event", "titulo": "Solicitud de citas", "descripcion": "Solicita una hora en línea y recibe la confirmación de nuestra recepción." }
   ]
 }
->>>>>>> origin/main

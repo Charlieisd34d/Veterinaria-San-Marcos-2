@@ -9,6 +9,8 @@ function BarraSuperior(props) {
             key={elemento.id}
             claseIcono={elemento.claseIcono}
             texto={elemento.texto}
+            enlace={elemento.enlace}
+            onNavegar={props.onNavegar}
           />
         ))}
       </div>

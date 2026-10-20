@@ -1,4 +1,4 @@
 [
   { "id": 1, "claseIcono": "bi bi-geo-alt", "texto": "Rancagua · +56 9 1234 5678" },
-  { "id": 2, "claseIcono": "bi bi-lock", "texto": "Acceso clientes" }
+  { "id": 2, "claseIcono": "bi bi-lock", "texto": "Acceso clientes", "enlace": "/login" }
 ]
