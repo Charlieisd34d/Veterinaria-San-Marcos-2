@@ -1,0 +1,5 @@
+[
+  { "id": 1, "nombre": "Alimento premium 15 kg", "categoria": "Alimento", "precio": 45000, "stock": 12 },
+  { "id": 2, "nombre": "Collar antipulgas", "categoria": "Accesorios", "precio": 9990, "stock": 30 },
+  { "id": 3, "nombre": "Shampoo medicado", "categoria": "Higiene", "precio": 7500, "stock": 18 }
+]
