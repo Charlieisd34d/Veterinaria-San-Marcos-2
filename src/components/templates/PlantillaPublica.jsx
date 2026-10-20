@@ -1,0 +1,51 @@
+import EncabezadoPublico from "../organisms/EncabezadoPublico";
+import AvisoPagina from "../organisms/AvisoPagina";
+import SeccionHero from "../organisms/SeccionHero";
+import PiePagina from "../organisms/PiePagina";
+import { useNavegacionPublica } from "../../hooks/useNavegacionPublica";
+
+function PlantillaInicio(props) {
+  const nav = useNavegacionPublica(props.navegacion);
+
+  return (
+    <div className="d-flex flex-column min-vh-100">
+      <EncabezadoPublico
+        barraSuperior={props.barraSuperior}
+        navegacion={nav.navegacion}
+        onNavegar={nav.navegar}
+        onClickCita={props.onClickCita}
+      />
+
+      <AvisoPagina
+        mensaje={props.mensaje}
+        textoCerrar={props.textoCerrar}
+        onCerrar={props.onCerrarMensaje}
+      />
+
+      <main className="flex-grow-1 py-5">
+        <div className="container-fluid">
+          <SeccionHero
+            etiqueta={props.hero.etiqueta}
+            titulo={props.hero.titulo}
+            descripcion={props.hero.descripcion}
+            botonPrimario={props.hero.botonPrimario}
+            botonSecundario={props.hero.botonSecundario}
+            rutaImagen={props.hero.rutaImagen}
+            textoAlternativo={props.hero.textoAlternativo}
+            onClickPrimario={props.onClickPrimario}
+            onClickSecundario={props.onClickSecundario}
+          />
+        </div>
+      </main>
+
+      <PiePagina
+        nombre={props.pie.nombre}
+        descripcion={props.pie.descripcion}
+        contactos={props.pie.contactos}
+        textoDerechos={props.pie.textoDerechos}
+      />
+    </div>
+  );
+}
+
+export default PlantillaInicio;

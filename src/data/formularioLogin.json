@@ -1,0 +1,9 @@
+{
+  "titulo": "Iniciar sesión",
+  "textoBoton": "Enviar",
+  "varianteBoton": "success",
+  "campos": [
+    { "id": "correo", "etiqueta": "Correo", "tipo": "email", "placeholder": "tu@correo.cl" },
+    { "id": "password", "etiqueta": "Contraseña", "tipo": "password", "placeholder": "••••••••" }
+  ]
+}
