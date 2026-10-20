@@ -1,4 +1,3 @@
-import React from 'react';
 import Boton from "../atoms/Boton";
 
 function TarjetaServicio(props) {
@@ -14,9 +13,9 @@ function TarjetaServicio(props) {
       {props.precio && (
         <p className="fw-bold text-dark mb-2">{props.precio}</p>
       )}
-      <Boton 
-        texto={props.textoBoton || "Solicitar servicio"} 
-        onClick={props.onSolicitar} 
+      <Boton
+        texto={props.textoBoton}
+        onClick={props.onSolicitar}
       />
     </div>
   );

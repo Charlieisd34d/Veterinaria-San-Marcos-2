@@ -1,9 +1,9 @@
-const Parrafo = ({ texto, clasePersonalizada = "text-muted fs-6 mb-4" }) => {
+function Parrafo(props) {
   return (
-    <p className={clasePersonalizada}>
-      {texto}
+    <p className="text-muted fs-6 mb-4">
+      {props.texto}
     </p>
   );
-};
+}
 
 export default Parrafo;

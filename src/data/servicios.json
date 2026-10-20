@@ -1,0 +1,14 @@
+{
+  "titulo": "Servicios veterinarios",
+  "descripcion": "Atenciones esenciales para prevenir, diagnosticar y tratar problemas de salud.",
+  "textoBotonServicio": "Solicitar servicio",
+  "botonAgendar": { "texto": "Agendar atención", "variante": "success" },
+  "servicios": [
+    { "id": 1, "icono": "bi bi-heart", "titulo": "Consulta general", "descripcion": "Evaluación integral, diagnóstico y seguimiento para cuidar su salud en cada etapa." },
+    { "id": 2, "icono": "bi bi-syringe", "titulo": "Vacunación", "descripcion": "Calendario personalizado y recordatorios para que ninguna vacuna quede pendiente." },
+    { "id": 3, "icono": "bi bi-shield-check", "titulo": "Cirugía menor", "descripcion": "Procedimientos seguros con un equipo experimentado y acompañamiento cercano." },
+    { "id": 4, "icono": "bi bi-activity", "titulo": "Bienestar preventivo", "descripcion": "Desparasitación, control de peso y hábitos para una vida larga y saludable." },
+    { "id": 5, "icono": "bi bi-file-earmark-medical", "titulo": "Ficha clínica digital", "descripcion": "Registro organizado de consultas, diagnósticos, medicamentos y próximos controles." },
+    { "id": 6, "icono": "bi bi-calendar-event", "titulo": "Solicitud de citas", "descripcion": "Solicita una hora en línea y recibe la confirmación de nuestra recepción." }
+  ]
+}

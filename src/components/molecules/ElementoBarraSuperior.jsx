@@ -1,13 +1,12 @@
-import Imagen from '../atoms/Imagen';
+import IconoTexto from "../atoms/IconoTexto";
 
-const ElementoBarraSuperior = ({ rutaImagen, textoAlternativo, clasePersonalizada = "img-fluid" }) => {
+function ElementoBarraSuperior(props) {
   return (
-    <Imagen 
-      ruta={rutaImagen} 
-      textoAlternativo={textoAlternativo} 
-      clasePersonalizada={clasePersonalizada} 
+    <IconoTexto
+      claseIcono={props.claseIcono}
+      texto={props.texto}
     />
   );
-};
+}
 
 export default ElementoBarraSuperior;

@@ -1,10 +1,10 @@
-const IconoTexto = ({ claseIcono, texto, clasePersonalizada = "d-inline-flex align-items-center gap-2" }) => {
+function IconoTexto(props) {
   return (
-    <div className={clasePersonalizada}>
-      <i className={claseIcono}></i>
-      <small>{texto}</small>
+    <div className="d-inline-flex align-items-center gap-2">
+      <i className={props.claseIcono}></i>
+      <small>{props.texto}</small>
     </div>
   );
-};
+}
 
 export default IconoTexto;
