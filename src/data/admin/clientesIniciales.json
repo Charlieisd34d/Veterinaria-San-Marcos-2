@@ -1,0 +1,4 @@
+[
+  { "id": 1, "nombre": "Camila Rojas", "correo": "camila@correo.cl", "telefono": "+56 9 1111 2222", "mascota": "Luna" },
+  { "id": 2, "nombre": "Benjamín Soto", "correo": "benjamin@correo.cl", "telefono": "+56 9 3333 4444", "mascota": "Rocky" }
+]

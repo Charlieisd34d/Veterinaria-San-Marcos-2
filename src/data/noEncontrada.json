@@ -1,0 +1,5 @@
+{
+  "titulo": "Página no encontrada",
+  "descripcion": "La dirección que escribiste no existe o fue movida.",
+  "botonVolver": { "texto": "Volver al inicio", "variante": "success" }
+}

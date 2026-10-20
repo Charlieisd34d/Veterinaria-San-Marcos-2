@@ -1,0 +1,4 @@
+[
+  { "id": 1, "nombre": "Florencia Díaz", "correo": "florencia@sanmarcos.cl", "rol": "Administrador" },
+  { "id": 2, "nombre": "Michael Catalán", "correo": "michael@sanmarcos.cl", "rol": "Veterinario" }
+]

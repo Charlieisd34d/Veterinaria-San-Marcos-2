@@ -1,23 +1,23 @@
-import React from 'react';
-import EnlaceNavegacion from '../atoms/EnlaceNavegacion';
-import Boton from '../atoms/Boton'
+import EnlaceNavegacion from "../atoms/EnlaceNavegacion";
+import Boton from "../atoms/Boton";
 
-const AccionesNavegacion = ({ etiquetaCarrito, enlaceCarrito, activoCarrito, etiquetaBoton, alHacerClicBoton }) => {
+function AccionesNavegacion(props) {
   return (
     <div className="d-flex align-items-center gap-3">
-      <EnlaceNavegacion 
-        etiqueta={etiquetaCarrito} 
-        enlace={enlaceCarrito} 
-        activo={activoCarrito} 
-        claseIcono="bi bi-cart3" 
+      <EnlaceNavegacion
+        etiqueta={props.etiquetaCarrito}
+        enlace={props.enlaceCarrito}
+        activo={props.activoCarrito}
+        claseIcono={props.claseIconoCarrito}
+        onClick={props.onClickCarrito}
       />
-      <Boton 
-        etiqueta={etiquetaBoton} 
-        variante="success" 
-        alHacerClic={alHacerClicBoton} 
+      <Boton
+        texto={props.textoBoton}
+        variante={props.varianteBoton}
+        onClick={props.onClickBoton}
       />
     </div>
   );
-};
+}
 
 export default AccionesNavegacion;

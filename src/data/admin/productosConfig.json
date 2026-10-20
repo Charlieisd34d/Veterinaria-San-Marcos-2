@@ -1,0 +1,19 @@
+{
+  "titulo": "Productos",
+  "descripcion": "Administra el catálogo de la tienda.",
+  "textoNuevo": "Nuevo producto",
+  "tituloNuevo": "Nuevo producto",
+  "tituloEditar": "Editar producto",
+  "columnas": [
+    { "clave": "nombre", "titulo": "Nombre" },
+    { "clave": "categoria", "titulo": "Categoría" },
+    { "clave": "precio", "titulo": "Precio" },
+    { "clave": "stock", "titulo": "Stock" }
+  ],
+  "campos": [
+    { "id": "nombre", "etiqueta": "Nombre", "tipo": "text", "placeholder": "Alimento premium 15 kg" },
+    { "id": "categoria", "etiqueta": "Categoría", "tipo": "text", "placeholder": "Alimento" },
+    { "id": "precio", "etiqueta": "Precio", "tipo": "number", "placeholder": "25000" },
+    { "id": "stock", "etiqueta": "Stock", "tipo": "number", "placeholder": "10" }
+  ]
+}

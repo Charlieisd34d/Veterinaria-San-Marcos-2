@@ -1,0 +1,16 @@
+{
+  "segundosAutoCierre": 5,
+  "textoCerrar": "Cerrar",
+  "cargando": "Cargando...",
+  "vacio": "No hay registros todavía.",
+  "tituloAcciones": "Acciones",
+  "editar": "Editar",
+  "eliminar": "Eliminar",
+  "guardar": "Guardar",
+  "cancelar": "Cancelar",
+  "mensajes": {
+    "creado": { "texto": "Registro creado correctamente.", "variante": "success" },
+    "actualizado": { "texto": "Registro actualizado correctamente.", "variante": "success" },
+    "eliminado": { "texto": "Registro eliminado.", "variante": "warning" }
+  }
+}

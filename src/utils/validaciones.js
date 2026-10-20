@@ -1,20 +1,20 @@
-export function validarEmail(email) {
-if (!email || email.trim() === "") {
-return "El correo es obligatorio.";
+export function validarObligatorio(valor) {
+  return String(valor).trim() === "" ? "Este campo es obligatorio." : "";
 }
-// Validación básica de correo (debe incluir '@' y un punto)
-const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-if (!regex.test(email)) {
-return "El formato del correo no es válido.";
+
+export function validarCorreo(valor) {
+  const partes = valor.split("@");
+  const correcto = partes.length === 2 && partes[0] !== "" && partes[1].includes(".");
+  return correcto ? "" : "Ingresa un correo válido.";
 }
-return "";
-}
-export function validarClave(clave) {
-if (!clave || clave.trim() === "") {
-return "La contraseña es obligatoria.";
-}
-if (clave.length < 6) {
-return "La contraseña debe tener al menos 6 caracteres.";
-}
-return "";
+
+export function validarNumero(valor, minimo) {
+  const numero = Number(valor);
+  if (Number.isNaN(numero)) {
+    return "Ingresa un número válido.";
+  }
+  if (numero < minimo) {
+    return `El valor mínimo es ${minimo}.`;
+  }
+  return "";
 }

@@ -1,0 +1,11 @@
+{
+  "tituloMarca": "San Marcos",
+  "subtituloMarca": "Clínica veterinaria",
+  "iconoMarca": "bi bi-heart-fill",
+  "enlaces": [
+    { "id": 1, "etiqueta": "Inicio", "enlace": "/" },
+    { "id": 2, "etiqueta": "Servicios", "enlace": "/servicios" }
+  ],
+  "carrito": { "etiqueta": "Carrito", "enlace": "/carrito", "claseIcono": "bi bi-cart3" },
+  "botonCita": { "texto": "Solicitar cita", "variante": "success" }
+}

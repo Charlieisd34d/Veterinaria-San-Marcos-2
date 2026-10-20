@@ -1,0 +1,12 @@
+{
+  "tituloMarca": "San Marcos",
+  "subtituloMarca": "Panel admin",
+  "iconoMarca": "bi bi-heart-fill",
+  "enlaces": [
+    { "id": 1, "etiqueta": "Resumen", "enlace": "/admin", "claseIcono": "bi bi-speedometer2" },
+    { "id": 2, "etiqueta": "Productos", "enlace": "/admin/productos", "claseIcono": "bi bi-box-seam" },
+    { "id": 3, "etiqueta": "Clientes", "enlace": "/admin/clientes", "claseIcono": "bi bi-people" },
+    { "id": 4, "etiqueta": "Usuarios", "enlace": "/admin/usuarios", "claseIcono": "bi bi-person-gear" }
+  ],
+  "volver": { "etiqueta": "Volver al sitio", "enlace": "/", "claseIcono": "bi bi-box-arrow-left" }
+}

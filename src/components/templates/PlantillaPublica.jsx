@@ -1,28 +1,43 @@
-import { useNavigate } from 'react-router-dom'
-import BarraSuperior from '../organisms/BarraSuperior';
-import NavBar from '../organisms/NavBar';
-import Footer from '../organisms/Footer';
+import EncabezadoPublico from "../organisms/EncabezadoPublico";
+import AvisoPagina from "../organisms/AvisoPagina";
+import PiePagina from "../organisms/PiePagina";
+import { useNavegacionPublica } from "../../hooks/useNavegacionPublica";
 
-// Plantilla: arma la estructura común de las páginas (cabecera, contenido y pie).
-// Solo las páginas y las plantillas usan el router. Los componentes de abajo
-// (Navbar, Footer) no lo conocen: reciben funciones por props y las llaman.
-export function PlantillaPublica(props) {
-  // useNavigate entrega la función navigate: navigate('/catalogo') cambia de página.
-  const navigate = useNavigate()
+import barraSuperior from "../../data/barraSuperior.json";
+import navegacion from "../../data/navegacion.json";
+import pie from "../../data/piePagina.json";
+import mensajes from "../../data/mensajes.json";
+
+function PlantillaPublica(props) {
+  const nav = useNavegacionPublica(navegacion);
 
   return (
-    <>
-      <NavBar
-        categorias={categorias}
-        onNavegar={navigate}
-        onBuscar={(texto) => navigate(`/buscar/${encodeURIComponent(texto)}`)}
+    <div className="d-flex flex-column min-vh-100">
+      <EncabezadoPublico
+        barraSuperior={barraSuperior}
+        navegacion={nav.navegacion}
+        onNavegar={nav.navegar}
+        onClickCita={props.onClickCita}
       />
-      <main className="contenido">
-        {/* props.children es el contenido que cada página pone dentro de <PlantillaPublica> */}
-        {props.children}
+
+      <AvisoPagina
+        mensaje={props.mensaje}
+        textoCerrar={mensajes.textoCerrar}
+        onCerrar={props.onCerrarMensaje}
+      />
+
+      <main className="flex-grow-1 py-5">
+        <div className="container">{props.children}</div>
       </main>
-      <Footer onNavegar={navigate} />
-    </>
-  )
+
+      <PiePagina
+        nombre={pie.nombre}
+        descripcion={pie.descripcion}
+        contactos={pie.contactos}
+        textoDerechos={pie.textoDerechos}
+      />
+    </div>
+  );
 }
+
 export default PlantillaPublica;

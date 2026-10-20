@@ -1,10 +1,11 @@
-function Logo(props){
-   return(
-    <img src="assets/logo_veterinaria.png"
-    alt="Logo San Marcos" 
-    className="img-fluid"
-      />
-   ); 
+function Logo(props) {
+  return (
+    <img
+      src={props.ruta}
+      alt={props.textoAlternativo}
+      className="img-fluid"
+    />
+  );
 }
 
 export default Logo;

@@ -1,0 +1,9 @@
+{
+  "nombre": "Veterinaria San Marcos",
+  "descripcion": "Atención veterinaria en Rancagua.",
+  "textoDerechos": "© 2026 Veterinaria San Marcos",
+  "contactos": [
+    { "id": 1, "claseIcono": "bi bi-telephone", "texto": "+56 9 1234 5678" },
+    { "id": 2, "claseIcono": "bi bi-envelope", "texto": "contacto@sanmarcos.cl" }
+  ]
+}

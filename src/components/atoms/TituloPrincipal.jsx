@@ -1,11 +1,9 @@
-import React from 'react';
-
-const TituloPrincipal = ({ texto }) => {
+function TituloPrincipal(props) {
   return (
     <h1 className="display-4 fw-bold text-dark mb-3 lh-sm">
-      {texto}
+      {props.texto}
     </h1>
   );
-};
+}
 
 export default TituloPrincipal;
