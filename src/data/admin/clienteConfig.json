@@ -1,0 +1,19 @@
+{
+  "titulo": "Clientes",
+  "descripcion": "Administra los clientes y sus mascotas.",
+  "textoNuevo": "Nuevo cliente",
+  "tituloNuevo": "Nuevo cliente",
+  "tituloEditar": "Editar cliente",
+  "columnas": [
+    { "clave": "nombre", "titulo": "Nombre" },
+    { "clave": "correo", "titulo": "Correo" },
+    { "clave": "telefono", "titulo": "Teléfono" },
+    { "clave": "mascota", "titulo": "Mascota" }
+  ],
+  "campos": [
+    { "id": "nombre", "etiqueta": "Nombre", "tipo": "text", "placeholder": "Camila Rojas" },
+    { "id": "correo", "etiqueta": "Correo", "tipo": "email", "placeholder": "camila@correo.cl" },
+    { "id": "telefono", "etiqueta": "Teléfono", "tipo": "text", "placeholder": "+56 9 1234 5678" },
+    { "id": "mascota", "etiqueta": "Mascota", "tipo": "text", "placeholder": "Luna" }
+  ]
+}

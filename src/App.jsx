@@ -1,26 +1,30 @@
-import React from 'react';
-import PaginaInicio from './pages/Inicio';
-=======
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { ProductosProvider } from "./context/ProductosContext";
+import { ClientesProvider } from "./context/ClientesContext";
+import { UsuariosProvider } from "./context/UsuariosContext";
+import PaginaInicio from "./pages/PaginaInicio";
+import PaginaServicios from "./pages/PaginaServicios";
+import PaginaAdminResumen from "./pages/PaginaAdminResumen"
+import PaginaAdminProductos from "./pages/PaginaAdminProductos"
+import PaginaNoEncontrada from "./pages/PaginaNoEncontrada";
 
 function App() {
-  const [count, setCount] = useState(0)
->>>>>>> 069772b3fe87d28b1c186c5f005783f3634d75dc
-
-const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/inicio" element={<Inicio />} />
-        <Route path="/servicios" element={<Servicios />} />
-      </Routes>
-    </BrowserRouter>
+    <ProductosProvider>
+      <ClientesProvider>
+        <UsuariosProvider>  
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<PaginaInicio />} />
+              <Route path="/servicios" element={<PaginaServicios />} />
+              <Route path="/admin" element={<PaginaAdminResumen />} />
+               <Route path="/admin/productos" element={<PaginaAdminProductos />} />
+              <Route path="*" element={<PaginaNoEncontrada />} />
+            </Routes>
+          </BrowserRouter>
+        </UsuariosProvider>
+      </ClientesProvider>
+    </ProductosProvider>
   );
 }
 

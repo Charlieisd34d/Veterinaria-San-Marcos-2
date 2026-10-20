@@ -1,0 +1,9 @@
+{
+  "titulo": "Resumen",
+  "descripcion": "Vista general de la clínica.",
+  "tarjetas": [
+    { "id": 1, "clave": "productos", "icono": "bi bi-box-seam", "titulo": "Productos" },
+    { "id": 2, "clave": "clientes", "icono": "bi bi-people", "titulo": "Clientes" },
+    { "id": 3, "clave": "usuarios", "icono": "bi bi-person-gear", "titulo": "Usuarios" }
+  ]
+}
