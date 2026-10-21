@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
 import Boton from '../atoms/Boton';
-import { validarObligatorio, validarCorreo } from '../utils/validaciones';
+import { validarObligatorio, validarCorreo } from '../../utils/validaciones';
 
 export default function FormularioRegistro(props) {
   const [valores, setValores] = useState({});

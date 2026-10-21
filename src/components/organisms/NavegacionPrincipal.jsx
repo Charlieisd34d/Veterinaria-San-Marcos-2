@@ -39,8 +39,14 @@ function NavegacionPrincipal(props) {
           onClickCarrito={(evento) => ir(evento, props.enlaceCarrito)}
           textoBoton={props.textoBotonCita}
           varianteBoton={props.varianteBotonCita}
-          onClickBoton={props.onClickCita}
-        />
+          onClickBoton={() => {
+            if (props.onClickCita) {
+              props.onClickCita();
+            } else if (props.onNavegar) {
+              props.onNavegar('/solicitar-cita');
+          }
+      }}
+    />
       </div>
     </nav>
   );

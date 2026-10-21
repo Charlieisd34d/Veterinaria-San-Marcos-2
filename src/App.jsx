@@ -11,6 +11,7 @@ import PaginaAdminUsuarios from "./pages/PaginaAdminUsuarios";
 import PaginaNoEncontrada from "./pages/PaginaNoEncontrada";
 import PaginaLogin from './pages/PaginaLogin';
 import PaginaRegistro from './pages/PaginaRegistro';
+import PaginaSolicitarCita from './pages/PaginaSolicitarCita';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/servicios" element={<PaginaServicios />} />
               <Route path="/login" element={<PaginaLogin />} />
               <Route path="/registro" element={<PaginaRegistro />} />
+              <Route path="/solicitar-cita" element={<PaginaSolicitarCita />} />
               <Route path="/admin" element={<PaginaAdminResumen />} />
               <Route path="/admin/productos" element={<PaginaAdminProductos />} />
               <Route path="/admin/clientes" element={<PaginaAdminClientes />} />

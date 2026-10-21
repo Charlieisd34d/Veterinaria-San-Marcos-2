@@ -1,0 +1,11 @@
+{
+  "titulo": "Solicitar Cita Veterinaria",
+  "textoBoton": "Agendar Cita",
+  "varianteBoton": "success",
+  "campos": [
+    { "id": "mascota", "etiqueta": "Nombre de la Mascota", "tipo": "text", "placeholder": "Ej: Firulais" },
+    { "id": "servicio", "etiqueta": "Servicio / Motivo", "tipo": "text", "placeholder": "Ej: Control general o vacunación" },
+    { "id": "fecha", "etiqueta": "Fecha deseada", "tipo": "date", "placeholder": "" },
+    { "id": "correo", "etiqueta": "Correo de contacto", "tipo": "email", "placeholder": "tu@correo.cl" }
+  ]
+}

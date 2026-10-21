@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PlantillaPublica from '../components/templates/PlantillaPublica';
 import FormularioLogin from '../components/organisms/FormularioLogin';
-import datosFormulario from '../data/formulariologin.json'; 
+import datosFormulario from '../data/formularioLogin.json'; 
 
 export default function PaginaLogin() {
   const [mensaje, setMensaje] = useState(null);

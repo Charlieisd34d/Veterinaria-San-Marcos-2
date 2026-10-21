@@ -1,4 +1,5 @@
 {
+  "segundosAutoCierre": 5,
   "textoCerrar": "Cerrar",
   "agendarCita": {
     "texto": "Recibimos tu solicitud. Te contactaremos para confirmar la hora de tu cita.",
@@ -7,5 +8,9 @@
   "verServicios": {
     "texto": "Pronto podrás ver el detalle de todos nuestros servicios.",
     "variante": "info"
+  },
+  "solicitarServicio": {
+    "texto": "Has seleccionado el servicio de",
+    "variante": "success"
   }
 }

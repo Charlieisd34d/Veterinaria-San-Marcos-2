@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import PlantillaPublica from '../components/templates/PlantillaPublica';
 import FormularioRegistro from '../components/organisms/FormularioRegistro';
-import datosRegistro from '../data/formularioregistro.json';
+import datosRegistro from '../data/formularioRegistro.json';
 
 export default function PaginaRegistro() {
   const navigate = useNavigate();
