@@ -7,7 +7,7 @@ import { validarObligatorio, validarCorreo, validarNumero } from "../../utils/va
 function crearValoresIniciales(campos, item) {
   const valores = {};
   campos.forEach((campo) => {
-    valores[campo.id] = item ? String(item[campo.id]) : "";
+    valores[campo.id] = item?.[campo.id] == null ? "" : String(item[campo.id]);
   });
   return valores;
 }

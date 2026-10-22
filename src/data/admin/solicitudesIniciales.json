@@ -1,0 +1,5 @@
+[
+  { "id": 1, "clienteId": 1, "servicio": "Consulta general", "fecha": "2026-10-25", "estado": "Pendiente" },
+  { "id": 2, "clienteId": 2, "servicio": "Vacunación", "fecha": "2026-10-27", "estado": "Confirmada" },
+  { "id": 3, "clienteId": 1, "servicio": "Bienestar preventivo", "fecha": "2026-10-30", "estado": "Pendiente" }
+]

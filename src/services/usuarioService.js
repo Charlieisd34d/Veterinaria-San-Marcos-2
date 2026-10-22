@@ -6,7 +6,7 @@ function leer() {
   const guardado = localStorage.getItem(CLAVE);
   if (guardado === null) {
     localStorage.setItem(CLAVE, JSON.stringify(usuariosIniciales));
-    return [...productosIniciales];
+    return [...usuariosIniciales];
   }
   return JSON.parse(guardado);
 }
@@ -37,6 +37,6 @@ export function actualizarUsuario(id, cambios) {
   return lista.find((p) => p.id === id) ?? null;
 }
 
-export function eliminarEliminar(id) {
+export function eliminarUsuario(id) {
   guardar(leer().filter((p) => p.id !== id));
 }

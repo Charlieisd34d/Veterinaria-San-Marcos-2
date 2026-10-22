@@ -7,12 +7,12 @@ import FormularioAdmin from "./FormularioAdmin";
 function SeccionCrud(props) {
   let contenido;
 
-  if (props.formularioAbierto) {
+  if (props.editando !== null && props.editando !== undefined) {
     contenido = (
       <FormularioAdmin
-        titulo={props.itemEditando ? props.config.tituloEditar : props.config.tituloNuevo}
+        titulo={props.editando.id ? props.config.tituloEditar : props.config.tituloNuevo}
         campos={props.config.campos}
-        valoresIniciales={props.itemEditando}
+        valoresIniciales={props.editando}
         textoGuardar={props.textos.guardar}
         textoCancelar={props.textos.cancelar}
         onGuardar={props.onGuardar}
@@ -43,7 +43,7 @@ function SeccionCrud(props) {
           <TituloSeccion texto={props.config.titulo} />
           <Parrafo texto={props.config.descripcion} />
         </div>
-        {!props.formularioAbierto && (
+        {props.editando === null && (
           <Boton texto={props.config.textoNuevo} variante="success" onClick={props.onNuevo} />
         )}
       </div>

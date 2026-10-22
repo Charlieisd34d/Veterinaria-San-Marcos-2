@@ -13,11 +13,11 @@ export function UsuariosProvider({ children }) {
 
   function actualizar(id, cambios) {
     usuarioService.actualizarUsuario(id, cambios);
-    setUsuarios(usuarioService.listarUsuario());
+    setUsuarios(usuarioService.listarUsuarios());
   }
 
   function eliminar(id) {
-    usuarioService.eliminarCliente(id);
+    usuarioService.eliminarUsuario(id);
     setUsuarios(usuarioService.listarUsuarios());
   }
 

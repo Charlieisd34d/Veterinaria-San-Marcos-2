@@ -1,0 +1,20 @@
+{
+  "titulo": "Solicitudes",
+  "descripcion": "Administra las solicitudes de atención veterinaria.",
+  "textoNuevo": "Nueva solicitud",
+  "tituloNuevo": "Nueva solicitud",
+  "tituloEditar": "Editar solicitud",
+  "columnas": [
+    { "clave": "id", "titulo": "N°" },
+    { "clave": "cliente", "titulo": "Cliente" },
+    { "clave": "servicio", "titulo": "Servicio" },
+    { "clave": "fecha", "titulo": "Fecha" },
+    { "clave": "estado", "titulo": "Estado" }
+  ],
+  "campos": [
+    { "id": "clienteId", "etiqueta": "ID del cliente", "tipo": "number", "placeholder": "1" },
+    { "id": "servicio", "etiqueta": "Servicio", "tipo": "text", "placeholder": "Consulta general" },
+    { "id": "fecha", "etiqueta": "Fecha", "tipo": "date", "placeholder": "2026-10-25" },
+    { "id": "estado", "etiqueta": "Estado", "tipo": "text", "placeholder": "Pendiente" }
+  ]
+}
