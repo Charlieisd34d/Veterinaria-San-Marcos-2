@@ -1,5 +1,4 @@
 import usuariosIniciales from "../data/admin/usuariosIniciales.json";
-import productosIniciales from "../data/admin/productosIniciales.json";
 
 const CLAVE = "usuario";
 

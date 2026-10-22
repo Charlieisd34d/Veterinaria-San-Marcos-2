@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import PlantillaPublica from "../components/templates/PlantillaPublica";
 import SeccionServicios from "../components/organisms/SeccionServicios";
 import { useTituloPagina } from "../hooks/useTituloPagina";
@@ -10,7 +9,6 @@ import mensajes from "../data/mensajes.json";
 
 function PaginaServicios() {
   const [mensaje, setMensaje] = useState(null);
-  const navigate = useNavigate();
 
   function alCerrarMensaje() {
     setMensaje(null);
@@ -25,7 +23,6 @@ function PaginaServicios() {
       texto: `${mensajes.solicitarServicio.texto} ${servicio.titulo}.`,
       variante: mensajes.solicitarServicio.variante,
     });
-    navigate('/solicitar-cita');
   }
 
   function alAgendarCita() {

@@ -4,10 +4,7 @@ import NavegacionPrincipal from "./NavegacionPrincipal";
 function EncabezadoPublico(props) {
   return (
     <>
-      <BarraSuperior 
-        elementos={props.barraSuperior} 
-        onNavegar={props.onNavegar}
-        />
+      <BarraSuperior elementos={props.barraSuperior} />
       <NavegacionPrincipal
         tituloMarca={props.navegacion.tituloMarca}
         subtituloMarca={props.navegacion.subtituloMarca}
