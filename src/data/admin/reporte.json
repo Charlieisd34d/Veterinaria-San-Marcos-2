@@ -1,0 +1,12 @@
+{
+  "titulo": "Reportes",
+  "descripcion": "Resumen de las operaciones de la clínica.",
+  "tarjetas": [
+    { "id": 1, "clave": "total", "icono": "bi bi-receipt", "titulo": "Solicitudes totales" },
+    { "id": 2, "clave": "pendientes", "icono": "bi bi-hourglass-split", "titulo": "Pendientes" },
+    { "id": 3, "clave": "confirmadas", "icono": "bi bi-check-circle", "titulo": "Confirmadas" },
+    { "id": 4, "clave": "completadas", "icono": "bi bi-check2-all", "titulo": "Completadas" },
+    { "id": 5, "clave": "canceladas", "icono": "bi bi-x-circle", "titulo": "Canceladas" },
+    { "id": 6, "clave": "criticos", "icono": "bi bi-exclamation-triangle", "titulo": "Ítems críticos" }
+  ]
+}

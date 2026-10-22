@@ -1,0 +1,16 @@
+{
+  "tituloMarca": "San Marcos",
+  "subtituloMarca": "Panel admin",
+  "iconoMarca": "bi bi-heart-fill",
+  "enlaces": [
+    { "id": 1, "etiqueta": "Resumen", "enlace": "/admin", "claseIcono": "bi bi-speedometer2" },
+    { "id": 2, "etiqueta": "Solicitudes", "enlace": "/admin/solicitudes", "claseIcono": "bi bi-receipt" },
+    { "id": 3, "etiqueta": "Productos", "enlace": "/admin/productos", "claseIcono": "bi bi-box-seam" },
+    { "id": 4, "etiqueta": "Ítems críticos", "enlace": "/admin/criticos", "claseIcono": "bi bi-exclamation-triangle" },
+    { "id": 5, "etiqueta": "Categorías", "enlace": "/admin/categorias", "claseIcono": "bi bi-tags" },
+    { "id": 6, "etiqueta": "Clientes", "enlace": "/admin/clientes", "claseIcono": "bi bi-people" },
+    { "id": 7, "etiqueta": "Usuarios", "enlace": "/admin/usuarios", "claseIcono": "bi bi-person-gear" },
+    { "id": 8, "etiqueta": "Reportes y perfil", "enlace": "/admin/reportes", "claseIcono": "bi bi-graph-up" }
+  ],
+  "volver": { "etiqueta": "Volver al sitio", "enlace": "/", "claseIcono": "bi bi-box-arrow-left" }
+}

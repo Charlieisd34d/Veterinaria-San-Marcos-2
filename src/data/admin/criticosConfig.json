@@ -1,0 +1,10 @@
+{
+  "titulo": "Ítems críticos",
+  "descripcion": "Productos con poco stock que conviene reponer.",
+  "umbral": 15,
+  "columnas": [
+    { "clave": "nombre", "titulo": "Nombre" },
+    { "clave": "categoria", "titulo": "Categoría" },
+    { "clave": "stock", "titulo": "Stock" }
+  ]
+}

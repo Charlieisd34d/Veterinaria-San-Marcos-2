@@ -1,0 +1,22 @@
+{
+  "titulo": "Solicitudes",
+  "descripcion": "Solicitudes recibidas de los clientes.",
+  "textoVer": "Ver comprobante",
+  "columnas": [
+    { "clave": "id", "titulo": "N°" },
+    { "clave": "cliente", "titulo": "Cliente" },
+    { "clave": "servicio", "titulo": "Servicio" },
+    { "clave": "fecha", "titulo": "Fecha" },
+    { "clave": "estado", "titulo": "Estado" }
+  ],
+  "comprobante": {
+    "titulo": "Comprobante de solicitud",
+    "numero": "Solicitud N°",
+    "cliente": "Cliente",
+    "servicio": "Servicio",
+    "fecha": "Fecha",
+    "estado": "Estado",
+    "noEncontrada": "No existe una solicitud con ese número.",
+    "volver": "Volver a solicitudes"
+  }
+}

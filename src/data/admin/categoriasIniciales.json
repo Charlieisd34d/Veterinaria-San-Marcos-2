@@ -1,0 +1,5 @@
+[
+  { "id": 1, "nombre": "Alimento", "descripcion": "Alimento para mascotas" },
+  { "id": 2, "nombre": "Accesorios", "descripcion": "Collares, correas y juguetes" },
+  { "id": 3, "nombre": "Higiene", "descripcion": "Shampoo y cuidado del pelaje" }
+]

@@ -1,0 +1,13 @@
+{
+  "titulo": "Resumen",
+  "descripcion": "Vista general de la clínica.",
+  "textoIr": "Ver módulo",
+  "tarjetas": [
+    { "id": 1, "clave": "solicitudes", "icono": "bi bi-receipt", "titulo": "Solicitudes", "enlace": "/admin/solicitudes" },
+    { "id": 2, "clave": "productos", "icono": "bi bi-box-seam", "titulo": "Catálogo", "enlace": "/admin/productos" },
+    { "id": 3, "clave": "criticos", "icono": "bi bi-exclamation-triangle", "titulo": "Ítems críticos", "enlace": "/admin/criticos" },
+    { "id": 4, "clave": "categorias", "icono": "bi bi-tags", "titulo": "Categorías", "enlace": "/admin/categorias" },
+    { "id": 5, "clave": "clientes", "icono": "bi bi-people", "titulo": "Clientes", "enlace": "/admin/clientes" },
+    { "id": 6, "clave": "usuarios", "icono": "bi bi-person-gear", "titulo": "Usuarios", "enlace": "/admin/usuarios" }
+  ]
+}
