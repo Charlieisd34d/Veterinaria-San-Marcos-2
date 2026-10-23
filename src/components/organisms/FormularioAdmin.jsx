@@ -1,4 +1,3 @@
-// src/components/organisms/FormularioAdmin.jsx
 import { useState } from "react";
 import Boton from "../atoms/Boton";
 import CampoConEtiqueta from "../molecules/CampoConEtiqueta";

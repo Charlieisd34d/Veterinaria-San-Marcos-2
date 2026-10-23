@@ -1,4 +1,4 @@
-import React from 'react';
+
 import PlantillaInicio from '../components/templates/PlantillaInicio';
 import { useCarrito } from '../context/CarritoContext';
 

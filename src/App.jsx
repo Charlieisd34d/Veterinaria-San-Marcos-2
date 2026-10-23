@@ -16,6 +16,13 @@ import PaginaAdminReporte from "./pages/PaginaAdminReporte";
 import PaginaAdminCriticos from "./pages/PaginaAdminCriticos";
 import PaginaAdminUsuarios from "./pages/PaginaAdminUsuarios";
 import PaginaNoEncontrada from "./pages/PaginaNoEncontrada";
+import PaginaProductos from "./pages/PaginaProductos";
+import PaginaNosotros from "./pages/PaginaNosotros";
+import PaginaCarrito from "./pages/PaginaCarrito";
+
+
+
+
 
 function App() {
   return (
@@ -31,6 +38,9 @@ function App() {
                     <Route path="/admin" element={<PaginaAdminResumen />} />
                     <Route path="/admin/solicitudes" element={<PaginaAdminSolicitudes />} />
                     <Route path="/admin/productos" element={<PaginaAdminProductos />} />
+                    <Route path="/nosotros" element={<PaginaNosotros />} />
+                    <Route path="/carrito" element={<PaginaCarrito />} />
+                    <Route path="/productos" element={<PaginaProductos />} />
                     <Route path="/admin/categorias" element={<PaginaAdminCategorias />} />
                     <Route path="/admin/clientes" element={<PaginaAdminClientes />} />
                     <Route path="/admin/usuarios" element={<PaginaAdminUsuarios />} />
