@@ -1,20 +1,47 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import ModalComun from '../molecules/ModalComun';
 import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
 import Boton from '../atoms/Boton';
-import ModalComun from '../molecules/ModalComun';
-import { validarObligatorio, validarCorreo } from "../../utils/validaciones"; 
+import { validarObligatorio, validarCorreo } from '../../utils/validaciones'; // 1. Importa tus validaciones
 
-function FormularioLogin(props) {
+export default function FormularioLogin(props) {
   const [valores, setValores] = useState({});
+  const [errores, setErrores] = useState({}); 
 
   function alCambiar(id, texto) {
     setValores({ ...valores, [id]: texto });
+    setErrores({ ...errores, [id]: '' });
   }
 
   function alEnviar(evento) {
     evento.preventDefault();
-    props.onEnviar(valores);
+
+    const nuevosErrores = {};
+    
+    // 2. Recorre y valida cada campo utilizando las funciones importadas
+    props.campos?.forEach((campo) => {
+      const valorCampo = valores[campo.id] || "";
+      let error = validarObligatorio(valorCampo);
+      
+      if (!error && campo.tipo === 'email') {
+        error = validarCorreo(valorCampo);
+      }
+      
+      if (error) {
+        nuevosErrores[campo.id] = error;
+      }
+    });
+
+    // 3. Si hay errores, se guardan y se detiene el envío
+    if (Object.keys(nuevosErrores).length > 0) {
+      setErrores(nuevosErrores);
+      return;
+    }
+
+    // 4. Si todo está correcto, avisa al componente superior
+    if (props.onEnviar) {
+      props.onEnviar(valores);
+    }
   }
 
   return (
@@ -28,7 +55,7 @@ function FormularioLogin(props) {
               tipo={campo.tipo}
               placeholder={campo.placeholder}
               value={valores[campo.id] || ""}
-              onChange={(evento) => alCambiar(campo.id, evento.target.value)}
+              onChange={(e) => alCambiar(campo.id, e.target.value)}
             />
             {errores[campo.id] && (
               <div className="text-danger small mt-1">{errores[campo.id]}</div>
@@ -36,7 +63,7 @@ function FormularioLogin(props) {
           </div>
         ))}
 
-        <div className="mt-3 d-grid">
+        <div className="mt-4 text-center">
           <Boton 
             tipo="submit" 
             texto={props.textoBoton} 
@@ -47,5 +74,3 @@ function FormularioLogin(props) {
     </ModalComun>
   );
 }
-
-export default FormularioLogin;
