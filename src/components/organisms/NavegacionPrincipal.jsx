@@ -1,4 +1,3 @@
-// organisms/NavegacionPrincipal.jsx
 import Logotipo from "../molecules/Logotipo";
 import EnlaceNavegacion from "../atoms/EnlaceNavegacion";
 import AccionesNavegacion from "../molecules/AccionesNavegacion";
@@ -37,9 +36,9 @@ function NavegacionPrincipal(props) {
           activoCarrito={props.activoCarrito}
           claseIconoCarrito={props.claseIconoCarrito}
           onClickCarrito={(evento) => ir(evento, props.enlaceCarrito)}
-          textoBoton={props.textoBotonCita}
-          varianteBoton={props.varianteBotonCita}
-          onClickBoton={props.onClickCita}
+          textoBoton={props.textoBotonInicio}
+          varianteBoton={props.varianteBotonInicio}
+          onClickBoton={props.onClickInicio}
         />
       </div>
     </nav>

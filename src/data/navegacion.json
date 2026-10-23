@@ -7,5 +7,5 @@
     { "id": 2, "etiqueta": "Servicios", "enlace": "/servicios" }
   ],
   "carrito": { "etiqueta": "Carrito", "enlace": "/carrito", "claseIcono": "bi bi-cart3" },
-  "botonCita": { "texto": "Solicitar cita", "variante": "success" }
+  "botonInicio": { "texto": "Inicio de Sesión", "variante": "success" }
 }

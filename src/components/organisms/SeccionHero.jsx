@@ -14,11 +14,6 @@ function SeccionHero(props) {
         <Parrafo texto={props.descripcion} />
 
         <div className="d-flex gap-3 mt-4">
-          <Boton
-            texto={props.botonPrimario.texto}
-            variante={props.botonPrimario.variante}
-            onClick={props.onClickPrimario}
-          />
           {props.botonSecundario && (
             <Boton
               texto={props.botonSecundario.texto}

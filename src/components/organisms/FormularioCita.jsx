@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ModalComun from '../molecules/ModalComun'; 
 import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
 import Boton from '../atoms/Boton';
 import { validarObligatorio, validarCorreo } from '../../utils/validaciones';
@@ -40,34 +41,32 @@ export default function FormularioCita(props) {
   }
 
   return (
-    <form className="card p-4 border-0 shadow-sm" onSubmit={alEnviar}>
-      <h2 className="h4 mb-3 fw-bold text-center" style={{ color: '#0f4c42' }}>
-        {props.titulo}
-      </h2>
+    <ModalComun show={props.show} onHide={props.onHide} titulo={props.titulo}>
+      <form onSubmit={alEnviar}>
+        {props.campos && props.campos.map((campo) => (
+          <div key={campo.id} className="mb-3">
+            <CampoConEtiqueta
+              id={campo.id}
+              etiqueta={campo.etiqueta}
+              tipo={campo.tipo}
+              placeholder={campo.placeholder}
+              value={valores[campo.id] || ""}
+              onChange={(e) => alCambiar(campo.id, e.target.value)}
+            />
+            {errores[campo.id] && (
+              <div className="text-danger small mt-1">{errores[campo.id]}</div>
+            )}
+          </div>
+        ))}
 
-      {props.campos && props.campos.map((campo) => (
-        <div key={campo.id} className="mb-3">
-          <CampoConEtiqueta
-            id={campo.id}
-            etiqueta={campo.etiqueta}
-            tipo={campo.tipo}
-            placeholder={campo.placeholder}
-            value={valores[campo.id] || ""}
-            onChange={(e) => alCambiar(campo.id, e.target.value)}
+        <div className="mt-4 text-center">
+          <Boton 
+            tipo="submit" 
+            texto={props.textoBoton} 
+            variante={props.varianteBoton} 
           />
-          {errores[campo.id] && (
-            <div className="text-danger small mt-1">{errores[campo.id]}</div>
-          )}
         </div>
-      ))}
-
-      <div className="mt-3 text-center">
-        <Boton 
-          tipo="submit" 
-          texto={props.textoBoton} 
-          variante={props.varianteBoton} 
-        />
-      </div>
-    </form>
+      </form>
+    </ModalComun>
   );
 }

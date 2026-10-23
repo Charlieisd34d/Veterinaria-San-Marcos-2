@@ -1,7 +1,6 @@
 {
   "titulo": "Servicios veterinarios",
   "descripcion": "Atenciones esenciales para prevenir, diagnosticar y tratar problemas de salud.",
-  "textoBotonServicio": "Solicitar servicio",
   "botonAgendar": { "texto": "Agendar atención", "variante": "success" },
   "servicios": [
     { "id": 1, "icono": "bi bi-heart", "titulo": "Consulta general", "descripcion": "Evaluación integral, diagnóstico y seguimiento para cuidar su salud en cada etapa." },

@@ -9,6 +9,10 @@ import PaginaAdminProductos from "./pages/PaginaAdminProductos";
 import PaginaAdminClientes from "./pages/PaginaAdminClientes";
 import PaginaAdminUsuarios from "./pages/PaginaAdminUsuarios";
 import PaginaNoEncontrada from "./pages/PaginaNoEncontrada";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 447f852 (Se refactorizó modales de login y citas, y se limpió páginas obsoletas)
 
 function App() {
   return (

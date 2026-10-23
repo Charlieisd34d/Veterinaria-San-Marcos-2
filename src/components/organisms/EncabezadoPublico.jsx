@@ -14,10 +14,10 @@ function EncabezadoPublico(props) {
         enlaceCarrito={props.navegacion.carrito.enlace}
         activoCarrito={props.navegacion.carrito.activo}
         claseIconoCarrito={props.navegacion.carrito.claseIcono}
-        textoBotonCita={props.navegacion.botonCita.texto}
-        varianteBotonCita={props.navegacion.botonCita.variante}
+        textoBotonInicio={props.navegacion.botonInicio.texto}
+        varianteBotonInicio={props.navegacion.botonInicio.variante}
         onNavegar={props.onNavegar}
-        onClickCita={props.onClickCita}
+        onClickInicio={props.onClickLogin} 
       />
     </>
   );

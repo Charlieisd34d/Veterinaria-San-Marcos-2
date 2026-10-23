@@ -18,18 +18,16 @@ function SeccionServicios(props) {
               icono={servicio.icono}
               titulo={servicio.titulo}
               descripcion={servicio.descripcion}
-              textoBoton={props.textoBotonServicio}
-              onSolicitar={() => props.onSolicitar(servicio.id)}
             />
           </div>
         ))}
       </div>
 
-      <div className="mt-4">
+      <div className="text-start mt-4">
         <Boton
-          texto={props.botonAgendar.texto}
-          variante={props.botonAgendar.variante}
-          onClick={props.onClickAgendar}
+          texto="Agendar atención"
+          variante="success"
+          onClick={props.onClickAgendar} 
         />
       </div>
     </section>

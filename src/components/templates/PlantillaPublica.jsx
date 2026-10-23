@@ -1,15 +1,19 @@
+import { useState } from "react";
 import EncabezadoPublico from "../organisms/EncabezadoPublico";
 import AvisoPagina from "../organisms/AvisoPagina";
 import PiePagina from "../organisms/PiePagina";
+import FormularioLogin from "../organisms/FormularioLogin";
 import { useNavegacionPublica } from "../../hooks/useNavegacionPublica";
 
 import barraSuperior from "../../data/barraSuperior.json";
 import navegacion from "../../data/navegacion.json";
 import pie from "../../data/piePagina.json";
 import mensajes from "../../data/mensajes.json";
+import datosLogin from "../../data/formularioLogin.json";
 
 function PlantillaPublica(props) {
   const nav = useNavegacionPublica(navegacion);
+  const [modalLoginAbierto, setModalLoginAbierto] = useState(false);
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -17,7 +21,7 @@ function PlantillaPublica(props) {
         barraSuperior={barraSuperior}
         navegacion={nav.navegacion}
         onNavegar={nav.navegar}
-        onClickCita={props.onClickCita}
+        onClickLogin={() => setModalLoginAbierto(true)}
       />
 
       <AvisoPagina
@@ -35,6 +39,19 @@ function PlantillaPublica(props) {
         descripcion={pie.descripcion}
         contactos={pie.contactos}
         textoDerechos={pie.textoDerechos}
+      />
+
+      <FormularioLogin
+        show={modalLoginAbierto}
+        onHide={() => setModalLoginAbierto(false)}
+        titulo={datosLogin.titulo}
+        campos={datosLogin.campos}
+        textoBoton={datosLogin.textoBoton}
+        varianteBoton={datosLogin.varianteBoton}
+        onEnviar={(valores) => {
+          console.log("Login:", valores);
+          setModalLoginAbierto(false);
+        }}
       />
     </div>
   );
