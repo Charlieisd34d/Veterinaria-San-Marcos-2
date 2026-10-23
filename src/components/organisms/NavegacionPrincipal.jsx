@@ -1,4 +1,3 @@
-// organisms/NavegacionPrincipal.jsx
 import Logotipo from "../molecules/Logotipo";
 import EnlaceNavegacion from "../atoms/EnlaceNavegacion";
 import AccionesNavegacion from "../molecules/AccionesNavegacion";
