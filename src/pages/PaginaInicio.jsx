@@ -28,7 +28,7 @@ function PaginaInicio() {
         },
         botonCita: { texto: "Solicitar cita", variante: "success" },
       }}
-      onClickCita={() => navigate("/iniciar-sesion")}
+      onClickCita={() => navigate("/servicios")}
     >
       <section className="row align-items-center g-5 py-4">
         <div className="col-lg-6">
@@ -42,9 +42,6 @@ function PaginaInicio() {
             Atención veterinaria cercana y profesional para perros, gatos y pequeñas especies.
           </p>
           <div className="d-flex gap-3 flex-wrap">
-            <Link to="/iniciar-sesion" className="btn btn-success px-4 py-3">
-              Solicitar una cita
-            </Link>
             <Link to="/servicios" className="btn btn-outline-success px-4 py-3">
               Ver servicios
             </Link>

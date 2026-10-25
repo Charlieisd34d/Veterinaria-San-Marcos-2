@@ -1,0 +1,26 @@
+[
+  {
+    "id": "vacunas-mascotas",
+    "categoria": "Prevención",
+    "fecha": "12 mayo, 2025",
+    "titulo": "El calendario de vacunas que tu mascota necesita",
+    "resumen": "Conoce las vacunas esenciales para perros y gatos y por qué respetar sus fechas protege a toda la familia.",
+    "imagen": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "id": "visitar-veterinario",
+    "categoria": "Bienestar",
+    "fecha": "6 mayo, 2025",
+    "titulo": "Señales de que es momento de visitar al veterinario",
+    "resumen": "Cambios pequeños en el ánimo, apetito o rutina pueden decir mucho. Aprende a identificarlos a tiempo.",
+    "imagen": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    "id": "peso-mascota",
+    "categoria": "Consejos",
+    "fecha": "28 abril, 2025",
+    "titulo": "Cómo cuidar el peso de tu mascota en casa",
+    "resumen": "Alimentación, juego y controles periódicos: tres hábitos simples para prevenir problemas de salud.",
+    "imagen": "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=800&auto=format&fit=crop"
+  }
+]
