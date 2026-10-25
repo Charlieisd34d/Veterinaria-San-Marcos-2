@@ -5,10 +5,10 @@ import { useNavegacionPublica } from "../../hooks/useNavegacionPublica";
 
 import barraSuperior from "../../data/barraSuperior.json";
 import navegacion from "../../data/navegacion.json";
-import pie from "../../data/piePagina.json";
+import pie from "../../data/pie.json";
 import mensajes from "../../data/mensajes.json";
 
-function PlantillaPublica(props) {
+function PlantillaPublica(props = {}) {
   const nav = useNavegacionPublica(navegacion);
 
   return (

@@ -10,7 +10,7 @@
     { "id": 5, "etiqueta": "Categorías", "enlace": "/admin/categorias", "claseIcono": "bi bi-tags" },
     { "id": 6, "etiqueta": "Clientes", "enlace": "/admin/clientes", "claseIcono": "bi bi-people" },
     { "id": 7, "etiqueta": "Usuarios", "enlace": "/admin/usuarios", "claseIcono": "bi bi-person-gear" },
-    { "id": 8, "etiqueta": "Reportes y perfil", "enlace": "/admin/reportes", "claseIcono": "bi bi-graph-up" }
+    { "id": 8, "etiqueta": "Reportes y perfil", "enlace": "/admin/reporte", "claseIcono": "bi bi-graph-up" }
   ],
   "volver": { "etiqueta": "Volver al sitio", "enlace": "/", "claseIcono": "bi bi-box-arrow-left" }
 }

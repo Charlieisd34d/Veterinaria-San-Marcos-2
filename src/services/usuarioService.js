@@ -1,12 +1,12 @@
-import clientesIniciales from "../data/admin/clientesIniciales.json";
+import usuariosIniciales from "../data/admin/usuariosIniciales.json";
 
-const CLAVE = "clientes";
+const CLAVE = "usuarios";
 
 function leer() {
   const guardado = localStorage.getItem(CLAVE);
   if (guardado === null) {
-    localStorage.setItem(CLAVE, JSON.stringify(clientesIniciales));
-    return [...clientesIniciales];
+    localStorage.setItem(CLAVE, JSON.stringify(usuariosIniciales));
+    return [...usuariosIniciales];
   }
   return JSON.parse(guardado);
 }
@@ -15,28 +15,28 @@ function guardar(lista) {
   localStorage.setItem(CLAVE, JSON.stringify(lista));
 }
 
-export function listarClientes() {
+export function listarUsuarios() {
   return leer();
 }
 
-export function obtenerCliente(id) {
-  return leer().find((p) => p.id === id) ?? null;
+export function obtenerUsuario(id) {
+  return leer().find((usuario) => usuario.id === id) ?? null;
 }
 
-export function crearCliente(datos) {
+export function crearUsuario(datos) {
   const lista = leer();
-  const nuevoId = Math.max(0, ...lista.map((p) => p.id)) + 1;
+  const nuevoId = Math.max(0, ...lista.map((usuario) => usuario.id)) + 1;
   const nuevo = { ...datos, id: nuevoId };
   guardar([...lista, nuevo]);
   return nuevo;
 }
 
-export function actualizarCliente(id, cambios) {
-  const lista = leer().map((p) => (p.id === id ? { ...p, ...cambios } : p));
+export function actualizarUsuario(id, cambios) {
+  const lista = leer().map((usuario) => (usuario.id === id ? { ...usuario, ...cambios } : usuario));
   guardar(lista);
-  return lista.find((p) => p.id === id) ?? null;
+  return lista.find((usuario) => usuario.id === id) ?? null;
 }
 
-export function eliminarCliente(id) {
-  guardar(leer().filter((p) => p.id !== id));
+export function eliminarUsuario(id) {
+  guardar(leer().filter((usuario) => usuario.id !== id));
 }

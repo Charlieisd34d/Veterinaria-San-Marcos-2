@@ -1,0 +1,10 @@
+{
+  "nombre": "Veterinaria San Marcos",
+  "descripcion": "Atención veterinaria cercana, profesional y con cariño para cada mascota.",
+  "contactos": [
+    { "titulo": "Teléfono", "valor": "+56 72 223 4488" },
+    { "titulo": "Correo", "valor": "contacto@sanmarcos.cl" },
+    { "titulo": "Dirección", "valor": "Rancagua, Chile" }
+  ],
+  "textoDerechos": "© 2026 Veterinaria San Marcos. Todos los derechos reservados."
+}

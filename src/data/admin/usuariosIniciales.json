@@ -1,0 +1,4 @@
+[
+  { "id": 1, "nombre": "Ana González", "correo": "ana@veterinaria.cl", "password": "admin123", "rol": "admin" },
+  { "id": 2, "nombre": "Luis Pérez", "correo": "luis@veterinaria.cl", "password": "admin456", "rol": "admin" }
+]

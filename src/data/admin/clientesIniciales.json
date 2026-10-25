@@ -1,0 +1,5 @@
+[
+  { "id": 1, "nombre": "María López", "telefono": "987654321", "correo": "maria@correo.cl", "direccion": "Calle Los Laureles 145" },
+  { "id": 2, "nombre": "José Torres", "telefono": "912345678", "correo": "jose@correo.cl", "direccion": "Avenida Central 92" },
+  { "id": 3, "nombre": "Valentina Ruiz", "telefono": "998877665", "correo": "valentina@correo.cl", "direccion": "Pasaje Las Flores 12" }
+]

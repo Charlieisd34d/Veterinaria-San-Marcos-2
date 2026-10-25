@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "titulo": "Consulta general",
+    "descripcion": "Evaluación integral y seguimiento para cuidar la salud de tu mascota en cada etapa.",
+    "claseIcono": "bi bi-heart"
+  },
+  {
+    "id": 2,
+    "titulo": "Vacunación",
+    "descripcion": "Calendario personalizado para mantener las vacunas al día con total seguridad.",
+    "claseIcono": "bi bi-syringe"
+  },
+  {
+    "id": 3,
+    "titulo": "Cirugía menor",
+    "descripcion": "Procedimientos seguros con atención cercana y seguimiento profesional.",
+    "claseIcono": "bi bi-shield-check"
+  }
+]

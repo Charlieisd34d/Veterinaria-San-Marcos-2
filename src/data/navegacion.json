@@ -1,0 +1,22 @@
+{
+  "tituloMarca": "San Marcos",
+  "subtituloMarca": "CLÍNICA VETERINARIA",
+  "iconoMarca": "bi bi-heart-fill",
+  "enlaces": [
+    { "id": 1, "etiqueta": "Inicio", "enlace": "/", "claseIcono": "bi bi-house" },
+    { "id": 2, "etiqueta": "Servicios", "enlace": "/servicios", "claseIcono": "bi bi-clipboard-heart" },
+    { "id": 3, "etiqueta": "Productos", "enlace": "/productos", "claseIcono": "bi bi-shop" },
+    { "id": 4, "etiqueta": "Nosotros", "enlace": "/nosotros", "claseIcono": "bi bi-info-circle" },
+    { "id": 5, "etiqueta": "Contacto", "enlace": "/contacto", "claseIcono": "bi bi-envelope" }
+  ],
+  "carrito": {
+    "etiqueta": "Carrito",
+    "enlace": "/carrito",
+    "activo": false,
+    "claseIcono": "bi bi-cart3"
+  },
+  "botonCita": {
+    "texto": "Solicitar cita",
+    "variante": "success"
+  }
+}
