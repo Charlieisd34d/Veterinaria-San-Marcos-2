@@ -1,6 +1,6 @@
 {
   "titulo": "Iniciar sesión",
-  "textoBoton": "Enviar",
+  "textoBoton": "Iniciar",
   "varianteBoton": "success",
   "campos": [
     { "id": "correo", "etiqueta": "Correo", "tipo": "email", "placeholder": "tu@correo.cl" },

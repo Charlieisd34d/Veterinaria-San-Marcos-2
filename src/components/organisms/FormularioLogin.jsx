@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ModalComun from '../molecules/ModalComun';
 import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
 import Boton from '../atoms/Boton';
-import { validarObligatorio, validarCorreo } from '../../utils/validaciones'; // 1. Importa tus validaciones
+import { validarObligatorio, validarCorreo } from '../../utils/validaciones'; 
 
 export default function FormularioLogin(props) {
   const [valores, setValores] = useState({});
@@ -18,7 +18,6 @@ export default function FormularioLogin(props) {
 
     const nuevosErrores = {};
     
-    // 2. Recorre y valida cada campo utilizando las funciones importadas
     props.campos?.forEach((campo) => {
       const valorCampo = valores[campo.id] || "";
       let error = validarObligatorio(valorCampo);
@@ -32,13 +31,11 @@ export default function FormularioLogin(props) {
       }
     });
 
-    // 3. Si hay errores, se guardan y se detiene el envío
     if (Object.keys(nuevosErrores).length > 0) {
       setErrores(nuevosErrores);
       return;
     }
 
-    // 4. Si todo está correcto, avisa al componente superior
     if (props.onEnviar) {
       props.onEnviar(valores);
     }

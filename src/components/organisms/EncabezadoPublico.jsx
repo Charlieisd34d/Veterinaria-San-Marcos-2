@@ -14,10 +14,28 @@ function EncabezadoPublico(props) {
         enlaceCarrito={props.navegacion.carrito.enlace}
         activoCarrito={props.navegacion.carrito.activo}
         claseIconoCarrito={props.navegacion.carrito.claseIcono}
-        textoBotonInicio={props.navegacion.botonInicio.texto}
-        varianteBotonInicio={props.navegacion.botonInicio.variante}
+        
+        // Si hay un usuario logueado, mostramos opcionalmente su nombre o "Cerrar Sesión"
+        textoBotonInicio={
+          props.usuarioLogueado 
+            ? "Cerrar Sesión" 
+            : props.navegacion.botonInicio.texto
+        }
+        varianteBotonInicio={
+          props.usuarioLogueado 
+            ? "outline-danger" 
+            : props.navegacion.botonInicio.variante
+        }
+        
         onNavegar={props.onNavegar}
-        onClickInicio={props.onClickLogin} 
+        
+        // Si hay usuario logueado, al presionar ejecuta la función de cerrar sesión.
+        // Si no, abre el modal de login.
+        onClickInicio={
+          props.usuarioLogueado 
+            ? props.onCerrarSesion 
+            : props.onClickLogin
+        } 
       />
     </>
   );

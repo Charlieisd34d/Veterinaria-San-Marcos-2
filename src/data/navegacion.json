@@ -4,7 +4,9 @@
   "iconoMarca": "bi bi-heart-fill",
   "enlaces": [
     { "id": 1, "etiqueta": "Inicio", "enlace": "/" },
-    { "id": 2, "etiqueta": "Servicios", "enlace": "/servicios" }
+    { "id": 2, "etiqueta": "Servicios", "enlace": "/servicios" },
+    { "id": 3, "etiqueta": "Blog", "enlace": "/blog" },
+    { "id": 4, "etiqueta": "Contacto", "enlace": "/contacto" }
   ],
   "carrito": { "etiqueta": "Carrito", "enlace": "/carrito", "claseIcono": "bi bi-cart3" },
   "botonInicio": { "texto": "Inicio de Sesión", "variante": "success" }

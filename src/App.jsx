@@ -4,6 +4,8 @@ import { ClientesProvider } from "./context/ClientesContext";
 import { UsuariosProvider } from "./context/UsuariosContext";
 import PaginaInicio from "./pages/PaginaInicio";
 import PaginaServicios from "./pages/PaginaServicios";
+import PaginaBlog from './pages/PaginaBlog';
+import PaginaContacto from './pages/PaginaContacto';
 import PaginaAdminResumen from "./pages/PaginaAdminResumen";
 import PaginaAdminProductos from "./pages/PaginaAdminProductos";
 import PaginaAdminClientes from "./pages/PaginaAdminClientes";
@@ -19,6 +21,8 @@ function App() {
             <Routes>
               <Route path="/" element={<PaginaInicio />} />
               <Route path="/servicios" element={<PaginaServicios />} />
+              <Route path="/blog" element={<PaginaBlog />} />
+              <Route path="/contacto" element={<PaginaContacto />} />
               <Route path="/admin" element={<PaginaAdminResumen />} />
               <Route path="/admin/productos" element={<PaginaAdminProductos />} />
               <Route path="/admin/clientes" element={<PaginaAdminClientes />} />

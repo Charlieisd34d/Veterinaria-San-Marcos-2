@@ -4,6 +4,7 @@ import AvisoPagina from "../organisms/AvisoPagina";
 import PiePagina from "../organisms/PiePagina";
 import FormularioLogin from "../organisms/FormularioLogin";
 import { useNavegacionPublica } from "../../hooks/useNavegacionPublica";
+import { useSesion } from "../../context/SesionContext";
 
 import barraSuperior from "../../data/barraSuperior.json";
 import navegacion from "../../data/navegacion.json";
@@ -14,6 +15,7 @@ import datosLogin from "../../data/formularioLogin.json";
 function PlantillaPublica(props) {
   const nav = useNavegacionPublica(navegacion);
   const [modalLoginAbierto, setModalLoginAbierto] = useState(false);
+  const { usuarioLogueado, iniciarSesion, cerrarSesion } = useSesion();
 
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -22,6 +24,8 @@ function PlantillaPublica(props) {
         navegacion={nav.navegacion}
         onNavegar={nav.navegar}
         onClickLogin={() => setModalLoginAbierto(true)}
+        usuarioLogueado={usuarioLogueado}
+        onCerrarSesion={cerrarSesion}
       />
 
       <AvisoPagina
@@ -49,7 +53,7 @@ function PlantillaPublica(props) {
         textoBoton={datosLogin.textoBoton}
         varianteBoton={datosLogin.varianteBoton}
         onEnviar={(valores) => {
-          console.log("Login:", valores);
+          iniciarSesion(valores);
           setModalLoginAbierto(false);
         }}
       />
