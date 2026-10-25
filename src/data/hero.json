@@ -1,0 +1,9 @@
+{
+  "etiqueta": "VETERINARIA SAN MARCOS",
+  "titulo": "Cuidamos la salud de tu mascota.",
+  "descripcion": "Atención veterinaria cercana y profesional para perros, gatos y pequeñas especies.",
+  "etiquetaBotonPrimario": "Solicitar una cita",
+  "etiquetaBotonSecundario": "Ver servicios",
+  "rutaImagen": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&q=80&w=800",
+  "textoAlternativoImagen": "Perro en atención veterinaria"
+}

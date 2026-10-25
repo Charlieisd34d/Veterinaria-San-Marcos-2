@@ -25,7 +25,10 @@ export function obtenerProducto(id) {
 
 export function crearProducto(datos) {
   const lista = leer();
-  const nuevoId = Math.max(0, ...lista.map((p) => p.id)) + 1;
+  const ids = lista
+    .map((p) => Number(p.id))
+    .filter((id) => Number.isFinite(id));
+  const nuevoId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
   const nuevo = { ...datos, id: nuevoId };
   guardar([...lista, nuevo]);
   return nuevo;
