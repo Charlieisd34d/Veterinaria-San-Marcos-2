@@ -1,0 +1,27 @@
+{
+  "titulo": "Contacto",
+  "subtitulo": "Escríbenos o visítanos en Rancagua.",
+  "textoBoton": "Enviar mensaje",
+  "infoContacto": [
+    {
+      "tituloSeccion": "Dirección",
+      "textoDetalle": "Av. Cachapoal 548, Rancagua",
+      "iconoClase": "bi bi-geo-alt text-success"
+    },
+    {
+      "tituloSeccion": "Teléfono",
+      "textoDetalle": "+56 72 223 4488",
+      "iconoClase": "bi bi-telephone text-success"
+    },
+    {
+      "tituloSeccion": "Correo",
+      "textoDetalle": "contacto@sanmarcos.cl",
+      "iconoClase": "bi bi-envelope text-success"
+    },
+    {
+      "tituloSeccion": "Horario",
+      "textoDetalle": "Lun-Vie 09:00-19:00 | Sáb 09:00-14:00",
+      "iconoClase": "bi bi-clock text-success"
+    }
+  ]
+}

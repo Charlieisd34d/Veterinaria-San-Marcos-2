@@ -7,7 +7,8 @@
     { "id": 2, "etiqueta": "Servicios", "enlace": "/servicios", "claseIcono": "bi bi-clipboard-heart" },
     { "id": 3, "etiqueta": "Productos", "enlace": "/productos", "claseIcono": "bi bi-shop" },
     { "id": 4, "etiqueta": "Nosotros", "enlace": "/nosotros", "claseIcono": "bi bi-info-circle" },
-    { "id": 5, "etiqueta": "Contacto", "enlace": "/contacto", "claseIcono": "bi bi-envelope" }
+    { "id": 5, "etiqueta": "Contacto", "enlace": "/contacto", "claseIcono": "bi bi-envelope" },
+    { "id": 6, "etiqueta": "Blog", "enlace": "/blog", "claseIcono": "bi bi-chat-square-text" }
   ],
   "carrito": {
     "etiqueta": "Carrito",

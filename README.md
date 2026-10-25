@@ -1,65 +1,120 @@
-# Proyecto Fullstack II - Gestión Clinica
+# Veterinaria San Marcos
 
-# Nombre del equipo
+Aplicación web para la gestión de servicios, solicitudes, productos y administración de la veterinaria.
 
-****
+## Equipo
 
-## Integrantes
+- David Miranda - dav.mirandac@duocuc.cl
+- Angela Anhuaman - an.anhuaman@duocuc.cl
+- Almendra Gonzales - alm.gonzales@duocuc.cl
 
-* David Miranda - dav.mirandac@duocuc.cl
-* Angela Anhuaman - an.anhuaman@duocuc.cl
-* Almendra Gonzales - alm.gonzales@duocuc.cl
+## Descripción del proyecto
 
-# Caso
+Este proyecto consiste en una plataforma web para facilitar la gestión de servicios, solicitudes, productos y administración de una veterinaria. La aplicación permite visualizar información comercial, gestionar pedidos, acceder a un panel administrativo protegido y mantener un flujo de navegación claro para usuarios públicos y administradores.
 
-* Este proyecto toma como base funcional los requerimientos de gestion de servicios y solicitudes de la Veterinaria San Marco
+## Tecnologías utilizadas
 
-## Descripcion del caso
+- React
+- Vite
+- Bootstrap 5
+- Bootstrap Icons
+- React Router DOM
+- Vitest
+- jsdom
 
-El proyecto consiste en una pagina web para facilitar la gestion de servicios y solicitudes de la Veterinaria San Marco. La plataforma busca centralizar la informacion y mejorar la forma en que se gestionan las citas. 
+## Estructura principal del proyecto
 
-## Estructura del Proyecto
-
-La estructura del codigo dentro de la carpeta "src" esta organizada siguiendo la metodologia de diseño Atomic Design.
-
-```
+```bash
 src/
 ├── components/
 │   ├── atoms/
 │   ├── molecules/
 │   ├── organisms/
 │   └── templates/
-└── pages/   
+├── context/
+├── data/
+├── hooks/
+├── pages/
+├── services/
+├── utils/
+├── App.jsx
+├── main.jsx
+├── setupTests.js
+└── index.css
 ```
 
-## Tecnologías Utilizadas 
+## Requisitos previos
 
-* React: Biblioteca principal de la interfaz de usuario 
-* Vite: Entorno de desarrollo rápido y empaquetador para aplicaciones frontend
-* ReactBootstrap: Libreria de componentes UI para garantizar el diseño responsive adaptado a moviles, tabletas y escritorio.
-* React Router DOM: Gestion de rutas y navegacion en la aplicacion.
+Asegúrate de tener instalado:
 
-## Como ejecutar el proyecto
+- Node.js 18 o superior
+- npm
 
-* Sigue estos pasos para clonar e iniciar el entorno de desarrollo localmente
+## Instalación
 
-1. Clonar el repositorio 
+1. Clona el repositorio:
 
-```git clone https://github.com/Charlieisd34d/Veterinaria-San-Marcos-2.git```
+```bash
+git clone https://github.com/Charlieisd34d/Veterinaria-San-Marcos-2.git
+```
 
+2. Entra al proyecto:
 
-2. Instalar las dependencia
+```bash
+cd Veterinaria-San-Marcos-2
+```
 
-```npm install```
+3. Instala las dependencias:
 
-3. Ejecutar la aplicacion en modo de desarrollo 
+```bash
+npm install
+```
 
-```npm run dev```
+## Ejecución del proyecto
 
-4. Acceder en el navegador:
+Para correr la aplicación en modo de desarrollo:
 
-Abre tu navegador y navega a la direccion indicada en la consola
+```bash
+npm run dev
+```
 
-# Material complementario
+Luego abre la URL que indique Vite en la terminal, normalmente algo como:
 
-* En este enlace se podra encontrar la documentaccion del proyecto que se generara a lo largo del semestre: https://drive.google.com/drive/folders/1oSNjotZyatbSU6T7p3fspve0Uem-BSEX?usp=drive_link
+```bash
+http://localhost:5173/
+```
+
+## Pruebas unitarias
+
+El proyecto usa Vitest para ejecutar las pruebas unitarias.
+
+### Ejecutar todas las pruebas
+
+```bash
+npm test
+```
+
+### Ejecutar pruebas con reporte de cobertura
+
+```bash
+npm run test:coverage
+```
+
+Esto genera un reporte de cobertura en la carpeta `coverage/` y permite revisar la calidad de la prueba unitaria del proyecto.
+
+## Credenciales de acceso administrativo
+
+Los usuarios de prueba para iniciar sesión en el panel administrativo son:
+
+- ana@veterinaria.cl / admin123
+- luis@veterinaria.cl / admin456
+
+## Observaciones
+
+- La aplicación usa datos simulados almacenados en `localStorage` para emular la persistencia de la información.
+- La zona administrativa está protegida mediante autenticación.
+- La carpeta `coverage/` se ignora en Git para no enviarse al repositorio.
+
+## Material complementario
+
+- Documentación adicional del proyecto: https://drive.google.com/drive/folders/1oSNjotZyatbSU6T7p3fspve0Uem-BSEX?usp=drive_link

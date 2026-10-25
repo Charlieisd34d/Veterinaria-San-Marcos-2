@@ -19,6 +19,8 @@ import PaginaAdminUsuarios from "./pages/PaginaAdminUsuarios";
 import PaginaNoEncontrada from "./pages/PaginaNoEncontrada";
 import PaginaProductos from "./pages/PaginaProductos";
 import PaginaNosotros from "./pages/PaginaNosotros";
+import PaginaContacto from "./pages/PaginaContacto";
+import PaginaBlog from "./pages/PaginaBlog";
 import PaginaCarrito from "./pages/PaginaCarrito";
 import PaginaDetalleProducto from "./pages/PaginaDetalleProducto";
 import PaginaIniciarSesion from "./pages/PaginaInicioSesion";
@@ -43,6 +45,8 @@ function App() {
                     <Route path="/productos" element={<PaginaProductos />} />
                     <Route path="/producto/:id" element={<PaginaDetalleProducto />} />
                     <Route path="/nosotros" element={<PaginaNosotros />} />
+                    <Route path="/contacto" element={<PaginaContacto />} />
+                    <Route path="/blog" element={<PaginaBlog />} />
                     <Route path="/carrito" element={<PaginaCarrito />} />
                     <Route path="/iniciar-sesion" element={<PaginaIniciarSesion />} />
 
