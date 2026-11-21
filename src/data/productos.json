@@ -5,7 +5,7 @@
     "nombre": "Amoxibay 250mg",
     "descripcion": "Amoxicilina • Blíster 10 comp. • Perro / Gato",
     "precio": 4200,
-    "imagen": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500"
+    "imagen": "me001.jpg"
   },
   {
     "id": "ME002",
@@ -13,7 +13,7 @@
     "nombre": "Enrox 50mg",
     "descripcion": "Enrofloxacino • Blíster 10 comp. • Perro / Gato",
     "precio": 6800,
-    "imagen": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500"
+    "imagen": "me002.jpg"
   },
   {
     "id": "ME003",
@@ -21,7 +21,7 @@
     "nombre": "Metrobay 250mg",
     "descripcion": "Metronidazol • Blíster 10 comp. • Perro / Gato",
     "precio": 3900,
-    "imagen": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=500"
+    "imagen": "me003.jpg"
   },
   {
     "id": "ME004",
@@ -29,7 +29,7 @@
     "nombre": "Nexgard",
     "descripcion": "Afoxolaner • Masticable 1 unid. • Perro",
     "precio": 9500,
-    "imagen": "https://images.unsplash.com/photo-1582798358481-d199fb7347bb?auto=format&fit=crop&q=80&w=500"
+    "imagen": "me004.jpg"
   },
   {
     "id": "ME005",
@@ -37,7 +37,7 @@
     "nombre": "Bravecto",
     "descripcion": "Fluralaner • Masticable 1 unid. • Perro",
     "precio": 18900,
-    "imagen": "https://images.unsplash.com/photo-1582798358481-d199fb7347bb?auto=format&fit=crop&q=80&w=500"
+    "imagen": "me005.jpg"
   },
   {
     "id": "ME006",
@@ -45,22 +45,134 @@
     "nombre": "Revolution Plus",
     "descripcion": "Selamectina+Sarolaner • Pipeta 1 unid. • Gato",
     "precio": 14500,
-    "imagen": "https://images.unsplash.com/photo-1582798358481-d199fb7347bb?auto=format&fit=crop&q=80&w=500"
+    "imagen": "me006.jpg"
   },
   {
     "id": "ME007",
+    "categoria": "Antiparasitarios",
+    "nombre": "Drontal Plus",
+    "descripcion": "Praziquantel+Pamoato • Comprimido 1 unid. • Perro",
+    "precio": 3200,
+    "imagen": "me007.jpg"
+  },
+  {
+    "id": "ME008",
+    "categoria": "Antiparasitarios",
+    "nombre": "Milbemax Gato",
+    "descripcion": "Milbemicina+Praziq. • Comprimido 2 unid. • Gato",
+    "precio": 6800,
+    "imagen": "me008.jpg"
+  },
+  {
+    "id": "ME009",
     "categoria": "Antiinflamatorios",
     "nombre": "Meloxicam 1mg",
     "descripcion": "Meloxicam • Blíster 10 comp. • Perro / Gato",
     "precio": 4500,
-    "imagen": "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&q=80&w=500"
+    "imagen": "me009.jpg"
   },
   {
-    "id": "ME008",
+    "id": "ME010",
+    "categoria": "Antiinflamatorios",
+    "nombre": "Carprofen 50mg",
+    "descripcion": "Carprofeno • Blíster 10 comp. • Perro",
+    "precio": 9800,
+    "imagen": "me010.jpg"
+  },
+  {
+    "id": "ME011",
     "categoria": "Dermatología",
     "nombre": "Clorhexidina shampoo",
     "descripcion": "Clorhexidina 2% • Frasco 250ml • Perro / Gato",
     "precio": 8900,
-    "imagen": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=500"
+    "imagen": "me011.jpg"
+  },
+  {
+    "id": "ME012",
+    "categoria": "Dermatología",
+    "nombre": "Malaseb shampoo",
+    "descripcion": "Miconazol+Clorhex. • Frasco 250ml • Perro / Gato",
+    "precio": 12500,
+    "imagen": "me012.jpg"
+  },
+  {
+    "id": "ME013",
+    "categoria": "Dermatología",
+    "nombre": "Apoquel 16mg",
+    "descripcion": "Oclacitinib • Blíster 10 comp. • Perro",
+    "precio": 22000,
+    "imagen": "me013.jpg"
+  },
+  {
+    "id": "ME014",
+    "categoria": "Digestivo",
+    "nombre": "Probifor",
+    "descripcion": "Bacillus clausii • Sobre 5ml x10 • Perro / Gato",
+    "precio": 5600,
+    "imagen": "me014.jpg"
+  },
+  {
+    "id": "ME015",
+    "categoria": "Digestivo",
+    "nombre": "Omeprazol 10mg vet",
+    "descripcion": "Omeprazol • Blíster 10 comp. • Perro / Gato",
+    "precio": 3800,
+    "imagen": "me015.jpg"
+  },
+  {
+    "id": "ME016",
+    "categoria": "Cardíaco",
+    "nombre": "Vetmedin 2.5mg",
+    "descripcion": "Pimobendan • Blíster 10 comp. • Perro",
+    "precio": 28000,
+    "imagen": "me016.jpg"
+  },
+  {
+    "id": "ME017",
+    "categoria": "Analgésicos",
+    "nombre": "Tramadol 50mg vet",
+    "descripcion": "Tramadol • Blíster 10 comp. • Perro",
+    "precio": 5200,
+    "imagen": "me017.jpg"
+  },
+  {
+    "id": "ME018",
+    "categoria": "Vacunas",
+    "nombre": "Nobivac DHPPi",
+    "descripcion": "Vacuna polivalente • Vial 1 dosis • Perro",
+    "precio": 8500,
+    "imagen": "me018.jpg"
+  },
+  {
+    "id": "ME019",
+    "categoria": "Vacunas",
+    "nombre": "Nobivac Rabies",
+    "descripcion": "Vacuna antirrábica • Vial 1 dosis • Perro / Gato",
+    "precio": 5800,
+    "imagen": "me019.jpg"
+  },
+  {
+    "id": "ME020",
+    "categoria": "Vacunas",
+    "nombre": "Felocell CVR",
+    "descripcion": "Vacuna triple felina • Vial 1 dosis • Gato",
+    "precio": 7200,
+    "imagen": "me020.jpg"
+  },
+  {
+    "id": "ME021",
+    "categoria": "Suplementos",
+    "nombre": "Omega vet 3-6-9",
+    "descripcion": "Ácidos grasos omega • Frasco 100ml • Perro / Gato",
+    "precio": 9900,
+    "imagen": "me021.jpg"
+  },
+  {
+    "id": "ME022",
+    "categoria": "Suplementos",
+    "nombre": "Condrovet forte",
+    "descripcion": "Condroitín+Glucos. • Blíster 30 comp. • Perro",
+    "precio": 14500,
+    "imagen": "me022.jpg"
   }
 ]

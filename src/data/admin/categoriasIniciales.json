@@ -1,5 +1,11 @@
 [
-  { "id": 1, "nombre": "Alimento", "descripcion": "Alimento para mascotas" },
-  { "id": 2, "nombre": "Accesorios", "descripcion": "Collares, correas y juguetes" },
-  { "id": 3, "nombre": "Higiene", "descripcion": "Shampoo y cuidado del pelaje" }
+  { "id": 1, "nombre": "Antibióticos", "descripcion": "Antimicrobianos veterinarios para infecciones" },
+  { "id": 2, "nombre": "Antiparasitarios", "descripcion": "Control de parásitos internos y externos" },
+  { "id": 3, "nombre": "Antiinflamatorios", "descripcion": "Manejo de inflamación y dolor agudo o crónico" },
+  { "id": 4, "nombre": "Dermatología", "descripcion": "Shampoos medicados y cuidado dérmico" },
+  { "id": 5, "nombre": "Digestivo", "descripcion": "Probióticos y protectores gástricos veterinarios" },
+  { "id": 6, "nombre": "Cardíaco", "descripcion": "Tratamiento cardiovascular especializado" },
+  { "id": 7, "nombre": "Analgésicos", "descripcion": "Control del dolor moderado a severo" },
+  { "id": 8, "nombre": "Vacunas", "descripcion": "Inmunización preventiva para perros y gatos" },
+  { "id": 9, "nombre": "Suplementos", "descripcion": "Ácidos grasos y soporte articular" }
 ]

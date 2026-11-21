@@ -3,12 +3,14 @@ import { useParams, Link } from 'react-router-dom';
 import PlantillaPublica from '../components/templates/PlantillaPublica';
 import { useProductos } from '../context/ProductosContext';
 import { useCarrito } from '../context/CarritoContext';
+import { obtenerImagenProducto } from '../utils/imagenProducto';
 
 export function PaginaDetalleProducto(props) {
   const { id } = useParams();
   const { productos } = useProductos();
   const { agregarAlCarrito } = useCarrito();
   const [cantidad, setCantidad] = useState(1);
+  const [agregado, setAgregado] = useState(false);
 
   const productoEncontrado = productos?.find((p) => String(p.id) === String(id));
   
@@ -18,7 +20,13 @@ export function PaginaDetalleProducto(props) {
     categoria: "Alimento",
     precio: 24990,
     descripcion: "Nutrición balanceada de alta calidad formulada especialmente para perros adultos de todas las razas.",
-    imagen: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=800"
+    imagen: "me001.jpg"
+  };
+
+  const manejarAgregar = () => {
+    agregarAlCarrito(producto, cantidad);
+    setAgregado(true);
+    setTimeout(() => setAgregado(false), 2000);
   };
 
   return (
@@ -37,7 +45,7 @@ export function PaginaDetalleProducto(props) {
         <div className="col-12 col-md-6">
           <div className="overflow-hidden rounded-4 shadow-sm border">
             <img 
-              src={producto.imagen} 
+              src={obtenerImagenProducto(producto.imagen)} 
               alt={producto.nombre} 
               className="img-fluid w-100 object-fit-cover"
               style={{ maxHeight: '420px', minHeight: '320px' }}
@@ -69,11 +77,12 @@ export function PaginaDetalleProducto(props) {
               style={{ width: '80px', height: '48px' }}
             />
             <button
-              onClick={() => agregarAlCarrito(producto, cantidad)}
+              type="button"
+              onClick={manejarAgregar}
               className="btn text-white px-4 py-2 rounded-3 fw-medium flex-grow-1 flex-md-grow-0"
               style={{ backgroundColor: '#123C35', height: '48px' }}
             >
-              Añadir al carrito
+              {agregado ? '✓ ¡Añadido al carrito!' : 'Añadir al carrito'}
             </button>
           </div>
         </div>

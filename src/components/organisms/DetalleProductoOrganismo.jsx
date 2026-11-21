@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { obtenerImagenProducto } from '../../utils/imagenProducto';
 
 export function DetalleProductoOrganismo({ producto, formatearPrecio, alAgregarProducto }) {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ export function DetalleProductoOrganismo({ producto, formatearPrecio, alAgregarP
         <div className="row g-0">
           <div className="col-md-6 bg-light d-flex align-items-center justify-content-center p-4">
             <img
-              src={producto.imagen}
+              src={obtenerImagenProducto(producto.imagen)}
               alt={producto.nombre}
               className="img-fluid rounded-3 object-fit-cover"
               style={{ maxHeight: '400px', width: '100%' }}

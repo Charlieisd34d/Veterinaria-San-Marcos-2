@@ -1,7 +1,10 @@
 import { formatearPrecio } from "../../utils/formatoPrecio";
+import { obtenerImagenProducto } from "../../utils/imagenProducto";
 
 export function CarritoOrganismo(props) {
-  const cantidadTotal = props.totalProductos ?? 0;
+  const cantidadTotal = Array.isArray(props.carrito)
+    ? props.carrito.reduce((acc, item) => acc + (Number(item.cantidad) || 0), 0)
+    : props.totalProductos ?? 0;
 
   if (props.compraExitosa) {
     return (
@@ -54,24 +57,32 @@ export function CarritoOrganismo(props) {
         <button
           type="button"
           onClick={props.onVaciar}
+          disabled={props.procesando}
           className="btn btn-outline-danger btn-sm rounded-pill"
         >
           <i className="bi bi-trash me-1"></i> Vaciar Carrito
         </button>
       </div>
 
+      {props.error && (
+        <div className="alert alert-danger rounded-4 mb-4" role="alert">
+          <i className="bi bi-exclamation-triangle-fill me-2"></i>
+          {props.error}
+        </div>
+      )}
+
       <div className="row g-4">
         <div className="col-lg-8">
           <div className="card border-0 shadow-sm rounded-4 p-3">
             <div className="table-responsive">
-              <table className="table align-middle m-0">
+              <table className="table align-middle m-0" style={{ tableLayout: "fixed", minWidth: "600px" }}>
                 <thead>
                   <tr className="text-secondary border-bottom">
-                    <th>Producto</th>
-                    <th className="text-center">Precio</th>
-                    <th className="text-center">Cantidad</th>
-                    <th className="text-end">Subtotal</th>
-                    <th></th>
+                    <th style={{ width: "42%" }}>Producto</th>
+                    <th className="text-center" style={{ width: "16%" }}>Precio</th>
+                    <th className="text-center" style={{ width: "18%" }}>Cantidad</th>
+                    <th className="text-end" style={{ width: "18%" }}>Subtotal</th>
+                    <th style={{ width: "6%" }}></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -80,14 +91,16 @@ export function CarritoOrganismo(props) {
                       <td>
                         <div className="d-flex align-items-center gap-3">
                           <img
-                            src={item.imagen}
+                            src={obtenerImagenProducto(item.imagen)}
                             alt={item.nombre}
                             width="60"
                             height="60"
-                            className="rounded-3 object-fit-cover"
+                            className="rounded-3 object-fit-cover flex-shrink-0"
                           />
-                          <div>
-                            <h6 className="fw-bold mb-0">{item.nombre}</h6>
+                          <div className="text-truncate">
+                            <h6 className="fw-bold mb-1 text-truncate" title={item.nombre}>
+                              {item.nombre}
+                            </h6>
                             {item.categoria && (
                               <span className="badge bg-light text-secondary border">
                                 {item.categoria}
@@ -96,29 +109,38 @@ export function CarritoOrganismo(props) {
                           </div>
                         </div>
                       </td>
-                      <td className="text-center fw-semibold">
+                      <td className="text-center fw-semibold text-nowrap">
                         {formatearPrecio ? formatearPrecio(item.precio) : `$${item.precio}`}
                       </td>
                       <td className="text-center">
-                        <div className="d-inline-flex align-items-center border rounded-pill px-2">
+                        <div className="d-inline-flex align-items-center justify-content-center border rounded-pill px-2 py-1">
                           <button
                             type="button"
+                            disabled={props.procesando}
                             onClick={() => props.onActualizarCantidad(item.id, item.cantidad - 1)}
-                            className="btn btn-link text-dark p-0 me-2 text-decoration-none"
+                            className="btn btn-link text-dark p-0 text-decoration-none fw-bold"
+                            style={{ width: "22px" }}
                           >
                             -
                           </button>
-                          <span className="fw-bold px-2">{item.cantidad}</span>
+                          <span
+                            className="fw-bold text-center"
+                            style={{ minWidth: "30px", display: "inline-block" }}
+                          >
+                            {item.cantidad}
+                          </span>
                           <button
                             type="button"
+                            disabled={props.procesando}
                             onClick={() => props.onActualizarCantidad(item.id, item.cantidad + 1)}
-                            className="btn btn-link text-dark p-0 ms-2 text-decoration-none"
+                            className="btn btn-link text-dark p-0 text-decoration-none fw-bold"
+                            style={{ width: "22px" }}
                           >
                             +
                           </button>
                         </div>
                       </td>
-                      <td className="text-end fw-bold text-success">
+                      <td className="text-end fw-bold text-success text-nowrap">
                         {formatearPrecio
                           ? formatearPrecio(item.precio * item.cantidad)
                           : `$${item.precio * item.cantidad}`}
@@ -126,6 +148,7 @@ export function CarritoOrganismo(props) {
                       <td className="text-end">
                         <button
                           type="button"
+                          disabled={props.procesando}
                           onClick={() => props.onEliminar(item.id)}
                           className="btn btn-link text-danger p-0 border-0"
                           title="Eliminar producto"
@@ -168,13 +191,15 @@ export function CarritoOrganismo(props) {
             </div>
             <button
               type="button"
+              disabled={props.procesando}
               onClick={props.onContinuarPago}
               className="btn btn-success rounded-pill btn-lg w-100 mb-2"
             >
-              Continuar al Pago
+              {props.procesando ? "Procesando pedido..." : "Continuar al Pago"}
             </button>
             <button
               type="button"
+              disabled={props.procesando}
               onClick={props.onIrTienda}
               className="btn btn-outline-secondary rounded-pill btn-sm w-100"
             >
