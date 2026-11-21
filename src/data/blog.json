@@ -5,7 +5,12 @@
     "fecha": "12 mayo, 2025",
     "titulo": "El calendario de vacunas que tu mascota necesita",
     "resumen": "Conoce las vacunas esenciales para perros y gatos y por qué respetar sus fechas protege a toda la familia.",
-    "imagen": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=800&auto=format&fit=crop"
+    "imagen": "https://images.unsplash.com/photo-1721327900409-5e445c1ed119?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+    "contenido": [
+      "Las vacunas son la herramienta más segura y eficaz para proteger a perros y gatos frente a enfermedades contagiosas que pueden ser graves o difíciles de tratar.",
+      "Durante los primeros meses de vida, los cachorros y gatitos reciben un esquema inicial con refuerzos periódicos para construir una inmunidad sólida. En la etapa adulta, mantener los refuerzos al día ayuda a sostener esa protección.",
+      "Guarda siempre el carné de vacunación de tu mascota y consulta con el equipo veterinario ante cualquier cambio de rutina o duda sobre la próxima dosis."
+    ]
   },
   {
     "id": "visitar-veterinario",
@@ -13,7 +18,12 @@
     "fecha": "6 mayo, 2025",
     "titulo": "Señales de que es momento de visitar al veterinario",
     "resumen": "Cambios pequeños en el ánimo, apetito o rutina pueden decir mucho. Aprende a identificarlos a tiempo.",
-    "imagen": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=800&auto=format&fit=crop"
+    "imagen": "https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+    "contenido": [
+      "Las mascotas no pueden decir con palabras cuándo algo les molesta, pero suelen dar señales tempranas a través de su conducta diaria.",
+      "Presta atención si notas decaimiento o letargo inusual, pérdida de apetito, sed excesiva, cambios digestivos, dificultad para respirar o molestia al moverse y tocarse.",
+      "Detectar estos cambios a tiempo permite un diagnóstico más oportuno y un tratamiento mucho más sencillo para tu compañero."
+    ]
   },
   {
     "id": "peso-mascota",
@@ -21,6 +31,11 @@
     "fecha": "28 abril, 2025",
     "titulo": "Cómo cuidar el peso de tu mascota en casa",
     "resumen": "Alimentación, juego y controles periódicos: tres hábitos simples para prevenir problemas de salud.",
-    "imagen": "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=800&auto=format&fit=crop"
+    "imagen": "https://images.unsplash.com/photo-1763718205007-fb085a276026?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+    "contenido": [
+      "Mantener un peso saludable reduce la sobrecarga en las articulaciones y disminuye el riesgo de problemas metabólicos, cardíacos o respiratorios.",
+      "Mide las porciones diarias según el peso, edad y nivel de actividad de tu mascota, y moderar los premios o restos de comida humana marca una gran diferencia.",
+      "Combina la alimentación adecuada con paseos o juegos diarios y controles periódicos para ajustar las porciones cuando sea necesario."
+    ]
   }
 ]
