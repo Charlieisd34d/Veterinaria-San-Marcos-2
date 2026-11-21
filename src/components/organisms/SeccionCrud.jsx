@@ -1,39 +1,30 @@
+// src/components/organisms/SeccionCrud.jsx
 import TituloSeccion from "../atoms/TituloSeccion";
 import Parrafo from "../atoms/Parrafo";
 import Boton from "../atoms/Boton";
 import TablaAdmin from "./TablaAdmin";
 import FormularioAdmin from "./FormularioAdmin";
+import ModalComun from "../molecules/ModalComun";
 
 function SeccionCrud(props) {
-  let contenido;
 
-  if (props.formularioAbierto) {
-    contenido = (
-      <FormularioAdmin
-        titulo={props.itemEditando ? props.config.tituloEditar : props.config.tituloNuevo}
-        campos={props.config.campos}
-        valoresIniciales={props.itemEditando}
-        textoGuardar={props.textos.guardar}
-        textoCancelar={props.textos.cancelar}
-        onGuardar={props.onGuardar}
-        onCancelar={props.onCancelar}
-      />
-    );
-  } else if (props.cargando) {
-    contenido = <Parrafo texto={props.textos.cargando} />;
-  } else {
-    contenido = (
-      <TablaAdmin
-        columnas={props.config.columnas}
-        filas={props.filas}
-        tituloAcciones={props.textos.tituloAcciones}
-        textoEditar={props.textos.editar}
-        textoEliminar={props.textos.eliminar}
-        textoVacio={props.textos.vacio}
-        onEditar={props.onEditar}
-        onEliminar={props.onEliminar}
-      />
-    );
+  const abierto = Boolean(props.editando);
+  const esNuevo = abierto && !props.editando.id;
+  const nuevo = props.config.nuevo || props.textos.nuevo;
+  const accion = esNuevo ? nuevo : props.textos.editar;
+
+  let acciones = props.accionesExtra || [];
+  acciones = acciones.concat([
+    { texto: props.textos.editar, variante: "outline-primary", onClick: props.onEditar },
+  ]);
+  if (props.onEliminar) {
+    acciones = acciones.concat([
+      {
+        texto: props.textos.eliminar,
+        variante: "outline-danger",
+        onClick: (fila) => props.onEliminar(fila.id),
+      },
+    ]);
   }
 
   return (
@@ -43,12 +34,35 @@ function SeccionCrud(props) {
           <TituloSeccion texto={props.config.titulo} />
           <Parrafo texto={props.config.descripcion} />
         </div>
-        {!props.formularioAbierto && (
-          <Boton texto={props.config.textoNuevo} variante="success" onClick={props.onNuevo} />
-        )}
+        <Boton
+          texto={`${nuevo} ${props.config.singular}`}
+          variante="success"
+          onClick={props.onNuevo}
+        />
       </div>
 
-      {contenido}
+      <TablaAdmin
+        columnas={props.config.columnas}
+        filas={props.filas}
+        acciones={acciones}
+        tituloAcciones={props.textos.tituloAcciones}
+        textoVacio={props.textos.vacio}
+      />
+
+      <ModalComun
+        show={abierto}
+        onHide={props.onCancelar}
+        titulo={`${accion} ${props.config.singular}`}
+      >
+        <FormularioAdmin
+          campos={props.config.campos}
+          valoresIniciales={props.editando}
+          textoGuardar={props.textos.guardar}
+          textoCancelar={props.textos.cancelar}
+          onGuardar={props.onGuardar}
+          onCancelar={props.onCancelar}
+        />
+      </ModalComun>
     </section>
   );
 }

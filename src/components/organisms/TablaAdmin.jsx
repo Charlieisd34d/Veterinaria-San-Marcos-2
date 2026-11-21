@@ -6,6 +6,8 @@ function TablaAdmin(props) {
     return <Parrafo texto={props.textoVacio} />;
   }
 
+  const acciones = props.acciones || [];
+
   return (
     <div className="table-responsive">
       <table className="table table-hover align-middle bg-white">
@@ -14,7 +16,7 @@ function TablaAdmin(props) {
             {props.columnas.map((columna) => (
               <th key={columna.clave}>{columna.titulo}</th>
             ))}
-            <th>{props.tituloAcciones}</th>
+            {acciones.length > 0 && <th>{props.tituloAcciones}</th>}
           </tr>
         </thead>
         <tbody>
@@ -25,10 +27,11 @@ function TablaAdmin(props) {
                 clave: columna.clave,
                 valor: fila[columna.clave],
               }))}
-              textoEditar={props.textoEditar}
-              textoEliminar={props.textoEliminar}
-              onEditar={() => props.onEditar(fila)}
-              onEliminar={() => props.onEliminar(fila.id)}
+              acciones={acciones.map((accion) => ({
+                texto: accion.texto,
+                variante: accion.variante,
+                onClick: () => accion.onClick(fila),
+              }))}
             />
           ))}
         </tbody>

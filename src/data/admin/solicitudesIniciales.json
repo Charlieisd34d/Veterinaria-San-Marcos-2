@@ -1,0 +1,7 @@
+[
+  { "id": 1, "clienteId": 1, "servicio": "Consulta general", "fecha": "12-10-2026", "estado": "Confirmada" },
+  { "id": 2, "clienteId": 1, "servicio": "Vacunación", "fecha": "15-10-2026", "estado": "Pendiente" },
+  { "id": 3, "clienteId": 2, "servicio": "Cirugía menor", "fecha": "16-10-2026", "estado": "Completada" },
+  { "id": 4, "clienteId": 2, "servicio": "Bienestar preventivo", "fecha": "18-10-2026", "estado": "Cancelada" },
+  { "id": 5, "clienteId": 1, "servicio": "Ficha clínica digital", "fecha": "19-10-2026", "estado": "Pendiente" }
+]

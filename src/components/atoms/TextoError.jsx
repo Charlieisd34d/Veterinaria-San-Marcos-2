@@ -1,5 +1,9 @@
-function TextoError(props){
-    return <div className= "text-danger small mt-1">{props.texto}</div>
-}
+import React from 'react';
 
-export default TextoError;
+export default function TextoError({ texto }) {
+  return (
+    <div className="text-danger small mt-1">
+      {texto}
+    </div>
+  );
+}

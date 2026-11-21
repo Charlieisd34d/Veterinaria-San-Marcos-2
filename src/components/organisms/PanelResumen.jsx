@@ -1,3 +1,4 @@
+// src/components/organisms/PanelResumen.jsx
 import TituloSeccion from "../atoms/TituloSeccion";
 import Parrafo from "../atoms/Parrafo";
 import TarjetaResumen from "../molecules/TarjetaResumen";
@@ -14,7 +15,9 @@ function PanelResumen(props) {
             <TarjetaResumen
               icono={tarjeta.icono}
               titulo={tarjeta.titulo}
-              valor={props.cargando ? props.textoCargando : props.totales[tarjeta.clave]}
+              valor={props.totales[tarjeta.clave]}
+              textoIr={tarjeta.enlace ? props.textoIr : ""}
+              onIr={() => props.onIr(tarjeta.enlace)}
             />
           </div>
         ))}

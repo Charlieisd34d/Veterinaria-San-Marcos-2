@@ -11,7 +11,7 @@ function PaginaAdminProductos() {
   const datos = useProductos();
   const crud = useCrud(datos, textos);
 
-  useTituloPagina("Admin · Productos");
+  useTituloPagina("Admin · Catálogo");
 
   return (
     <PlantillaAdmin mensaje={crud.mensaje} onCerrarMensaje={crud.cerrarMensaje}>

@@ -1,22 +1,12 @@
-import Icono from "../atoms/Icono";
-
-function Logotipo(props) {
+function Logotipo({ titulo = "San Marcos", subtitulo = "Clínica Veterinaria", claseIcono = "bi bi-heart-fill" }) {
   return (
-    <div className="d-flex align-items-center gap-2">
-      <div
-        className="rounded-circle bg-success text-white d-flex align-items-center justify-content-center"
-        style={{ width: "40px", height: "40px" }}
-      >
-        <Icono clase={props.claseIcono} />
+    <div className="d-flex align-items-center gap-2 text-decoration-none">
+      <div className="d-flex align-items-center justify-content-center rounded-circle bg-success text-white" style={{ width: 36, height: 36 }}>
+        <i className={claseIcono}></i>
       </div>
       <div>
-        <h1 className="h5 mb-0 fw-bold text-dark lh-1">{props.titulo}</h1>
-        <small
-          className="text-muted fw-semibold text-uppercase"
-          style={{ fontSize: "0.65rem", letterSpacing: "1px" }}
-        >
-          {props.subtitulo}
-        </small>
+        <div className="fw-bold text-dark lh-1">{titulo}</div>
+        <small className="text-secondary d-block">{subtitulo}</small>
       </div>
     </div>
   );

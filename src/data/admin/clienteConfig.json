@@ -1,9 +1,13 @@
 {
   "titulo": "Clientes",
   "descripcion": "Administra los clientes y sus mascotas.",
+<<<<<<< HEAD
   "textoNuevo": "Nuevo cliente",
   "tituloNuevo": "Nuevo cliente",
   "tituloEditar": "Editar cliente",
+=======
+  "singular": "producto",
+>>>>>>> origin/backup/admin-fix-24-10-2026
   "columnas": [
     { "clave": "nombre", "titulo": "Nombre" },
     { "clave": "correo", "titulo": "Correo" },

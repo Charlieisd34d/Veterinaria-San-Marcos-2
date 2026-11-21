@@ -1,4 +1,5 @@
 import Icono from "../atoms/Icono";
+import Boton from "../atoms/Boton";
 
 function TarjetaResumen(props) {
   return (
@@ -12,6 +13,11 @@ function TarjetaResumen(props) {
           <small className="text-muted">{props.titulo}</small>
         </div>
       </div>
+      {props.textoIr && (
+        <div className="mt-3">
+          <Boton texto={props.textoIr} variante="outline-success" tamano="sm" onClick={props.onIr} />
+        </div>
+      )}
     </div>
   );
 }

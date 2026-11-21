@@ -1,0 +1,14 @@
+{
+  "titulo": "Categorías",
+  "descripcion": "Administra las categorías del catálogo.",
+  "singular": "categoría",
+  "nuevo": "Nueva",
+  "columnas": [
+    { "clave": "nombre", "titulo": "Nombre" },
+    { "clave": "descripcion", "titulo": "Descripción" }
+  ],
+  "campos": [
+    { "id": "nombre", "etiqueta": "Nombre", "tipo": "text", "placeholder": "Alimento" },
+    { "id": "descripcion", "etiqueta": "Descripción", "tipo": "text", "placeholder": "Alimento para mascotas" }
+  ]
+}

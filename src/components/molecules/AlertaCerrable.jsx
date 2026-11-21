@@ -1,17 +1,15 @@
-import Alerta from "../atoms/Alerta";
-import Boton from "../atoms/Boton";
+import React from 'react';
 
-function AlertaCerrable(props) {
+export default function AlertaCerrable({ mensaje, variante = "success", onCerrar }) {
   return (
-    <div className="d-flex align-items-center gap-2">
-      <Alerta texto={props.texto} variante={props.variante} />
-      <Boton
-        texto={props.textoCerrar}
-        variante="outline-secondary"
-        onClick={props.onCerrar}
-      />
+    <div className={`alert alert-${variante} alert-dismissible fade show`} role="alert">
+      {mensaje}
+      <button 
+        type="button" 
+        className="btn-close" 
+        aria-label="Close" 
+        onClick={onCerrar}
+      ></button>
     </div>
   );
 }
-
-export default AlertaCerrable;

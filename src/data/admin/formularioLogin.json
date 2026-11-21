@@ -1,0 +1,19 @@
+{
+  "titulo": "Iniciar Sesión",
+  "textoBoton": "Ingresar",
+  "varianteBoton": "success",
+  "campos": [
+    {
+      "id": "correo",
+      "etiqueta": "Correo Electrónico",
+      "tipo": "email",
+      "placeholder": "ingrese su correo"
+    },
+    {
+      "id": "clave",
+      "etiqueta": "Contraseña",
+      "tipo": "password",
+      "placeholder": "••••••••"
+    }
+  ]
+}

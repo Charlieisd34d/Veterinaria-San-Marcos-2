@@ -1,73 +1,72 @@
-import React, { useState } from 'react';
-import ModalComun from '../molecules/ModalComun';
-import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
-import Boton from '../atoms/Boton';
-import { validarObligatorio, validarCorreo } from '../../utils/validaciones'; 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { validarCredenciales, guardarSesion } from "../../utils/autenticacion";
 
-export default function FormularioLogin(props) {
-  const [valores, setValores] = useState({});
-  const [errores, setErrores] = useState({}); 
+function FormularioLogin({ titulo = "Acceso administrativo", textoBoton = "Iniciar sesión", onSubmit }) {
+  const navigate = useNavigate();
+  const [correo, setCorreo] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  function alCambiar(id, texto) {
-    setValores({ ...valores, [id]: texto });
-    setErrores({ ...errores, [id]: '' });
-  }
-
-  function alEnviar(evento) {
+  function enviar(evento) {
     evento.preventDefault();
+    const usuario = validarCredenciales(correo, password);
 
-    const nuevosErrores = {};
-    
-    props.campos?.forEach((campo) => {
-      const valorCampo = valores[campo.id] || "";
-      let error = validarObligatorio(valorCampo);
-      
-      if (!error && campo.tipo === 'email') {
-        error = validarCorreo(valorCampo);
-      }
-      
-      if (error) {
-        nuevosErrores[campo.id] = error;
-      }
-    });
-
-    if (Object.keys(nuevosErrores).length > 0) {
-      setErrores(nuevosErrores);
+    if (!usuario) {
+      setError("Correo o contraseña incorrectos.");
       return;
     }
 
-    if (props.onEnviar) {
-      props.onEnviar(valores);
+    guardarSesion(usuario);
+    setError("");
+
+    if (typeof onSubmit === "function") {
+      onSubmit(usuario);
+      return;
     }
+
+    navigate("/admin", { replace: true });
   }
 
   return (
-    <ModalComun show={props.show} onHide={props.onHide} titulo={props.titulo}>
-      <form onSubmit={alEnviar}>
-        {props.campos && props.campos.map((campo) => (
-          <div key={campo.id} className="mb-3">
-            <CampoConEtiqueta
-              id={campo.id}
-              etiqueta={campo.etiqueta}
-              tipo={campo.tipo}
-              placeholder={campo.placeholder}
-              value={valores[campo.id] || ""}
-              onChange={(e) => alCambiar(campo.id, e.target.value)}
-            />
-            {errores[campo.id] && (
-              <div className="text-danger small mt-1">{errores[campo.id]}</div>
-            )}
-          </div>
-        ))}
+    <form onSubmit={enviar} className="row g-3">
+      <div className="col-12">
+        <h5 className="mb-3">{titulo}</h5>
+      </div>
 
-        <div className="mt-4 text-center">
-          <Boton 
-            tipo="submit" 
-            texto={props.textoBoton} 
-            variante={props.varianteBoton} 
-          />
-        </div>
-      </form>
-    </ModalComun>
+      <div className="col-12">
+        <label className="form-label">Correo</label>
+        <input
+          type="email"
+          className="form-control"
+          value={correo}
+          onChange={(evento) => setCorreo(evento.target.value)}
+          placeholder="ana@veterinaria.cl"
+          required
+        />
+      </div>
+
+      <div className="col-12">
+        <label className="form-label">Contraseña</label>
+        <input
+          type="password"
+          className="form-control"
+          value={password}
+          onChange={(evento) => setPassword(evento.target.value)}
+          placeholder="••••••••"
+          required
+        />
+      </div>
+
+      {error && <div className="col-12 text-danger small">{error}</div>}
+
+      <div className="col-12 d-grid mt-2">
+        <button type="submit" className="btn btn-success">
+          {textoBoton}
+        </button>
+      </div>
+    </form>
   );
 }
+
+export default FormularioLogin;

@@ -1,0 +1,8 @@
+{
+  "titulo": "Perfil de administración",
+  "datos": [
+    { "id": 1, "etiqueta": "Nombre", "texto": "Florencia Díaz" },
+    { "id": 2, "etiqueta": "Correo", "texto": "florencia@sanmarcos.cl" },
+    { "id": 3, "etiqueta": "Rol", "texto": "Administrador" }
+  ]
+}

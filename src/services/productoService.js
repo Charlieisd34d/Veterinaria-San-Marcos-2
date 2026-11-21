@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import productosIniciales from "../data/admin/productosIniciales.json";
 
 const CLAVE = "productos";
+=======
+import productosIniciales from '../data/productos.json';
+
+const CLAVE = 'productos';
+>>>>>>> origin/backup/admin-fix-24-10-2026
 
 function leer() {
   const guardado = localStorage.getItem(CLAVE);
@@ -25,7 +31,14 @@ export function obtenerProducto(id) {
 
 export function crearProducto(datos) {
   const lista = leer();
+<<<<<<< HEAD
   const nuevoId = Math.max(0, ...lista.map((p) => p.id)) + 1;
+=======
+  const ids = lista
+    .map((p) => Number(p.id))
+    .filter((id) => Number.isFinite(id));
+  const nuevoId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+>>>>>>> origin/backup/admin-fix-24-10-2026
   const nuevo = { ...datos, id: nuevoId };
   guardar([...lista, nuevo]);
   return nuevo;

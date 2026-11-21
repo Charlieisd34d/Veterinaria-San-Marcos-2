@@ -1,5 +1,5 @@
-function TituloSeccion(props){
-    return <h2 className="h3 fw-bold text-dark mb-2">{props.texto}</h2>
+function TituloSeccion({ texto, className = "" }) {
+  return <h2 className={`fw-bold mb-3 ${className}`.trim()} style={{ color: "#123C35" }}>{texto}</h2>;
 }
 
 export default TituloSeccion;

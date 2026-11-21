@@ -1,13 +1,13 @@
 import { useState } from "react";
-import TituloSeccion from "../atoms/TituloSeccion";
 import Boton from "../atoms/Boton";
 import CampoConEtiqueta from "../molecules/CampoConEtiqueta";
 import { validarObligatorio, validarCorreo, validarNumero } from "../../utils/validaciones";
 
 function crearValoresIniciales(campos, item) {
+  const datos = item || {};
   const valores = {};
   campos.forEach((campo) => {
-    valores[campo.id] = item ? String(item[campo.id]) : "";
+    valores[campo.id] = datos[campo.id] === undefined ? "" : String(datos[campo.id]);
   });
   return valores;
 }
@@ -27,7 +27,9 @@ function validarCampo(campo, valor) {
 }
 
 function FormularioAdmin(props) {
-  const [valores, setValores] = useState(crearValoresIniciales(props.campos, props.valoresIniciales));
+  const [valores, setValores] = useState(() =>
+    crearValoresIniciales(props.campos, props.valoresIniciales)
+  );
   const [errores, setErrores] = useState({});
 
   function alCambiar(id, texto) {
@@ -37,7 +39,6 @@ function FormularioAdmin(props) {
   function alEnviar(evento) {
     evento.preventDefault();
 
-    // Se validan todos los campos, no solo el primero.
     const nuevosErrores = {};
     props.campos.forEach((campo) => {
       nuevosErrores[campo.id] = validarCampo(campo, valores[campo.id]);
@@ -57,9 +58,7 @@ function FormularioAdmin(props) {
   }
 
   return (
-    <form className="card p-4 shadow-sm" onSubmit={alEnviar} noValidate>
-      <TituloSeccion texto={props.titulo} />
-
+    <form onSubmit={alEnviar} noValidate>
       {props.campos.map((campo) => (
         <CampoConEtiqueta
           key={campo.id}
@@ -73,9 +72,9 @@ function FormularioAdmin(props) {
         />
       ))}
 
-      <div className="d-flex gap-2">
-        <Boton tipo="submit" texto={props.textoGuardar} variante="success" />
+      <div className="d-flex justify-content-end gap-2">
         <Boton texto={props.textoCancelar} variante="outline-secondary" onClick={props.onCancelar} />
+        <Boton tipo="submit" texto={props.textoGuardar} variante="success" />
       </div>
     </form>
   );

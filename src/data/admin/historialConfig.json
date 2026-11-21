@@ -1,0 +1,11 @@
+{
+  "titulo": "Historial de solicitudes",
+  "descripcion": "Lo que ha solicitado este cliente.",
+  "textoVolver": "Volver a clientes",
+  "columnas": [
+    { "clave": "id", "titulo": "N°" },
+    { "clave": "servicio", "titulo": "Servicio" },
+    { "clave": "fecha", "titulo": "Fecha" },
+    { "clave": "estado", "titulo": "Estado" }
+  ]
+}

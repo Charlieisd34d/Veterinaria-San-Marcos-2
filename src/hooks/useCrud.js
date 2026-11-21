@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useAutoCierre } from "./useAutoCierre";
 
+<<<<<<< HEAD
 export function useCrud(operaciones, textos) {
+=======
+export function useCrud(datos, textos) {
+>>>>>>> origin/backup/admin-fix-24-10-2026
   const [editando, setEditando] = useState(null);
   const [mensaje, setMensaje] = useState(null);
 
@@ -9,7 +13,11 @@ export function useCrud(operaciones, textos) {
     setMensaje(null);
   }
 
+<<<<<<< HEAD
   useAutoCierre(mensaje, cerrarMensaje, textos.segundosAutoCierre * 1000);
+=======
+  useAutoCierre(mensaje, cerrarMensaje, (textos?.segundosAutoCierre ?? 5) * 1000);
+>>>>>>> origin/backup/admin-fix-24-10-2026
 
   function abrirNuevo() {
     setEditando({});
@@ -23,6 +31,7 @@ export function useCrud(operaciones, textos) {
     setEditando(null);
   }
 
+<<<<<<< HEAD
   function guardar(datos) {
     if (editando.id) {
       operaciones.actualizar(editando.id, datos);
@@ -36,10 +45,26 @@ export function useCrud(operaciones, textos) {
 
   function eliminar(id) {
     operaciones.eliminar(id);
+=======
+  function guardar(valores) {
+    if (editando && editando.id !== undefined) {
+      datos.actualizar(editando.id, valores);
+      setMensaje(textos.mensajes.actualizado);
+    } else {
+      datos.crear(valores);
+      setMensaje(textos.mensajes.creado);
+    }
+    cancelar();
+  }
+
+  function eliminar(id) {
+    datos.eliminar(id);
+>>>>>>> origin/backup/admin-fix-24-10-2026
     setMensaje(textos.mensajes.eliminado);
   }
 
   return {
+<<<<<<< HEAD
     editando: editando,
     mensaje: mensaje,
     abrirNuevo: abrirNuevo,
@@ -50,3 +75,15 @@ export function useCrud(operaciones, textos) {
     cerrarMensaje: cerrarMensaje,
   };
 }
+=======
+    editando,
+    mensaje,
+    abrirNuevo,
+    abrirEditar,
+    cancelar,
+    guardar,
+    eliminar,
+    cerrarMensaje,
+  };
+}
+>>>>>>> origin/backup/admin-fix-24-10-2026

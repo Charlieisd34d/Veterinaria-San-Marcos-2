@@ -1,20 +1,16 @@
-import EtiquetaCampo from "../atoms/EtiquetaCampo";
-import CampoTexto from "../atoms/CampoTexto";
-import TextoError from "../atoms/TextoError";
-
-function CampoConEtiqueta(props) {
+function CampoConEtiqueta({ id, etiqueta, tipo = "text", placeholder = "", value = "", error = "", onChange }) {
   return (
     <div className="mb-3">
-      <EtiquetaCampo para={props.id} texto={props.etiqueta} />
-      <CampoTexto
-        id={props.id}
-        tipo={props.tipo}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChange={props.onChange}
-        invalido={Boolean(props.error)}
+      <label htmlFor={id} className="form-label fw-medium">{etiqueta}</label>
+      <input
+        id={id}
+        type={tipo}
+        className={`form-control ${error ? "is-invalid" : ""}`}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
-      {props.error && <TextoError texto={props.error}/>}
+      {error && <div className="invalid-feedback d-block">{error}</div>}
     </div>
   );
 }

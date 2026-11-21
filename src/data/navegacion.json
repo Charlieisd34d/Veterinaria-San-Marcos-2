@@ -1,13 +1,23 @@
 {
   "tituloMarca": "San Marcos",
-  "subtituloMarca": "Clínica veterinaria",
+  "subtituloMarca": "CLÍNICA VETERINARIA",
   "iconoMarca": "bi bi-heart-fill",
   "enlaces": [
-    { "id": 1, "etiqueta": "Inicio", "enlace": "/" },
-    { "id": 2, "etiqueta": "Servicios", "enlace": "/servicios" },
-    { "id": 3, "etiqueta": "Blog", "enlace": "/blog" },
-    { "id": 4, "etiqueta": "Contacto", "enlace": "/contacto" }
+    { "id": 1, "etiqueta": "Inicio", "enlace": "/", "claseIcono": "bi bi-house" },
+    { "id": 2, "etiqueta": "Servicios", "enlace": "/servicios", "claseIcono": "bi bi-clipboard-heart" },
+    { "id": 3, "etiqueta": "Productos", "enlace": "/productos", "claseIcono": "bi bi-shop" },
+    { "id": 4, "etiqueta": "Nosotros", "enlace": "/nosotros", "claseIcono": "bi bi-info-circle" },
+    { "id": 5, "etiqueta": "Contacto", "enlace": "/contacto", "claseIcono": "bi bi-envelope" },
+    { "id": 6, "etiqueta": "Blog", "enlace": "/blog", "claseIcono": "bi bi-chat-square-text" }
   ],
-  "carrito": { "etiqueta": "Carrito", "enlace": "/carrito", "claseIcono": "bi bi-cart3" },
-  "botonInicio": { "texto": "Inicio de Sesión", "variante": "success" }
+  "carrito": {
+    "etiqueta": "Carrito",
+    "enlace": "/carrito",
+    "activo": false,
+    "claseIcono": "bi bi-cart3"
+  },
+  "botonCita": {
+    "texto": "Solicitar cita",
+    "variante": "success"
+  }
 }

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "titulo": "Clientes",
   "descripcion": "Administra los clientes y sus mascotas.",
   "textoNuevo": "Nuevo cliente",
@@ -17,3 +18,19 @@
     { "id": "mascota", "etiqueta": "Mascota", "tipo": "text", "placeholder": "Luna" }
   ]
 }
+=======
+  "titulo": "Usuarios",
+  "descripcion": "Administra los usuarios del panel de administración.",
+  "singular": "usuario",
+  "columnas": [
+    { "clave": "nombre", "titulo": "Nombre" },
+    { "clave": "correo", "titulo": "Correo" },
+    { "clave": "rol", "titulo": "Rol" }
+  ],
+  "campos": [
+    { "id": "nombre", "etiqueta": "Nombre", "tipo": "text", "placeholder": "Ana González" },
+    { "id": "correo", "etiqueta": "Correo", "tipo": "email", "placeholder": "ana@veterinaria.cl" },
+    { "id": "rol", "etiqueta": "Rol", "tipo": "text", "placeholder": "admin" }
+  ]
+}
+>>>>>>> origin/backup/admin-fix-24-10-2026
