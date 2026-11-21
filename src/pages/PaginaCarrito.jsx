@@ -16,27 +16,49 @@ export function PaginaCarrito(props) {
   } = useCarrito();
   const { crear } = useSolicitudes();
   const [compraExitosa, setCompraExitosa] = useState(false);
+  const [procesando, setProcesando] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const manejarContinuarPago = () => {
-    if (carrito.length === 0) return;
+  const manejarContinuarPago = async () => {
+    if (carrito.length === 0 || procesando) return;
 
-    const usuarioGuardado = JSON.parse(localStorage.getItem("usuario_san_marcos") || "null");
-    const nombreCliente = usuarioGuardado?.nombre || usuarioGuardado?.correo || "Cliente Tienda Online";
-    const resumenProductos = carrito
-      .map((item) => `${item.nombre} (x${item.cantidad})`)
-      .join(", ");
+    setError("");
+    setProcesando(true);
 
-    crear({
-      cliente: nombreCliente,
-      servicio: `Pedido Tienda: ${resumenProductos}`,
-      fecha: new Date().toISOString().split("T")[0],
-      estado: "Pendiente",
-      total: totalPrecio
-    });
+    try {
+      const sesionAdmin = JSON.parse(localStorage.getItem("admin_autenticado") || "null");
+      const usuarioGuardado = JSON.parse(localStorage.getItem("usuario_san_marcos") || "null");
+      const usuarioActivo = sesionAdmin || usuarioGuardado;
 
-    vaciarCarrito();
-    setCompraExitosa(true);
+      const nombreCliente =
+        usuarioActivo?.nombre || usuarioActivo?.correo || "Cliente Tienda Online";
+
+      const resumenProductos = carrito
+        .map((item) => `${item.nombre} (x${item.cantidad})`)
+        .join(", ");
+
+      await crear({
+        cliente: nombreCliente,
+        servicio: `Pedido Tienda: ${resumenProductos}`,
+        fecha: new Date().toISOString().split("T")[0],
+        estado: "Pendiente",
+        total: totalPrecio
+      });
+
+      vaciarCarrito();
+      setCompraExitosa(true);
+    } catch (err) {
+      const mensajeApi =
+        err?.response?.data?.error ||
+        err?.response?.data?.message ||
+        (err?.code === "ERR_NETWORK"
+          ? "No se pudo conectar con el servidor para registrar tu pedido. Verifica que el backend esté activo."
+          : "Ocurrió un error al confirmar tu pedido. Intenta nuevamente.");
+      setError(mensajeApi);
+    } finally {
+      setProcesando(false);
+    }
   };
 
   return (
@@ -50,6 +72,8 @@ export function PaginaCarrito(props) {
         totalProductos={totalProductos}
         totalPrecio={totalPrecio}
         compraExitosa={compraExitosa}
+        procesando={procesando}
+        error={error}
         onActualizarCantidad={actualizarCantidad}
         onEliminar={eliminarDelCarrito}
         onVaciar={vaciarCarrito}

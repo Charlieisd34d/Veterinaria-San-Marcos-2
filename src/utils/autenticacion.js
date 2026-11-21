@@ -24,13 +24,23 @@ export function estaAutenticado() {
   }
 }
 
-export function guardarSesion(usuario) {
+export function guardarSesion(usuario, token = "") {
   localStorage.setItem("admin_autenticado", JSON.stringify({
     id: usuario.id,
     nombre: usuario.nombre,
-    correo: usuario.correo,
+    correo: usuario.correo ?? usuario.email,
     rol: usuario.rol,
+    ...(token ? { token } : {}),
   }));
+}
+
+export function obtenerToken() {
+  try {
+    const sesion = JSON.parse(localStorage.getItem("admin_autenticado") || "null");
+    return sesion?.token ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export function cerrarSesion() {

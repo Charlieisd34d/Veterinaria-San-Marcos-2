@@ -15,9 +15,5 @@
     "enlace": "/carrito",
     "activo": false,
     "claseIcono": "bi bi-cart3"
-  },
-  "botonCita": {
-    "texto": "Solicitar cita",
-    "variante": "success"
   }
 }

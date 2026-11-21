@@ -1,5 +1,34 @@
 import solicitudesIniciales from "../data/admin/solicitudesIniciales.json";
+import api from "./api";
+import {
+  toCreateSolicitudRequestDTO,
+  fromSolicitudDTO,
+  fromSolicitudesListDTO,
+} from "../dtos/solicitudDto";
 
+// --- Métodos API REST (Axios + DTO - Guía 20) ---
+export async function obtenerSolicitudesApi() {
+  const { data } = await api.get("/solicitudes");
+  return fromSolicitudesListDTO(data);
+}
+
+export async function crearSolicitudApi(datos) {
+  const payload = toCreateSolicitudRequestDTO(datos);
+  const { data } = await api.post("/solicitudes", payload);
+  return fromSolicitudDTO(data);
+}
+
+export async function actualizarSolicitudApi(id, cambios) {
+  const { data } = await api.put(`/solicitudes/${id}`, cambios);
+  return fromSolicitudDTO(data);
+}
+
+export async function eliminarSolicitudApi(id) {
+  const { data } = await api.delete(`/solicitudes/${id}`);
+  return data;
+}
+
+// --- Métodos LocalStorage (compatibilidad con tests existentes) ---
 const CLAVE = "solicitudes";
 
 function leer() {

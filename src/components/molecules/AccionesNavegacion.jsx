@@ -18,11 +18,13 @@ const AccionesNavegacion = ({
         activo={activoCarrito}
         claseIcono="bi bi-cart3"
       />
-      <Boton
-        texto={textoBoton}
-        variante={varianteBoton}
-        onClick={onClickBoton}
-      />
+      {textoBoton && (
+        <Boton
+          texto={textoBoton}
+          variante={varianteBoton}
+          onClick={onClickBoton}
+        />
+      )}
     </div>
   );
 };

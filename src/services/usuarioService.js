@@ -1,4 +1,37 @@
 import usuariosIniciales from "../data/admin/usuariosIniciales.json";
+import api from "./api";
+import {
+  fromUsuarioDTO,
+  fromUsuariosListDTO,
+  toUpdateUsuarioRequestDTO,
+} from "../dtos/usuarioDto";
+import { toRegistroRequestDTO } from "../dtos/authDto";
+
+export async function obtenerUsuariosApi() {
+  const { data } = await api.get("/usuarios");
+  return fromUsuariosListDTO(data);
+}
+
+export async function registrarUsuarioApi(datos) {
+  const payload = toRegistroRequestDTO({
+    nombre: datos.nombre,
+    correo: datos.correo ?? datos.email,
+    password: datos.password || "Vet123456",
+  });
+  const { data } = await api.post("/auth/registro", payload);
+  return fromUsuarioDTO(data);
+}
+
+export async function actualizarUsuarioApi(id, cambios) {
+  const payload = toUpdateUsuarioRequestDTO(cambios);
+  const { data } = await api.put(`/usuarios/${id}`, payload);
+  return fromUsuarioDTO(data);
+}
+
+export async function desactivarUsuarioApi(id) {
+  const { data } = await api.delete(`/usuarios/${id}`);
+  return data;
+}
 
 const CLAVE = "usuarios";
 
@@ -32,7 +65,9 @@ export function crearUsuario(datos) {
 }
 
 export function actualizarUsuario(id, cambios) {
-  const lista = leer().map((usuario) => (usuario.id === id ? { ...usuario, ...cambios } : usuario));
+  const lista = leer().map((usuario) =>
+    usuario.id === id ? { ...usuario, ...cambios } : usuario
+  );
   guardar(lista);
   return lista.find((usuario) => usuario.id === id) ?? null;
 }
