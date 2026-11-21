@@ -13,19 +13,11 @@ export function UsuariosProvider({ children }) {
 
   function actualizar(id, cambios) {
     usuarioService.actualizarUsuario(id, cambios);
-<<<<<<< HEAD
-    setUsuarios(usuarioService.listarUsuario());
-  }
-
-  function eliminar(id) {
-    usuarioService.eliminarCliente(id);
-=======
     setUsuarios(usuarioService.listarUsuarios());
   }
 
   function eliminar(id) {
     usuarioService.eliminarUsuario(id);
->>>>>>> origin/backup/admin-fix-24-10-2026
     setUsuarios(usuarioService.listarUsuarios());
   }
 
