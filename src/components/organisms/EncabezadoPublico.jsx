@@ -1,21 +1,24 @@
 import BarraSuperior from "./BarraSuperior";
 import NavegacionPrincipal from "./NavegacionPrincipal";
+import { useCarrito } from "../../context/CarritoContext";
 
 function EncabezadoPublico(props) {
+  const { totalProductos } = useCarrito();
   const navegacion = props.navegacion || {};
   const carrito = navegacion.carrito || {};
   const botonCita = navegacion.botonCita || {};
+  const textoBaseCarrito = carrito.etiqueta || "Carrito";
 
   return (
     <>
       <BarraSuperior elementos={props.barraSuperior} />
-      
+
       <NavegacionPrincipal
         tituloMarca={navegacion.tituloMarca}
         subtituloMarca={navegacion.subtituloMarca}
         iconoMarca={navegacion.iconoMarca}
         enlaces={navegacion.enlaces}
-        etiquetaCarrito={carrito.etiqueta}
+        etiquetaCarrito={`${textoBaseCarrito} (${totalProductos})`}
         enlaceCarrito={carrito.enlace}
         activoCarrito={carrito.activo}
         claseIconoCarrito={carrito.claseIcono}
