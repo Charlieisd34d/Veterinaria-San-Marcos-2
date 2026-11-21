@@ -1,15 +1,7 @@
 {
-<<<<<<< HEAD
-  "titulo": "Productos",
-  "descripcion": "Administra el catálogo de la tienda.",
-  "textoNuevo": "Nuevo producto",
-  "tituloNuevo": "Nuevo producto",
-  "tituloEditar": "Editar producto",
-=======
   "titulo": "Catálogo",
   "descripcion": "Administra los productos de la clínica.",
   "singular": "producto",
->>>>>>> origin/backup/admin-fix-24-10-2026
   "columnas": [
     { "clave": "nombre", "titulo": "Nombre" },
     { "clave": "categoria", "titulo": "Categoría" },

@@ -1,15 +1,9 @@
 {
   "segundosAutoCierre": 5,
   "textoCerrar": "Cerrar",
-<<<<<<< HEAD
-  "cargando": "Cargando...",
-  "vacio": "No hay registros todavía.",
-  "tituloAcciones": "Acciones",
-=======
   "vacio": "No hay registros todavía.",
   "tituloAcciones": "Acciones",
   "nuevo": "Nuevo",
->>>>>>> origin/backup/admin-fix-24-10-2026
   "editar": "Editar",
   "eliminar": "Eliminar",
   "guardar": "Guardar",

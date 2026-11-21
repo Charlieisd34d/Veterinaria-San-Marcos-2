@@ -18,11 +18,7 @@ export function ClientesProvider({ children }) {
 
   function eliminar(id) {
     clienteService.eliminarCliente(id);
-<<<<<<< HEAD
-    setClientes(clienteService.listarClientes());
-=======
     setCliente(clienteService.listarClientes());
->>>>>>> origin/backup/admin-fix-24-10-2026
   }
 
   return (

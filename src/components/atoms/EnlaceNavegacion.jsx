@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+const EnlaceNavegacion = ({ enlace = "#", etiqueta, activo = false, claseIcono }) => {
   return (
     <Link
       to={enlace}
@@ -9,5 +10,6 @@ import { Link } from "react-router-dom";
       {etiqueta}
     </Link>
   );
+};
 
 export default EnlaceNavegacion;

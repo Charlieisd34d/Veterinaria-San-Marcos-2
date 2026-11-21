@@ -1,12 +1,6 @@
 {
   "titulo": "Resumen",
   "descripcion": "Vista general de la clínica.",
-<<<<<<< HEAD
-  "tarjetas": [
-    { "id": 1, "clave": "productos", "icono": "bi bi-box-seam", "titulo": "Productos" },
-    { "id": 2, "clave": "clientes", "icono": "bi bi-people", "titulo": "Clientes" },
-    { "id": 3, "clave": "usuarios", "icono": "bi bi-person-gear", "titulo": "Usuarios" }
-=======
   "textoIr": "Ver módulo",
   "tarjetas": [
     { "id": 1, "clave": "solicitudes", "icono": "bi bi-receipt", "titulo": "Solicitudes", "enlace": "/admin/solicitudes" },
@@ -15,6 +9,5 @@
     { "id": 4, "clave": "categorias", "icono": "bi bi-tags", "titulo": "Categorías", "enlace": "/admin/categorias" },
     { "id": 5, "clave": "clientes", "icono": "bi bi-people", "titulo": "Clientes", "enlace": "/admin/clientes" },
     { "id": 6, "clave": "usuarios", "icono": "bi bi-person-gear", "titulo": "Usuarios", "enlace": "/admin/usuarios" }
->>>>>>> origin/backup/admin-fix-24-10-2026
   ]
 }

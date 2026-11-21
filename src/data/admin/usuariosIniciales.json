@@ -1,10 +1,4 @@
 [
-<<<<<<< HEAD
-  { "id": 1, "nombre": "Florencia Díaz", "correo": "florencia@sanmarcos.cl", "rol": "Administrador" },
-  { "id": 2, "nombre": "Michael Catalán", "correo": "michael@sanmarcos.cl", "rol": "Veterinario" }
-]
-=======
   { "id": 1, "nombre": "Ana González", "correo": "ana@veterinaria.cl", "password": "admin123", "rol": "admin" },
   { "id": 2, "nombre": "Luis Pérez", "correo": "luis@veterinaria.cl", "password": "admin456", "rol": "admin" }
 ]
->>>>>>> origin/backup/admin-fix-24-10-2026
