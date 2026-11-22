@@ -16,6 +16,7 @@ function FilaTabla(props) {
                 variante={accion.variante}
                 tamano="sm"
                 onClick={accion.onClick}
+                deshabilitado={accion.deshabilitado}
               />
             ))}
           </div>

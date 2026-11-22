@@ -1,38 +1,34 @@
-export const ADMINISTRADORES = [
-  { id: 1, nombre: "Ana González", correo: "ana@veterinaria.cl", password: "admin123", rol: "admin" },
-  { id: 2, nombre: "Luis Pérez", correo: "luis@veterinaria.cl", password: "admin456", rol: "admin" },
-];
+const CLAVE_SESION = "admin_autenticado";
 
-export function validarCredenciales(correo, password) {
-  const correoNormalizado = String(correo ?? "").trim().toLowerCase();
-  const passwordNormalizado = String(password ?? "").trim();
+export function obtenerSesion() {
+  try {
+    const sesion = JSON.parse(localStorage.getItem(CLAVE_SESION));
+    if (typeof sesion?.token === "string" && sesion.token && sesion.usuario?.rol) {
+      return sesion;
+    }
+  } catch {
+    return null;
+  }
 
-  return ADMINISTRADORES.find(
-    (usuario) => usuario.correo.toLowerCase() === correoNormalizado && usuario.password === passwordNormalizado,
-  ) ?? null;
+  return null;
+}
+
+export function obtenerTokenAdmin() {
+  const sesion = obtenerSesion();
+  return sesion?.usuario?.rol === "ADMIN" ? sesion.token : "";
 }
 
 export function estaAutenticado() {
-  const valor = localStorage.getItem("admin_autenticado");
-  if (!valor) return false;
-
-  try {
-    const usuario = JSON.parse(valor);
-    return Boolean(usuario?.correo);
-  } catch {
-    return false;
-  }
+  return Boolean(obtenerTokenAdmin());
 }
 
-export function guardarSesion(usuario) {
-  localStorage.setItem("admin_autenticado", JSON.stringify({
-    id: usuario.id,
-    nombre: usuario.nombre,
-    correo: usuario.correo,
-    rol: usuario.rol,
+export function guardarSesion(sesion) {
+  localStorage.setItem(CLAVE_SESION, JSON.stringify({
+    token: sesion.token,
+    usuario: sesion.usuario,
   }));
 }
 
 export function cerrarSesion() {
-  localStorage.removeItem("admin_autenticado");
+  localStorage.removeItem(CLAVE_SESION);
 }

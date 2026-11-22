@@ -9,7 +9,7 @@ import ModalComun from "../molecules/ModalComun";
 function SeccionCrud(props) {
 
   const abierto = Boolean(props.editando);
-  const esNuevo = abierto && !props.editando.id;
+  const esNuevo = abierto && props.editando.id == null;
   const nuevo = props.config.nuevo || props.textos.nuevo;
   const accion = esNuevo ? nuevo : props.textos.editar;
 
@@ -22,6 +22,7 @@ function SeccionCrud(props) {
       {
         texto: props.textos.eliminar,
         variante: "outline-danger",
+        visible: props.puedeEliminar,
         onClick: (fila) => props.onEliminar(fila.id),
       },
     ]);
@@ -38,6 +39,7 @@ function SeccionCrud(props) {
           texto={`${nuevo} ${props.config.singular}`}
           variante="success"
           onClick={props.onNuevo}
+          deshabilitado={props.ocupado}
         />
       </div>
 
@@ -46,15 +48,19 @@ function SeccionCrud(props) {
         filas={props.filas}
         acciones={acciones}
         tituloAcciones={props.textos.tituloAcciones}
-        textoVacio={props.textos.vacio}
+        textoVacio={props.textoVacio ?? props.textos.vacio}
+        ocupado={props.ocupado}
       />
 
       <ModalComun
         show={abierto}
-        onHide={props.onCancelar}
+        onHide={props.ocupado ? undefined : props.onCancelar}
         titulo={`${accion} ${props.config.singular}`}
       >
         <FormularioAdmin
+          key={props.editando?.id ?? "nuevo"}
+          ocupado={props.ocupado}
+          error={props.errorFormulario}
           campos={props.config.campos}
           valoresIniciales={props.editando}
           textoGuardar={props.textos.guardar}

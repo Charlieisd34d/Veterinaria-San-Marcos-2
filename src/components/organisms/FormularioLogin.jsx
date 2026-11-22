@@ -1,71 +1,56 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { validarCredenciales, guardarSesion } from "../../utils/autenticacion";
+import { Link } from "react-router-dom";
 
-function FormularioLogin({ titulo = "Acceso administrativo", textoBoton = "Iniciar sesión", onSubmit }) {
-  const navigate = useNavigate();
-  const [correo, setCorreo] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  function enviar(evento) {
-    evento.preventDefault();
-    const usuario = validarCredenciales(correo, password);
-
-    if (!usuario) {
-      setError("Correo o contraseña incorrectos.");
-      return;
-    }
-
-    guardarSesion(usuario);
-    setError("");
-
-    if (typeof onSubmit === "function") {
-      onSubmit(usuario);
-      return;
-    }
-
-    navigate("/admin", { replace: true });
-  }
-
+function FormularioLogin(props) {
   return (
-    <form onSubmit={enviar} className="row g-3">
-      <div className="col-12">
-        <h5 className="mb-3">{titulo}</h5>
-      </div>
+    <div className="row justify-content-center py-5">
+      <div className="col-12 col-md-6 col-lg-5">
+        <div className="card border-0 shadow-lg rounded-4 p-4">
+          <div className="text-center mb-4">
+            <h1 className="mt-3 h3 fw-bold" style={{ color: "#123C35" }}>Iniciar sesión</h1>
+          </div>
 
-      <div className="col-12">
-        <label className="form-label">Correo</label>
-        <input
-          type="email"
-          className="form-control"
-          value={correo}
-          onChange={(evento) => setCorreo(evento.target.value)}
-          placeholder="ana@veterinaria.cl"
-          required
-        />
-      </div>
+          {props.cuentaCreada && (
+            <p className="alert alert-success" role="status">Cuenta creada. Ya puedes iniciar sesión.</p>
+          )}
+          <form onSubmit={props.onSubmit} className="row g-3">
+            <div className="col-12">
+              <label htmlFor="login-correo" className="form-label">Correo</label>
+              <input
+                id="login-correo"
+                type="email"
+                autoComplete="username"
+                className="form-control"
+                value={props.correo}
+                onChange={(evento) => props.onCambiarCorreo(evento.target.value)}
+                required
+              />
+            </div>
 
-      <div className="col-12">
-        <label className="form-label">Contraseña</label>
-        <input
-          type="password"
-          className="form-control"
-          value={password}
-          onChange={(evento) => setPassword(evento.target.value)}
-          placeholder="••••••••"
-          required
-        />
-      </div>
+            <div className="col-12">
+              <label htmlFor="login-password" className="form-label">Contraseña</label>
+              <input
+                id="login-password"
+                type="password"
+                autoComplete="current-password"
+                className="form-control"
+                value={props.password}
+                onChange={(evento) => props.onCambiarPassword(evento.target.value)}
+                required
+              />
+            </div>
 
-      {error && <div className="col-12 text-danger small">{error}</div>}
+            {props.error && <div className="col-12 text-danger small" role="alert">{props.error}</div>}
 
-      <div className="col-12 d-grid mt-2">
-        <button type="submit" className="btn btn-success">
-          {textoBoton}
-        </button>
+            <div className="col-12 d-grid mt-2">
+              <button type="submit" className="btn btn-success py-2" disabled={props.enviando}>
+                {props.enviando ? "Ingresando…" : "Ingresar"}
+              </button>
+            </div>
+          </form>
+          <Link to="/registro" className="mt-3 text-center">Crear cuenta</Link>
+        </div>
       </div>
-    </form>
+    </div>
   );
 }
 
