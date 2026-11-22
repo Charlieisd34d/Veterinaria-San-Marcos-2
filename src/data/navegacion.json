@@ -8,16 +8,13 @@
     { "id": 3, "etiqueta": "Productos", "enlace": "/productos", "claseIcono": "bi bi-shop" },
     { "id": 4, "etiqueta": "Nosotros", "enlace": "/nosotros", "claseIcono": "bi bi-info-circle" },
     { "id": 5, "etiqueta": "Contacto", "enlace": "/contacto", "claseIcono": "bi bi-envelope" },
-    { "id": 6, "etiqueta": "Blog", "enlace": "/blog", "claseIcono": "bi bi-chat-square-text" }
+    { "id": 6, "etiqueta": "Blog", "enlace": "/blog", "claseIcono": "bi bi-chat-square-text" },
+    { "id": 7, "etiqueta": "Mis Citas", "enlace": "/historial-citas", "claseIcono": "bi bi-calendar-check" }
   ],
   "carrito": {
     "etiqueta": "Carrito",
     "enlace": "/carrito",
     "activo": false,
     "claseIcono": "bi bi-cart3"
-  },
-  "botonCita": {
-    "texto": "Solicitar cita",
-    "variante": "success"
   }
 }

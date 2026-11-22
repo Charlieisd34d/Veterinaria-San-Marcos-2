@@ -24,6 +24,7 @@ import PaginaCarrito from "./pages/PaginaCarrito";
 import PaginaDetalleProducto from "./pages/PaginaDetalleProducto";
 import PaginaIniciarSesion from "./pages/PaginaInicioSesion";
 import PaginaRegistro from "./pages/PaginaRegistro";
+import PaginaHistorialCitas from './pages/PaginaHistorialCitas';
 import { estaAutenticado } from "./utils/autenticacion";
 
 function RutaAdminProtegida({ children }) {
@@ -41,6 +42,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<PaginaInicio />} />
                   <Route path="/servicios" element={<PaginaServicios />} />
+                  <Route path="/historial-citas" element={<PaginaHistorialCitas />} />
                   <Route path="/productos" element={<PaginaProductos />} />
                   <Route path="/producto/:id" element={<PaginaDetalleProducto />} />
                   <Route path="/nosotros" element={<PaginaNosotros />} />

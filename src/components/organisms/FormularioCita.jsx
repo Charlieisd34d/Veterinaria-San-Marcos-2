@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ModalComun from '../molecules/ModalComun';
 import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
 import TextoError from '../atoms/TextoError';
 import Boton from '../atoms/Boton';
 import { validarObligatorio, validarCorreo } from '../../utils/validaciones';
+import { obtenerSesion } from '../../utils/autenticacion';
 
 function obtenerFechaHoyISO() {
   const hoy = new Date();
@@ -13,9 +14,39 @@ function obtenerFechaHoyISO() {
   return `${anio}-${mes}-${dia}`;
 }
 
+function obtenerCorreoSesion() {
+  const sesion = obtenerSesion();
+  const correo = sesion && sesion.usuario ? sesion.usuario.correo : '';
+  return typeof correo === 'string' ? correo.trim() : '';
+}
+
 export default function FormularioCita(props) {
   const [valores, setValores] = useState({});
   const [errores, setErrores] = useState({});
+
+  useEffect(
+    function () {
+      if (!props.show) {
+        return;
+      }
+
+      const correoSesion = obtenerCorreoSesion();
+      const listaCampos = Array.isArray(props.campos) ? props.campos : [];
+      const campoCorreo = listaCampos.find(function (campo) {
+        return campo.tipo === 'email' || campo.id === 'correo';
+      });
+
+      if (correoSesion && campoCorreo) {
+        setValores(function (prev) {
+          if (prev[campoCorreo.id]) {
+            return prev;
+          }
+          return { ...prev, [campoCorreo.id]: correoSesion };
+        });
+      }
+    },
+    [props.show, props.campos]
+  );
 
   function alCambiar(id, texto) {
     setValores(function (prev) {
@@ -62,7 +93,12 @@ export default function FormularioCita(props) {
       return;
     }
 
-    const datosEnviados = { ...valores };
+    const correoSesion = obtenerCorreoSesion();
+    const datosEnviados = {
+      ...valores,
+      correo: (valores.correo || correoSesion || '').trim().toLowerCase()
+    };
+
     setErrores({});
     setValores({});
 

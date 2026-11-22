@@ -17,7 +17,6 @@ function PlantillaPublica(props = {}) {
         barraSuperior={barraSuperior}
         navegacion={nav.navegacion}
         onNavegar={nav.navegar}
-        onClickCita={props.onClickCita}
       />
 
       <AvisoPagina

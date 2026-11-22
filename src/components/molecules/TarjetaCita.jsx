@@ -1,4 +1,3 @@
-
 function TarjetaCita(props) {
   const cita = props.cita;
   const esAdministrador = props.esAdministrador || false;

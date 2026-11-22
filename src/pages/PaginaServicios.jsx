@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PlantillaPublica from '../components/templates/PlantillaPublica';
 import FormularioCita from '../components/organisms/FormularioCita';
 import TarjetaServicio from '../components/molecules/TarjetaServicio';
 import datosFormularioCita from '../data/formularioCita.json';
 import serviciosData from '../data/servicios.json';
 import { guardarCita } from '../services/citasService';
+import { obtenerSesion } from '../utils/autenticacion';
+
+function obtenerCorreoSesion() {
+  const sesion = obtenerSesion();
+  const correo = sesion && sesion.usuario ? sesion.usuario.correo : '';
+  return typeof correo === 'string' ? correo.trim().toLowerCase() : '';
+}
 
 function PaginaServicios() {
   const [modalAbierto, setModalAbierto] = useState(false);
@@ -22,9 +30,16 @@ function PaginaServicios() {
   }
 
   function manejarEnvioCita(valores) {
+    const correoSesion = obtenerCorreoSesion();
+    const correoFinal = ((valores && valores.correo) || correoSesion || '')
+      .trim()
+      .toLowerCase();
+
     const nuevaCita = {
       ...valores,
-      servicioSeleccionado: servicioSeleccionado
+      correo: correoFinal,
+      servicioSeleccionado: servicioSeleccionado,
+      servicio: valores.servicio || valores.motivo || servicioSeleccionado
     };
 
     guardarCita(nuevaCita);
@@ -49,7 +64,10 @@ function PaginaServicios() {
 
       {mensajeConfirmacion && (
         <div className="alert alert-success mb-4" role="alert">
-          {mensajeConfirmacion}
+          <p className="mb-2">{mensajeConfirmacion}</p>
+          <Link to="/historial-citas" className="alert-link">
+            Ver mi historial de citas
+          </Link>
         </div>
       )}
 
