@@ -1,74 +1,32 @@
-import React, { useEffect, useState } from 'react';
-
+import { Navigate } from 'react-router-dom';
 import PlantillaPublica from '../components/templates/PlantillaPublica';
 import ListaCitas from '../components/organisms/ListaCitas';
-
+import { useClienteCitas } from '../hooks/useClienteCitas';
+import { useTituloPagina } from '../hooks/useTituloPagina';
 import { obtenerCitas } from '../services/citasService';
-import { obtenerSesion } from '../utils/autenticacion';
 
-function obtenerCorreoAutenticado(correoProp) {
-  if (typeof correoProp === 'string' && correoProp.trim()) {
-    return correoProp.trim().toLowerCase();
+function PaginaHistorialCitas() {
+  const cliente = useClienteCitas();
+  useTituloPagina('Historial de mis citas');
+  if (!cliente) return <Navigate to="/iniciar-sesion" replace />;
+
+  let citas;
+  try {
+    citas = obtenerCitas();
+  } catch {
+    // Se muestra el fallo de lectura en el historial.
   }
-
-  const sesion = obtenerSesion();
-  const correoSesion = sesion && sesion.usuario ? sesion.usuario.correo : '';
-
-  return typeof correoSesion === 'string'
-    ? correoSesion.trim().toLowerCase()
-    : '';
-}
-
-function PaginaHistorialCitas(props) {
-  const correoUsuario = obtenerCorreoAutenticado(props.usuarioCorreo);
-  const [citas, setCitas] = useState([]);
-
-  useEffect(
-    function () {
-      if (!correoUsuario) {
-        setCitas([]);
-        return;
-      }
-
-      const todasLasCitas = obtenerCitas();
-      const citasUsuario = todasLasCitas.filter(function (cita) {
-        return (
-          cita &&
-          typeof cita.correo === 'string' &&
-          cita.correo.trim().toLowerCase() === correoUsuario
-        );
-      });
-
-      setCitas(citasUsuario);
-    },
-    [correoUsuario]
-  );
 
   return (
     <PlantillaPublica>
-      <main className="container py-5">
-        <div className="mb-4">
-          <h1 className="fw-bold">
-            Historial de mis citas
-          </h1>
-
-          <p className="text-muted">
-            Consulta las solicitudes que has realizado
-            en Veterinaria San Marcos.
-          </p>
-        </div>
-
-        {!correoUsuario ? (
-          <div className="alert alert-warning text-center">
-            Debes iniciar sesión para consultar tu historial de citas.
+      <section aria-labelledby="titulo-historial-citas">
+        <h1 id="titulo-historial-citas" className="fw-bold mb-4">Historial de mis citas</h1>
+        {citas ? <ListaCitas citas={citas} /> : (
+          <div className="alert alert-danger" role="alert">
+            No se pudo leer el historial de citas en este navegador.
           </div>
-        ) : (
-          <ListaCitas
-            citas={citas}
-            esAdministrador={false}
-          />
         )}
-      </main>
+      </section>
     </PlantillaPublica>
   );
 }

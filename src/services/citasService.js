@@ -1,67 +1,44 @@
+import { obtenerClienteCitas } from '../utils/clienteCitas';
+
 const CLAVE_CITAS = 'citas_veterinaria_san_marcos';
 
-function generarIdCita() {
-  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
-    return crypto.randomUUID();
-  }
+function leerCitasCliente(clienteId) {
+  const clave = `${CLAVE_CITAS}:${clienteId}`;
+  const contenido = localStorage.getItem(clave);
+  const citas = contenido === null ? [] : JSON.parse(contenido);
+  if (!Array.isArray(citas)) throw new Error('El historial local de citas tiene un formato inválido.');
 
-  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  return { clave, citas };
+}
+
+function generarIdCita() {
+  return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
 export function obtenerCitas() {
-  try {
-    const citas = JSON.parse(
-      localStorage.getItem(CLAVE_CITAS) || '[]'
-    );
+  const cliente = obtenerClienteCitas();
+  if (!cliente) return [];
 
-    return Array.isArray(citas) ? citas : [];
-  } catch (error) {
-    console.error('Error al recuperar las citas:', error);
-    return [];
-  }
+  const clienteId = String(cliente.id);
+  const { citas } = leerCitasCliente(clienteId);
+  return citas.filter((cita) => cita?.usuarioId != null && String(cita.usuarioId) === clienteId);
 }
 
-export function guardarCita(nuevaCita) {
-  const citasActuales = obtenerCitas();
+export function guardarCita(nuevaCita, clienteIdFormulario) {
+  const cliente = obtenerClienteCitas();
+  if (!cliente || String(cliente.id) !== clienteIdFormulario) {
+    throw new Error('La sesión de cliente cambió. Vuelve a abrir el formulario con tu cuenta.');
+  }
 
-  const citaCompleta = {
+  const { clave, citas } = leerCitasCliente(String(cliente.id));
+  const cita = {
     ...nuevaCita,
+    usuarioId: cliente.id,
     id: generarIdCita(),
     estado: 'Pendiente',
-    creadaEn: new Date().toISOString()
+    creadaEn: new Date().toISOString(),
   };
 
-  const citasActualizadas = [
-    ...citasActuales,
-    citaCompleta
-  ];
-
-  localStorage.setItem(
-    CLAVE_CITAS,
-    JSON.stringify(citasActualizadas)
-  );
-
-  return citaCompleta;
-}
-
-export function actualizarEstadoCita(id, nuevoEstado) {
-  const citas = obtenerCitas();
-
-  const citasActualizadas = citas.map(function (cita) {
-    if (String(cita.id) === String(id)) {
-      return {
-        ...cita,
-        estado: nuevoEstado
-      };
-    }
-
-    return cita;
-  });
-
-  localStorage.setItem(
-    CLAVE_CITAS,
-    JSON.stringify(citasActualizadas)
-  );
-
-  return citasActualizadas;
+  localStorage.setItem(clave, JSON.stringify([...citas, cita]));
+  return cita;
 }

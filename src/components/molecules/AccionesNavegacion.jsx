@@ -1,4 +1,3 @@
-import React from "react";
 import EnlaceNavegacion from "../atoms/EnlaceNavegacion";
 import Boton from "../atoms/Boton";
 
@@ -6,6 +5,7 @@ const AccionesNavegacion = ({
   etiquetaCarrito,
   enlaceCarrito,
   activoCarrito,
+  claseIconoCarrito = "bi bi-cart3",
   textoBoton,
   onClickBoton,
   varianteBoton = "success",
@@ -16,13 +16,11 @@ const AccionesNavegacion = ({
         etiqueta={etiquetaCarrito}
         enlace={enlaceCarrito}
         activo={activoCarrito}
-        claseIcono="bi bi-cart3"
+        claseIcono={claseIconoCarrito}
       />
-      <Boton
-        texto={textoBoton}
-        variante={varianteBoton}
-        onClick={onClickBoton}
-      />
+      {textoBoton && onClickBoton && (
+        <Boton texto={textoBoton} variante={varianteBoton} onClick={onClickBoton} />
+      )}
     </div>
   );
 }

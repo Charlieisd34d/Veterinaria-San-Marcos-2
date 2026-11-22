@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TituloPrincipal from '../atoms/TituloPrincipal';
 import Parrafo from '../atoms/Parrafo';
-import IconoTexto from '../atoms/IconoTexto';
 import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
-import EtiquetaCampo from '../atoms/EtiquetaCampo';
 import TextoError from '../atoms/TextoError';
 import Boton from '../atoms/Boton';
 import AlertaCerrable from '../molecules/AlertaCerrable';
@@ -13,6 +11,7 @@ export default function SeccionContacto(props) {
   const [valores, setValores] = useState({});
   const [errores, setErrores] = useState({});
   const [enviadoExito, setEnviadoExito] = useState(false);
+  const [errorEnvio, setErrorEnvio] = useState(false);
 
   function alCambiar(id, valor) {
     setValores(function (prev) {
@@ -52,14 +51,14 @@ export default function SeccionContacto(props) {
       return;
     }
 
-    const datosEnviados = { ...valores };
-
     setErrores({});
-    setEnviadoExito(true);
-    setValores({});
-
-    if (typeof props.onEnviar === 'function') {
-      props.onEnviar(datosEnviados);
+    setErrorEnvio(false);
+    try {
+      props.onEnviar(valores);
+      setEnviadoExito(true);
+      setValores({});
+    } catch {
+      setErrorEnvio(true);
     }
   }
 
@@ -91,11 +90,16 @@ export default function SeccionContacto(props) {
 
         <div className="col-lg-7">
           <div className="p-4 border rounded-3 bg-white shadow-sm">
+            {errorEnvio && (
+              <div className="alert alert-danger" role="alert">
+                No se pudo guardar tu mensaje en este navegador. Vuelve a intentarlo.
+              </div>
+            )}
             {enviadoExito && (
               <div className="mb-4">
                 <AlertaCerrable
                   variante="success"
-                  mensaje="¡Tu mensaje ha sido enviado con éxito! Nos pondremos en contacto pronto."
+                  mensaje="Tu mensaje se guardó en este navegador."
                   onCerrar={manejarCerrarAlerta}
                 />
               </div>

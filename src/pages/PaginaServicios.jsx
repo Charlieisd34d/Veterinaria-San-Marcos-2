@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlantillaPublica from '../components/templates/PlantillaPublica';
 import FormularioCita from '../components/organisms/FormularioCita';
@@ -6,49 +6,47 @@ import TarjetaServicio from '../components/molecules/TarjetaServicio';
 import datosFormularioCita from '../data/formularioCita.json';
 import serviciosData from '../data/servicios.json';
 import { guardarCita } from '../services/citasService';
-import { obtenerSesion } from '../utils/autenticacion';
-
-function obtenerCorreoSesion() {
-  const sesion = obtenerSesion();
-  const correo = sesion && sesion.usuario ? sesion.usuario.correo : '';
-  return typeof correo === 'string' ? correo.trim().toLowerCase() : '';
-}
+import { obtenerClienteCitas } from '../utils/clienteCitas';
+import { useClienteCitas } from '../hooks/useClienteCitas';
+import { useTituloPagina } from '../hooks/useTituloPagina';
 
 function PaginaServicios() {
-  const [modalAbierto, setModalAbierto] = useState(false);
-  const [servicioSeleccionado, setServicioSeleccionado] = useState('');
-  const [mensajeConfirmacion, setMensajeConfirmacion] = useState('');
+  useTituloPagina('Servicios');
+  const cliente = useClienteCitas();
+  const [solicitud, setSolicitud] = useState(null);
+  const [confirmacion, setConfirmacion] = useState(null);
+  const clienteId = cliente ? String(cliente.id) : null;
+
+  useEffect(() => {
+    function alCambiarSesion(evento) {
+      if (evento.key !== null && evento.key !== 'admin_autenticado') return;
+      setSolicitud(null);
+      setConfirmacion(null);
+    }
+    window.addEventListener('storage', alCambiarSesion);
+    return () => window.removeEventListener('storage', alCambiarSesion);
+  }, []);
 
   function abrirModalParaServicio(tituloServicio) {
-    setMensajeConfirmacion('');
-    setServicioSeleccionado(tituloServicio);
-    setModalAbierto(true);
-  }
+    const clienteActual = obtenerClienteCitas();
+    if (!clienteActual || String(clienteActual.id) !== clienteId) return;
 
-  function manejarCerrarModal() {
-    setModalAbierto(false);
+    setConfirmacion(null);
+    setSolicitud({
+      clienteId,
+      correo: clienteActual.correo,
+      servicio: tituloServicio,
+    });
   }
 
   function manejarEnvioCita(valores) {
-    const correoSesion = obtenerCorreoSesion();
-    const correoFinal = ((valores && valores.correo) || correoSesion || '')
-      .trim()
-      .toLowerCase();
-
-    const nuevaCita = {
+    guardarCita({
       ...valores,
-      correo: correoFinal,
-      servicioSeleccionado: servicioSeleccionado,
-      servicio: valores.servicio || valores.motivo || servicioSeleccionado
-    };
+      servicioSeleccionado: solicitud.servicio,
+    }, solicitud.clienteId);
 
-    guardarCita(nuevaCita);
-
-    setMensajeConfirmacion(
-      `Solicitud de cita registrada para "${servicioSeleccionado}".`
-    );
-
-    setModalAbierto(false);
+    setConfirmacion(solicitud);
+    setSolicitud(null);
   }
 
   return (
@@ -62,12 +60,18 @@ function PaginaServicios() {
         </h1>
       </div>
 
-      {mensajeConfirmacion && (
+      {clienteId && confirmacion?.clienteId === clienteId && (
         <div className="alert alert-success mb-4" role="alert">
-          <p className="mb-2">{mensajeConfirmacion}</p>
+          <p className="mb-2">Solicitud de cita registrada para «{confirmacion.servicio}».</p>
           <Link to="/historial-citas" className="alert-link">
             Ver mi historial de citas
           </Link>
+        </div>
+      )}
+
+      {!cliente && (
+        <div className="alert alert-info">
+          Para reservar un servicio, <Link to="/iniciar-sesion" className="alert-link">inicia sesión con una cuenta de cliente</Link>.
         </div>
       )}
 
@@ -80,24 +84,25 @@ function PaginaServicios() {
                 descripcion={servicio.descripcion}
                 icono={servicio.icono}
                 textoBoton="Reservar servicio"
-                onAccion={function () {
-                  abrirModalParaServicio(servicio.titulo);
-                }}
+                onAccion={cliente ? () => abrirModalParaServicio(servicio.titulo) : undefined}
               />
             </div>
           );
         })}
       </div>
 
-      <FormularioCita
-        show={modalAbierto}
-        onHide={manejarCerrarModal}
-        titulo={`${datosFormularioCita.titulo}: ${servicioSeleccionado}`}
-        campos={datosFormularioCita.campos}
-        textoBoton={datosFormularioCita.textoBoton}
-        varianteBoton={datosFormularioCita.varianteBoton}
-        onEnviar={manejarEnvioCita}
-      />
+      {solicitud && (!clienteId || solicitud.clienteId === clienteId) && (
+        <FormularioCita
+          show
+          onHide={() => setSolicitud(null)}
+          titulo={`${datosFormularioCita.titulo}: ${solicitud.servicio}`}
+          campos={datosFormularioCita.campos}
+          correoInicial={solicitud.correo}
+          textoBoton={datosFormularioCita.textoBoton}
+          varianteBoton={datosFormularioCita.varianteBoton}
+          onEnviar={manejarEnvioCita}
+        />
+      )}
     </PlantillaPublica>
   );
 }

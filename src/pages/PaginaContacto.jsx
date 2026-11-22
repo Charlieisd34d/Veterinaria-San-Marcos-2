@@ -5,15 +5,9 @@ import datosContacto from '../data/contacto.json';
 const CLAVE_MENSAJES_CONTACTO = 'mensajes_contacto_veterinaria';
 
 function guardarMensajeEnStorage(nuevoMensaje) {
-  try {
-    const actuales = JSON.parse(localStorage.getItem(CLAVE_MENSAJES_CONTACTO) || '[]');
-    const listaActualizada = Array.isArray(actuales)
-      ? [...actuales, nuevoMensaje]
-      : [nuevoMensaje];
-    localStorage.setItem(CLAVE_MENSAJES_CONTACTO, JSON.stringify(listaActualizada));
-  } catch (error) {
-    // Evita fallos si localStorage no está disponible en algún entorno
-  }
+  const actuales = JSON.parse(localStorage.getItem(CLAVE_MENSAJES_CONTACTO) ?? '[]');
+  if (!Array.isArray(actuales)) throw new Error('El almacenamiento de mensajes tiene un formato inválido.');
+  localStorage.setItem(CLAVE_MENSAJES_CONTACTO, JSON.stringify([...actuales, nuevoMensaje]));
 }
 
 function PaginaContacto() {

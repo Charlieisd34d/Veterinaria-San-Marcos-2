@@ -26,11 +26,13 @@ function TarjetaServicio(props) {
       {props.precio && (
         <p className="fw-bold text-dark mb-2">{props.precio}</p>
       )}
-      <Boton
-        texto={props.textoBoton || 'Solicitar servicio'}
-        variante="success"
-        onClick={manejarClick}
-      />
+      {manejarClick && (
+        <Boton
+          texto={props.textoBoton || 'Solicitar servicio'}
+          variante="success"
+          onClick={manejarClick}
+        />
+      )}
     </div>
   );
 }

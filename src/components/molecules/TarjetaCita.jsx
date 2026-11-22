@@ -1,7 +1,4 @@
-function TarjetaCita(props) {
-  const cita = props.cita;
-  const esAdministrador = props.esAdministrador || false;
-  const alCambiarEstado = props.alCambiarEstado;
+function TarjetaCita({ cita }) {
 
   const variantes = {
     Pendiente: 'warning',
@@ -16,9 +13,9 @@ function TarjetaCita(props) {
 
         <div className="d-flex justify-content-between align-items-start flex-wrap gap-2">
           <div>
-            <h5 className="card-title mb-1">
+            <h2 className="h5 card-title mb-1">
               {cita.servicioSeleccionado || cita.servicio || 'Servicio veterinario'}
-            </h5>
+            </h2>
 
             <small className="text-muted">
               Solicitud #{cita.id}
@@ -55,29 +52,6 @@ function TarjetaCita(props) {
               : 'Sin información'
           }
         </p>
-
-        {esAdministrador && (
-          <div className="mt-3">
-            <label className="form-label">
-              Actualizar estado
-            </label>
-
-            <select
-              className="form-select"
-              value={cita.estado || 'Pendiente'}
-              onChange={function (e) {
-                if (typeof alCambiarEstado === 'function') {
-                  alCambiarEstado(cita.id, e.target.value);
-                }
-              }}
-            >
-              <option value="Pendiente">Pendiente</option>
-              <option value="Confirmada">Confirmada</option>
-              <option value="Realizada">Realizada</option>
-              <option value="Cancelada">Cancelada</option>
-            </select>
-          </div>
-        )}
 
       </div>
     </div>

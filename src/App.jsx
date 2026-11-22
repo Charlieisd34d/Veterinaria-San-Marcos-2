@@ -24,7 +24,7 @@ import PaginaCarrito from "./pages/PaginaCarrito";
 import PaginaDetalleProducto from "./pages/PaginaDetalleProducto";
 import PaginaIniciarSesion from "./pages/PaginaInicioSesion";
 import PaginaRegistro from "./pages/PaginaRegistro";
-import PaginaHistorialCitas from './pages/PaginaHistorialCitas';
+import PaginaHistorialCitas from "./pages/PaginaHistorialCitas";
 import { estaAutenticado } from "./utils/autenticacion";
 
 function RutaAdminProtegida({ children }) {
