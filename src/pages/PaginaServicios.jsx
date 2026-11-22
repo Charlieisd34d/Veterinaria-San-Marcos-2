@@ -4,18 +4,7 @@ import FormularioCita from '../components/organisms/FormularioCita';
 import TarjetaServicio from '../components/molecules/TarjetaServicio';
 import datosFormularioCita from '../data/formularioCita.json';
 import serviciosData from '../data/servicios.json';
-
-const CLAVE_CITAS = 'citas_veterinaria_san_marcos';
-
-function guardarCitaEnStorage(nuevaCita) {
-  try {
-    const actuales = JSON.parse(localStorage.getItem(CLAVE_CITAS) || '[]');
-    const listaActualizada = Array.isArray(actuales) ? [...actuales, nuevaCita] : [nuevaCita];
-    localStorage.setItem(CLAVE_CITAS, JSON.stringify(listaActualizada));
-  } catch (error) {
-    // Evita fallos si localStorage no está disponible en algún entorno
-  }
-}
+import { guardarCita } from '../services/citasService';
 
 function PaginaServicios() {
   const [modalAbierto, setModalAbierto] = useState(false);
@@ -34,16 +23,16 @@ function PaginaServicios() {
 
   function manejarEnvioCita(valores) {
     const nuevaCita = {
-      id: Date.now(),
-      servicio: servicioSeleccionado,
-      ...(valores && typeof valores === 'object' ? valores : {}),
-      creadaEn: new Date().toISOString(),
+      ...valores,
+      servicioSeleccionado: servicioSeleccionado
     };
 
-    guardarCitaEnStorage(nuevaCita);
+    guardarCita(nuevaCita);
+
     setMensajeConfirmacion(
       `Solicitud de cita registrada para "${servicioSeleccionado}".`
     );
+
     setModalAbierto(false);
   }
 
