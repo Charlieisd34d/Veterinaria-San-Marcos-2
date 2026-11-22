@@ -27,9 +27,10 @@ function TablaAdmin(props) {
                 clave: columna.clave,
                 valor: fila[columna.clave],
               }))}
-              acciones={acciones.map((accion) => ({
+              acciones={acciones.filter((accion) => accion.visible?.(fila) ?? true).map((accion) => ({
                 texto: accion.texto,
                 variante: accion.variante,
+                deshabilitado: props.ocupado,
                 onClick: () => accion.onClick(fila),
               }))}
             />

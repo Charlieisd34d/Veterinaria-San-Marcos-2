@@ -17,6 +17,9 @@ function validarCampo(campo, valor) {
   if (errorObligatorio) {
     return errorObligatorio;
   }
+  if (campo.minLength && valor.length < campo.minLength) {
+    return `Escribe al menos ${campo.minLength} caracteres.`;
+  }
   if (campo.tipo === "email") {
     return validarCorreo(valor);
   }
@@ -52,7 +55,12 @@ function FormularioAdmin(props) {
 
     const datos = {};
     props.campos.forEach((campo) => {
-      datos[campo.id] = campo.tipo === "number" ? Number(valores[campo.id]) : valores[campo.id].trim();
+      const valor = valores[campo.id];
+      if (campo.tipo === "number") {
+        datos[campo.id] = Number(valor);
+      } else {
+        datos[campo.id] = campo.tipo === "password" ? valor : valor.trim();
+      }
     });
     props.onGuardar(datos);
   }
@@ -72,9 +80,11 @@ function FormularioAdmin(props) {
         />
       ))}
 
+      {props.error && <p className="text-danger" role="alert">{props.error}</p>}
+
       <div className="d-flex justify-content-end gap-2">
-        <Boton texto={props.textoCancelar} variante="outline-secondary" onClick={props.onCancelar} />
-        <Boton tipo="submit" texto={props.textoGuardar} variante="success" />
+        <Boton texto={props.textoCancelar} variante="outline-secondary" onClick={props.onCancelar} deshabilitado={props.ocupado} />
+        <Boton tipo="submit" texto={props.textoGuardar} variante="success" deshabilitado={props.ocupado} />
       </div>
     </form>
   );

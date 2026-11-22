@@ -1,33 +1,40 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { validarCredenciales, guardarSesion, estaAutenticado, cerrarSesion } from './autenticacion';
+import { beforeEach, describe, expect, it } from "vitest";
+import { guardarSesion, estaAutenticado, cerrarSesion, obtenerTokenAdmin } from "./autenticacion";
+
+const sesion = {
+  token: "jwt-de-prueba",
+  usuario: { id: 1, nombre: "Ana", correo: "ana@veterinaria.cl", rol: "ADMIN" },
+};
 
 beforeEach(() => {
   localStorage.clear();
 });
 
-describe('autenticacion', () => {
-  it('valida credenciales correctas', () => {
-    const usuario = validarCredenciales('ana@veterinaria.cl', 'admin123');
-
-    expect(usuario).toMatchObject({ correo: 'ana@veterinaria.cl', rol: 'admin' });
-  });
-
-  it('rechaza credenciales incorrectas', () => {
-    const usuario = validarCredenciales('ana@veterinaria.cl', 'clave-mala');
-
-    expect(usuario).toBeNull();
-  });
-
-  it('detecta sesión activa', () => {
-    guardarSesion({ id: 1, nombre: 'Ana', correo: 'ana@veterinaria.cl', rol: 'admin' });
-
+describe("autenticación", () => {
+  it("recupera el token del administrador autenticado", () => {
+    guardarSesion(sesion);
     expect(estaAutenticado()).toBe(true);
+    expect(obtenerTokenAdmin()).toBe(sesion.token);
   });
 
-  it('cierra sesión eliminando el usuario autenticado', () => {
-    guardarSesion({ id: 1, nombre: 'Ana', correo: 'ana@veterinaria.cl', rol: 'admin' });
-    cerrarSesion();
+  it("rechaza cuentas de clientes", () => {
+    guardarSesion({ ...sesion, usuario: { ...sesion.usuario, rol: "CLIENTE" } });
+    expect(estaAutenticado()).toBe(false);
+  });
 
+  it("ignora el formato anterior de sesión local", () => {
+    localStorage.setItem("admin_autenticado", JSON.stringify(sesion.usuario));
+    expect(estaAutenticado()).toBe(false);
+  });
+
+  it("ignora una sesión malformada", () => {
+    localStorage.setItem("admin_autenticado", "{");
+    expect(estaAutenticado()).toBe(false);
+  });
+
+  it("cierra la sesión", () => {
+    guardarSesion(sesion);
+    cerrarSesion();
     expect(estaAutenticado()).toBe(false);
   });
 });

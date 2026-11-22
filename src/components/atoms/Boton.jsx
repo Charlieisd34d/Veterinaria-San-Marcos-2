@@ -3,7 +3,7 @@ function Boton(props) {
   const tipo = props.tipo || "button";
 
   return (
-    <button type={tipo} className={`btn btn-${variante}`} onClick={props.onClick}>
+    <button type={tipo} className={`btn btn-${variante}`} onClick={props.onClick} disabled={props.deshabilitado}>
       {props.texto}
     </button>
   );
