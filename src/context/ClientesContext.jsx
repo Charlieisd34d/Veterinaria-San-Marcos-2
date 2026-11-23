@@ -18,7 +18,7 @@ export function ClientesProvider({ children }) {
 
   function eliminar(id) {
     clienteService.eliminarCliente(id);
-    setCliente(clienteService.listarClientes());
+    setClientes(clienteService.listarClientes());
   }
 
   return (

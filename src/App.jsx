@@ -24,10 +24,13 @@ import PaginaCarrito from "./pages/PaginaCarrito";
 import PaginaDetalleProducto from "./pages/PaginaDetalleProducto";
 import PaginaIniciarSesion from "./pages/PaginaInicioSesion";
 import PaginaRegistro from "./pages/PaginaRegistro";
+import { ComprobanteCitaCliente, ComprobanteSolicitudAdmin } from "./pages/PaginaSolicitudDetalle";
 import PaginaHistorialCitas from "./pages/PaginaHistorialCitas";
+import { useCambiosAlmacenamiento } from "./hooks/useCambiosAlmacenamiento";
 import { estaAutenticado } from "./utils/autenticacion";
 
 function RutaAdminProtegida({ children }) {
+  useCambiosAlmacenamiento();
   return estaAutenticado() ? children : <Navigate to="/iniciar-sesion" replace />;
 }
 
@@ -43,6 +46,7 @@ function App() {
                   <Route path="/" element={<PaginaInicio />} />
                   <Route path="/servicios" element={<PaginaServicios />} />
                   <Route path="/historial-citas" element={<PaginaHistorialCitas />} />
+                  <Route path="/historial-citas/:id" element={<ComprobanteCitaCliente />} />
                   <Route path="/productos" element={<PaginaProductos />} />
                   <Route path="/producto/:id" element={<PaginaDetalleProducto />} />
                   <Route path="/nosotros" element={<PaginaNosotros />} />
@@ -54,6 +58,7 @@ function App() {
 
                   <Route path="/admin" element={<RutaAdminProtegida><PaginaAdminResumen /></RutaAdminProtegida>} />
                   <Route path="/admin/solicitudes" element={<RutaAdminProtegida><PaginaAdminSolicitudes /></RutaAdminProtegida>} />
+                  <Route path="/admin/solicitudes/:id" element={<RutaAdminProtegida><ComprobanteSolicitudAdmin /></RutaAdminProtegida>} />
                   <Route path="/admin/productos" element={<RutaAdminProtegida><PaginaAdminProductos /></RutaAdminProtegida>} />
                   <Route path="/admin/categorias" element={<RutaAdminProtegida><PaginaAdminCategorias /></RutaAdminProtegida>} />
                   <Route path="/admin/clientes" element={<RutaAdminProtegida><PaginaAdminClientes /></RutaAdminProtegida>} />

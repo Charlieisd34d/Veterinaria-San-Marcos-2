@@ -40,12 +40,12 @@ function PaginaServicios() {
   }
 
   function manejarEnvioCita(valores) {
-    guardarCita({
+    const cita = guardarCita({
       ...valores,
       servicioSeleccionado: solicitud.servicio,
     }, solicitud.clienteId);
 
-    setConfirmacion(solicitud);
+    setConfirmacion(cita);
     setSolicitud(null);
   }
 
@@ -60,11 +60,11 @@ function PaginaServicios() {
         </h1>
       </div>
 
-      {clienteId && confirmacion?.clienteId === clienteId && (
+      {clienteId && confirmacion && String(confirmacion.usuarioId) === clienteId && (
         <div className="alert alert-success mb-4" role="alert">
-          <p className="mb-2">Solicitud de cita registrada para «{confirmacion.servicio}».</p>
-          <Link to="/historial-citas" className="alert-link">
-            Ver mi historial de citas
+          <p className="mb-2">Solicitud de cita registrada para «{confirmacion.servicioSeleccionado}».</p>
+          <Link to={`/historial-citas/${confirmacion.id}`} className="alert-link">
+            Ver comprobante
           </Link>
         </div>
       )}

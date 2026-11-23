@@ -4,9 +4,10 @@ import PlantillaAdmin from "../components/templates/PlantillaAdmin";
 import PanelResumen from "../components/organisms/PanelResumen";
 import { useTituloPagina } from "../hooks/useTituloPagina";
 import { useProductos } from "../context/ProductosContext";
-import { useSolicitudes } from "../context/SolicitudesContext";
+import { useSolicitudesAdministrativas } from "../hooks/useSolicitudesAdministrativas";
 import { useCategorias } from "../context/CategoriasContext";
 import { useClientes } from "../context/ClientesContext";
+import { filtrarClientesRegistrados } from "../services/clienteService";
 import { listarUsuarios } from "../services/usuarioService";
 import { cerrarSesion, obtenerTokenAdmin } from "../utils/autenticacion";
 import { filtrarCriticos } from "../utils/stock";
@@ -17,11 +18,11 @@ import criticos from "../data/admin/criticosConfig.json";
 function PaginaAdminResumen() {
   const navigate = useNavigate();
   const { productos } = useProductos();
-  const datosSolicitudes = useSolicitudes();
+  const { filas: solicitudes, error: errorSolicitudes } = useSolicitudesAdministrativas();
   const datosCategorias = useCategorias();
   const datosClientes = useClientes();
   const token = obtenerTokenAdmin();
-  const [totalUsuarios, setTotalUsuarios] = useState("—");
+  const [totalesCuentas, setTotalesCuentas] = useState(null);
   const [mensaje, setMensaje] = useState(null);
 
   useTituloPagina("Admin · Resumen");
@@ -34,7 +35,10 @@ function PaginaAdminResumen() {
         const usuarios = await listarUsuarios(token, peticion.signal);
         if (peticion.signal.aborted) return;
         if (!Array.isArray(usuarios)) throw new Error("Respuesta inesperada");
-        setTotalUsuarios(usuarios.length);
+        setTotalesCuentas({
+          usuarios: usuarios.length,
+          clientes: usuarios.filter(({ rol }) => rol === "CLIENTE").length,
+        });
       } catch (fallo) {
         if (peticion.signal.aborted) return;
         if (fallo.response?.status === 401) {
@@ -42,7 +46,8 @@ function PaginaAdminResumen() {
           navigate("/iniciar-sesion", { replace: true });
           return;
         }
-        setMensaje({ texto: "No se pudo consultar el total de usuarios.", variante: "danger" });
+        setTotalesCuentas(null);
+        setMensaje({ texto: "No se pudieron consultar las cuentas registradas.", variante: "danger" });
       }
     }
 
@@ -51,16 +56,18 @@ function PaginaAdminResumen() {
   }, [navigate, token]);
 
   const totales = {
-    solicitudes: datosSolicitudes.solicitudes.length,
+    solicitudes: errorSolicitudes ? "—" : solicitudes.length,
     productos: productos.length,
     criticos: filtrarCriticos(productos, criticos.umbral).length,
     categorias: datosCategorias.categorias.length,
-    clientes: datosClientes.clientes.length,
-    usuarios: totalUsuarios,
+    clientes: filtrarClientesRegistrados(datosClientes.clientes).length,
+    usuarios: totalesCuentas?.usuarios ?? "—",
+    cuentasClientes: totalesCuentas?.clientes ?? "—",
   };
 
   return (
     <PlantillaAdmin mensaje={mensaje} onCerrarMensaje={() => setMensaje(null)}>
+      {errorSolicitudes && <div className="alert alert-danger" role="alert">{errorSolicitudes}</div>}
       <PanelResumen
         titulo={resumen.titulo}
         descripcion={resumen.descripcion}

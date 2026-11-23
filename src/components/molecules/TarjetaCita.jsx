@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 function TarjetaCita({ cita }) {
 
   const variantes = {
     Pendiente: 'warning',
     Confirmada: 'success',
     Realizada: 'primary',
+    Completada: 'primary',
+    Reprogramada: 'info',
     Cancelada: 'danger'
   };
 
@@ -53,6 +57,9 @@ function TarjetaCita({ cita }) {
           }
         </p>
 
+        <Link to={`/historial-citas/${cita.id}`} className="btn btn-outline-primary mt-3">
+          Ver comprobante
+        </Link>
       </div>
     </div>
   );

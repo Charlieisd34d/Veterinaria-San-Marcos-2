@@ -1,7 +1,7 @@
 export function agregarNombreCliente(solicitudes, clientes) {
   return solicitudes.map((solicitud) => {
     const cliente = clientes.find((c) => c.id === solicitud.clienteId);
-    return { ...solicitud, cliente: cliente ? cliente.nombre : "—" };
+    return { ...solicitud, cliente: solicitud.cliente || cliente?.nombre || "—" };
   });
 }
 

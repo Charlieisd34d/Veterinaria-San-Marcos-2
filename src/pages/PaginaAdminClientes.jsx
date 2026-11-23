@@ -2,6 +2,7 @@ import PlantillaAdmin from "../components/templates/PlantillaAdmin";
 import SeccionCrud from "../components/organisms/SeccionCrud";
 import { useCrud } from "../hooks/useCrud";
 import { useTituloPagina } from "../hooks/useTituloPagina";
+import { filtrarClientesRegistrados } from "../services/clienteService";
 import { useClientes } from "../context/ClientesContext";
 
 import textos from "../data/admin/textosAdmin.json";
@@ -18,7 +19,7 @@ function PaginaAdminCliente() {
       <SeccionCrud
         config={config}
         textos={textos}
-        filas={datos.clientes}
+        filas={filtrarClientesRegistrados(datos.clientes)}
         editando={crud.editando}
         onNuevo={crud.abrirNuevo}
         onEditar={crud.abrirEditar}

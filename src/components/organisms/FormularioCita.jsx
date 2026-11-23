@@ -4,14 +4,7 @@ import CampoConEtiqueta from '../molecules/CampoConEtiqueta';
 import TextoError from '../atoms/TextoError';
 import Boton from '../atoms/Boton';
 import { validarObligatorio, validarCorreo } from '../../utils/validaciones';
-
-function obtenerFechaHoyISO() {
-  const hoy = new Date();
-  const anio = hoy.getFullYear();
-  const mes = String(hoy.getMonth() + 1).padStart(2, '0');
-  const dia = String(hoy.getDate()).padStart(2, '0');
-  return `${anio}-${mes}-${dia}`;
-}
+import { obtenerFechaHoyISO } from '../../utils/fechas';
 
 export default function FormularioCita(props) {
   const [valores, setValores] = useState(() => ({ correo: props.correoInicial ?? '' }));

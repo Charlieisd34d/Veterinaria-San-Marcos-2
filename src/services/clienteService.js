@@ -1,5 +1,7 @@
 import clientesIniciales from "../data/admin/clientesIniciales.json";
 
+import { excluirRegistrosIniciales } from "../utils/registrosIniciales";
+
 const CLAVE = "clientes";
 
 function leer() {
@@ -39,4 +41,8 @@ export function actualizarCliente(id, cambios) {
 
 export function eliminarCliente(id) {
   guardar(leer().filter((p) => p.id !== id));
+}
+
+export function filtrarClientesRegistrados(clientes) {
+  return excluirRegistrosIniciales(clientes, clientesIniciales);
 }

@@ -4,6 +4,7 @@ import PlantillaPublica from "../components/templates/PlantillaPublica";
 import CarritoOrganismo from "../components/organisms/CarritoOrganismo";
 import { useCarrito } from "../context/CarritoContext";
 import { useSolicitudes } from "../context/SolicitudesContext";
+import { obtenerSesion } from "../utils/autenticacion";
 
 export function PaginaCarrito(props) {
   const {
@@ -21,7 +22,8 @@ export function PaginaCarrito(props) {
   const manejarContinuarPago = () => {
     if (carrito.length === 0) return;
 
-    const usuarioGuardado = JSON.parse(localStorage.getItem("usuario_san_marcos") || "null");
+    const usuario = obtenerSesion()?.usuario;
+    const usuarioGuardado = usuario?.rol === "CLIENTE" ? usuario : null;
     const nombreCliente = usuarioGuardado?.nombre || usuarioGuardado?.correo || "Cliente Tienda Online";
     const resumenProductos = carrito
       .map((item) => `${item.nombre} (x${item.cantidad})`)

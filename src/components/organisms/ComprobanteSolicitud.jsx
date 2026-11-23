@@ -22,6 +22,9 @@ function ComprobanteSolicitud(props) {
         <h3 className="h5 mb-3">{`${props.textos.numero} ${props.solicitud.id}`}</h3>
         <FilaDato etiqueta={props.textos.cliente} texto={props.solicitud.cliente} />
         <FilaDato etiqueta={props.textos.servicio} texto={props.solicitud.servicio} />
+        {props.solicitud.mascota && <FilaDato etiqueta="Mascota" texto={props.solicitud.mascota} />}
+        {props.solicitud.motivo && <FilaDato etiqueta="Motivo" texto={props.solicitud.motivo} />}
+        {props.solicitud.correo && <FilaDato etiqueta="Correo de contacto" texto={props.solicitud.correo} />}
         <FilaDato etiqueta={props.textos.fecha} texto={props.solicitud.fecha} />
         <FilaDato etiqueta={props.textos.estado} texto={props.solicitud.estado} />
       </div>

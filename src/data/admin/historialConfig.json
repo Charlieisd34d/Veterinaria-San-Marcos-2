@@ -1,6 +1,6 @@
 {
   "titulo": "Historial de solicitudes",
-  "descripcion": "Lo que ha solicitado este cliente.",
+  "descripcion": "Solicitudes registradas en este navegador.",
   "textoVolver": "Volver a clientes",
   "columnas": [
     { "clave": "id", "titulo": "N°" },

@@ -1,22 +1,19 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PlantillaAdmin from "../components/templates/PlantillaAdmin";
 import SeccionListado from "../components/organisms/SeccionListado";
 import { useTituloPagina } from "../hooks/useTituloPagina";
-import { useSolicitudes } from "../context/SolicitudesContext";
-import { useClientes } from "../context/ClientesContext";
-import { agregarNombreCliente } from "../utils/solicitudes";
+import { useSolicitudesAdministrativas } from "../hooks/useSolicitudesAdministrativas";
 
 import textos from "../data/admin/textosAdmin.json";
 import config from "../data/admin/solicitudesConfig.json";
 
 function PaginaAdminSolicitudes() {
   const navigate = useNavigate();
-  const datosSolicitudes = useSolicitudes();
-  const datosClientes = useClientes();
+  const { state } = useLocation();
+  const { filas, error } = useSolicitudesAdministrativas();
 
   useTituloPagina("Admin · Solicitudes");
 
-  const filas = agregarNombreCliente(datosSolicitudes.solicitudes, datosClientes.clientes);
   const acciones = [
     {
       texto: config.textoVer,
@@ -27,6 +24,8 @@ function PaginaAdminSolicitudes() {
 
   return (
     <PlantillaAdmin>
+      {state?.citaEliminada && <div className="alert alert-success" role="status">Cita eliminada.</div>}
+      {error && <div className="alert alert-danger" role="alert">{error}</div>}
       <SeccionListado
         titulo={config.titulo}
         descripcion={config.descripcion}
