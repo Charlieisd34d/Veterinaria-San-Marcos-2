@@ -6,7 +6,7 @@ function FormularioLogin(props) {
       <div className="col-12 col-md-6 col-lg-5">
         <div className="card border-0 shadow-lg rounded-4 p-4">
           <div className="text-center mb-4">
-            <h1 className="mt-3 h3 fw-bold" style={{ color: "#123C35" }}>Iniciar sesión</h1>
+            <h1 className="mt-3 h3 fw-bold text-marca">Iniciar sesión</h1>
           </div>
 
           {props.cuentaCreada && (

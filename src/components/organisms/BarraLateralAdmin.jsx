@@ -1,8 +1,8 @@
 function BarraLateralAdmin({ tituloMarca = "San Marcos", subtituloMarca = "Admin", iconoMarca = "bi bi-heart-fill", enlaces = [], volver, onNavegar, onCerrarSesion }) {
   return (
-    <aside className="bg-dark text-white d-flex flex-column p-3" style={{ width: 280 }}>
+    <aside className="bg-dark text-white d-flex flex-column p-3 barra-lateral-admin">
       <div className="d-flex align-items-center gap-3 mb-4 px-2 pt-2">
-        <div className="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center" style={{ width: 42, height: 42 }}>
+        <div className="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center icono-admin">
           <i className={iconoMarca}></i>
         </div>
         <div>
