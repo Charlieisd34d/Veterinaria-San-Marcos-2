@@ -6,7 +6,7 @@ import { useCarrito } from "../context/CarritoContext";
 import { useSolicitudes } from "../context/SolicitudesContext";
 import { obtenerSesion } from "../utils/autenticacion";
 
-export function PaginaCarrito(props) {
+export function PaginaCarrito() {
   const {
     carrito,
     actualizarCantidad,
@@ -17,6 +17,7 @@ export function PaginaCarrito(props) {
   } = useCarrito();
   const { crear } = useSolicitudes();
   const [compraExitosa, setCompraExitosa] = useState(false);
+  const [errorPedido, setErrorPedido] = useState(false);
   const navigate = useNavigate();
 
   const manejarContinuarPago = () => {
@@ -29,29 +30,32 @@ export function PaginaCarrito(props) {
       .map((item) => `${item.nombre} (x${item.cantidad})`)
       .join(", ");
 
-    crear({
-      cliente: nombreCliente,
-      servicio: `Pedido Tienda: ${resumenProductos}`,
-      fecha: new Date().toISOString().split("T")[0],
-      estado: "Pendiente",
-      total: totalPrecio
-    });
+    try {
+      crear({
+        cliente: nombreCliente,
+        servicio: `Pedido Tienda: ${resumenProductos}`,
+        fecha: new Date().toISOString().split("T")[0],
+        estado: "Pendiente",
+        total: totalPrecio
+      });
+    } catch {
+      setErrorPedido(true);
+      return;
+    }
 
+    setErrorPedido(false);
     vaciarCarrito();
     setCompraExitosa(true);
   };
 
   return (
-    <PlantillaPublica
-      mensaje={props.mensaje}
-      onCerrarMensaje={props.onCerrarMensaje}
-      onClickCita={props.onClickCita}
-    >
+    <PlantillaPublica>
       <CarritoOrganismo
         carrito={carrito}
         totalProductos={totalProductos}
         totalPrecio={totalPrecio}
         compraExitosa={compraExitosa}
+        errorPedido={errorPedido}
         onActualizarCantidad={actualizarCantidad}
         onEliminar={eliminarDelCarrito}
         onVaciar={vaciarCarrito}
