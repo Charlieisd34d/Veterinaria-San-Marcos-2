@@ -77,7 +77,7 @@ Para verificar la conexión, inicia sesión y revisa en **Red** del navegador qu
 
 ## 4. Pruebas unitarias
 
-El proyecto usa Vitest para ejecutar pruebas unitarias sobre servicios y utilidades del negocio.
+El proyecto usa Vitest para probar servicios y utilidades, y React Testing Library con jsdom para verificar formularios, componentes y navegación. Las pruebas aíslan el almacenamiento local y simulan la API cuando es necesario.
 
 ### Ejecutar pruebas
 
@@ -91,7 +91,17 @@ npm test
 npm run test:coverage
 ```
 
-Esto genera un reporte de cobertura en la carpeta `coverage/`.
+Esto genera un reporte de cobertura en `coverage/`. El resumen de la entrega está en [Cobertura de pruebas EP2](docs/cobertura-ep2.md).
+
+### Demostración de un fallo esperado
+
+La prueba `src/utils/stock.demostracion.test.js` espera deliberadamente que un producto con 20 unidades sea crítico con un umbral de 15. El filtro devuelve una lista vacía y Vitest registra la aserción fallida como esperada mediante `it.fails`.
+
+```bash
+npm test -- src/utils/stock.demostracion.test.js
+```
+
+Para ver el error de aserción y la salida distinta de cero, cambia temporalmente `it.fails` por `it` en ese archivo, ejecuta el mismo comando y restaura `it.fails`.
 
 ---
 

@@ -18,7 +18,6 @@ export default defineConfig({
         'src/data/**',
         'src/**/*.test.{js,jsx,ts,tsx}',
         'src/main.jsx',
-        'src/App.jsx',
       ],
       include: ['src/**/*.{js,jsx}'],
     },
