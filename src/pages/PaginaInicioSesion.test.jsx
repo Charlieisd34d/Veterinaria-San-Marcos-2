@@ -1,6 +1,5 @@
-import { act } from "react";
-import { createRoot } from "react-dom/client";
-import { fireEvent, screen } from "@testing-library/dom";
+import { act, fireEvent, render, screen } from "@testing-library/react";
+import { CarritoProvider } from "../context/CarritoContext";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import PaginaInicioSesion from "./PaginaInicioSesion";
@@ -10,34 +9,22 @@ import { estaAutenticado, obtenerSesion } from "../utils/autenticacion";
 
 vi.mock("../services/authService", () => ({ iniciarSesion: vi.fn(), registrarUsuario: vi.fn() }));
 
-let contenedor;
-let root;
+beforeEach(() => localStorage.clear());
 
-beforeEach(() => {
-  vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
-  localStorage.clear();
-  contenedor = document.createElement("div");
-  document.body.append(contenedor);
-  root = createRoot(contenedor);
-});
+afterEach(() => vi.resetAllMocks());
 
-afterEach(async () => {
-  await act(() => root.unmount());
-  contenedor.remove();
-  vi.resetAllMocks();
-  vi.unstubAllGlobals();
-});
-
-async function abrirRuta(ruta = "/iniciar-sesion") {
-  await act(() => root.render(
-    <MemoryRouter initialEntries={[ruta]}>
-      <Routes>
-        <Route path="/iniciar-sesion" element={<PaginaInicioSesion />} />
-        <Route path="/registro" element={<PaginaRegistro />} />
-        <Route path="/admin" element={<h1>Panel administrativo</h1>} />
-      </Routes>
-    </MemoryRouter>,
-  ));
+function abrirRuta(ruta = "/iniciar-sesion") {
+  render(
+    <CarritoProvider>
+      <MemoryRouter initialEntries={[ruta]}>
+        <Routes>
+          <Route path="/iniciar-sesion" element={<PaginaInicioSesion />} />
+          <Route path="/registro" element={<PaginaRegistro />} />
+          <Route path="/admin" element={<h1>Panel administrativo</h1>} />
+        </Routes>
+      </MemoryRouter>
+    </CarritoProvider>,
+  );
 }
 
 async function enviarFormulario() {
@@ -58,7 +45,7 @@ describe("inicio de sesión", () => {
       usuario: { id: 1, correo: "ana@test.cl", rol: "ADMIN" },
     });
 
-    await abrirRuta();
+    abrirRuta();
     await enviarFormulario();
 
     expect(iniciarSesion).toHaveBeenCalledWith({ correo: "ana@test.cl", password: " clave segura " });
@@ -69,7 +56,7 @@ describe("inicio de sesión", () => {
   it("muestra un error cuando falta usuario en la respuesta", async () => {
     iniciarSesion.mockResolvedValue({ token: "jwt-de-prueba" });
 
-    await abrirRuta();
+    abrirRuta();
     await enviarFormulario();
 
     expect(screen.getByRole("alert")).toHaveTextContent("La API devolvió una sesión incompleta.");
@@ -81,7 +68,7 @@ it("registra una cuenta pública, inicia sesión como cliente y permite cerrarla
   const usuario = { nombre: "Ana", correo: "ana@test.cl", rol: "CLIENTE" };
   registrarUsuario.mockResolvedValue(usuario);
   iniciarSesion.mockResolvedValue({ token: "jwt-cliente", usuario });
-  await abrirRuta("/registro");
+  abrirRuta("/registro");
 
   await act(() => {
     fireEvent.change(screen.getByLabelText("Nombre"), { target: { value: " Ana " } });
