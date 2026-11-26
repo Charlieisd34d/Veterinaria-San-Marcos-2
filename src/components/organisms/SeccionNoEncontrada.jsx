@@ -1,19 +1,24 @@
-import TituloPrincipal from "../atoms/TituloPrincipal";
-import Parrafo from "../atoms/Parrafo";
-import Boton from "../atoms/Boton";
+import { Link } from "react-router-dom";
 
-function SeccionNoEncontrada(props) {
+export default function SeccionNoEncontrada() {
   return (
-    <section className="text-center py-5">
-      <TituloPrincipal texto={props.titulo} />
-      <Parrafo texto={props.descripcion} />
-      <Boton
-        texto={props.botonVolver.texto}
-        variante={props.botonVolver.variante}
-        onClick={props.onVolver}
-      />
-    </section>
+    <div className="container py-5 text-center">
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <div className="card shadow-sm border-0">
+            <div className="card-body p-5">
+              <h1 className="display-4 fw-bold text-danger">404</h1>
+              <h2 className="mb-3">Página no encontrada</h2>
+              <p className="text-muted mb-4">
+                La página que intentas abrir no existe o fue movida.
+              </p>
+              <Link to="/" className="btn btn-primary">
+                Volver al inicio
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
-
-export default SeccionNoEncontrada;

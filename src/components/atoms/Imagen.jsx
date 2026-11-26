@@ -1,12 +1,9 @@
-function Imagen(props) {
+export default function Imagen({ ruta, textoAlternativo, className = "" }) {
   return (
     <img
-      src={props.ruta}
-      alt={props.textoAlternativo}
-      className="img-fluid rounded-4 shadow-sm w-100 object-fit-cover"
-      style={{ maxHeight: props.altoMaximo || "480px" }}
+      src={ruta}
+      alt={textoAlternativo}
+      className={`img-fluid rounded-4 w-100 object-fit-cover ${className}`.trim()}
     />
   );
 }
-
-export default Imagen;
