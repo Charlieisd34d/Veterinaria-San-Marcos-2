@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Boton from "../atoms/Boton";
 import ModalComun from "../molecules/ModalComun";
-import { accionesDisponiblesCita, gestionarCita } from "../../services/solicitudesService";
 import { obtenerFechaHoyISO } from "../../utils/fechas";
 
 const etiquetas = {
@@ -12,7 +11,7 @@ const etiquetas = {
   eliminar: "Eliminar cita",
 };
 
-function GestionCita({ cita, onEliminada }) {
+function GestionCita({ operaciones, onConfirmar }) {
   const [accion, setAccion] = useState("");
   const [fecha, setFecha] = useState("");
   const [mensaje, setMensaje] = useState("");
@@ -28,11 +27,8 @@ function GestionCita({ cita, onEliminada }) {
   function guardar(evento) {
     evento.preventDefault();
     try {
-      const actualizada = gestionarCita({ usuarioId: cita.usuarioId, citaId: cita.id, accion, fecha });
-      if (!actualizada) {
-        onEliminada();
-        return;
-      }
+      const actualizada = onConfirmar({ accion, fecha });
+      if (!actualizada) return;
       setMensaje(`Cita actualizada. Estado: ${actualizada.estado}.`);
       setAccion("");
     } catch (fallo) {
@@ -44,7 +40,7 @@ function GestionCita({ cita, onEliminada }) {
     <section className="mt-4" aria-label="Gestión de la cita">
       {mensaje && <p className="alert alert-success" role="status">{mensaje}</p>}
       <div className="d-flex flex-wrap gap-2">
-        {accionesDisponiblesCita(cita.estado).map((operacion) => (
+        {operaciones.map((operacion) => (
           <Boton
             key={operacion}
             texto={etiquetas[operacion]}

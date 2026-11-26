@@ -7,6 +7,7 @@ import { useClienteCitas } from "../hooks/useClienteCitas";
 import { useSolicitudesAdministrativas } from "../hooks/useSolicitudesAdministrativas";
 import { useTituloPagina } from "../hooks/useTituloPagina";
 import { obtenerCitas, prepararComprobanteCita } from "../services/citasService";
+import { accionesDisponiblesCita, gestionarCita } from "../services/solicitudesService";
 import config from "../data/admin/solicitudesConfig.json";
 
 const textos = config.comprobante;
@@ -29,14 +30,23 @@ export function ComprobanteSolicitudAdmin() {
   const { id } = useParams();
   const { filas, error } = useSolicitudesAdministrativas();
   const solicitud = filas.find((fila) => String(fila.id) === id);
+
+  function confirmarOperacion({ accion, fecha }) {
+    const cita = gestionarCita({ usuarioId: solicitud.usuarioId, citaId: solicitud.id, accion, fecha });
+    if (!cita) {
+      navigate("/admin/solicitudes", { replace: true, state: { citaEliminada: true } });
+    }
+    return cita;
+  }
+
   return (
     <PlantillaAdmin>
       <Comprobante solicitud={solicitud} error={error} volver="/admin/solicitudes" />
       {solicitud?.usuarioId != null && (
         <GestionCita
           key={solicitud.id}
-          cita={solicitud}
-          onEliminada={() => navigate("/admin/solicitudes", { replace: true, state: { citaEliminada: true } })}
+          operaciones={accionesDisponiblesCita(solicitud.estado)}
+          onConfirmar={confirmarOperacion}
         />
       )}
     </PlantillaAdmin>

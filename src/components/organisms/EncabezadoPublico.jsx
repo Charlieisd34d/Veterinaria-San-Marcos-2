@@ -1,9 +1,8 @@
 import BarraSuperior from "./BarraSuperior";
 import NavegacionPrincipal from "./NavegacionPrincipal";
-import { useCarrito } from "../../context/CarritoContext";
 
 function EncabezadoPublico(props) {
-  const { totalProductos } = useCarrito();
+  const { totalProductos = 0 } = props;
   const navegacion = props.navegacion || {};
   const carrito = navegacion.carrito || {};
   const botonCita = navegacion.botonCita || {};

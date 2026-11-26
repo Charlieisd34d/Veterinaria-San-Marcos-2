@@ -1,6 +1,7 @@
 import EncabezadoPublico from "../organisms/EncabezadoPublico";
 import AvisoPagina from "../organisms/AvisoPagina";
 import PiePagina from "../organisms/PiePagina";
+import { useCarrito } from "../../context/CarritoContext";
 import { useNavegacionPublica } from "../../hooks/useNavegacionPublica";
 
 import barraSuperior from "../../data/barraSuperior.json";
@@ -10,12 +11,14 @@ import mensajes from "../../data/mensajes.json";
 
 function PlantillaPublica(props = {}) {
   const nav = useNavegacionPublica(navegacion);
+  const { totalProductos } = useCarrito();
 
   return (
     <div className="d-flex flex-column min-vh-100">
       <EncabezadoPublico
         barraSuperior={barraSuperior}
         navegacion={nav.navegacion}
+        totalProductos={totalProductos}
         onNavegar={nav.navegar}
       />
 

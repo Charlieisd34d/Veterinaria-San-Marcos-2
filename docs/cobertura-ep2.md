@@ -4,12 +4,12 @@ La medición se obtuvo con `npm run test:coverage` usando Vitest, jsdom y V8. El
 
 | Métrica | Cobertura |
 | --- | ---: |
-| Sentencias | 69,52 % |
-| Ramas | 62,12 % |
-| Funciones | 71,89 % |
-| Líneas | 71,25 % |
+| Sentencias | 69,78 % |
+| Ramas | 62,21 % |
+| Funciones | 72,08 % |
+| Líneas | 71,50 % |
 
-La ejecución incluyó 15 archivos, con 50 pruebas aprobadas y un fallo esperado. La medición incluye el enrutador en `src/App.jsx`.
+La ejecución incluyó 16 archivos, con 51 pruebas aprobadas y un fallo esperado. La medición incluye el enrutador en `src/App.jsx`.
 
 - Sesión y registro con respuestas simuladas de la API, cierre de sesión y acceso según rol.
 - Catálogo, cantidad de producto, registro del pedido, reintento tras fallo de almacenamiento y comprobante administrativo.

@@ -18,7 +18,7 @@ export function SolicitudesProvider({ children }) {
 
   function eliminar(id) {
     solicitudesService.eliminarSolicitud(id);
-    setSolicitudes(usuarioService.listarSolicitudes());
+    setSolicitudes(solicitudesService.listarSolicitudes());
   }
 
   return (
