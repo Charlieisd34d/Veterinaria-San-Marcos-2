@@ -1,6 +1,4 @@
-import { act } from "react";
-import { createRoot } from "react-dom/client";
-import { fireEvent, screen, within } from "@testing-library/dom";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import App from "../App";
 import { guardarCita } from "../services/citasService";
@@ -10,21 +8,12 @@ import { guardarSesion } from "../utils/autenticacion";
 
 vi.mock("../services/usuarioService", () => ({ listarUsuarios: vi.fn() }));
 
-let contenedor;
-let root;
+beforeEach(() => localStorage.clear());
 
-beforeEach(() => {
-  vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true);
-  localStorage.clear();
-  contenedor = document.createElement("div");
-  document.body.append(contenedor);
-});
-
-afterEach(async () => {
-  if (root) await act(() => root.unmount());
-  root = null;
-  contenedor.remove();
-  vi.unstubAllGlobals();
+afterEach(() => {
+  cleanup();
+  window.history.replaceState(null, "", "/");
+  vi.resetAllMocks();
 });
 
 function iniciarSesion(id, rol = "CLIENTE", nombre = "Ana de prueba") {
@@ -34,16 +23,15 @@ function iniciarSesion(id, rol = "CLIENTE", nombre = "Ana de prueba") {
   });
 }
 
-async function abrir(ruta) {
-  if (root) await act(() => root.unmount());
+function abrir(ruta) {
+  cleanup();
   window.history.replaceState(null, "", ruta);
-  root = createRoot(contenedor);
-  await act(() => root.render(<App />));
+  render(<App />);
 }
 
 it("reutiliza el mismo folio en el comprobante del cliente y en el panel administrativo", async () => {
   iniciarSesion(101);
-  await abrir("/servicios");
+  abrir("/servicios");
   await act(() => fireEvent.click(screen.getAllByRole("button", { name: "Reservar servicio" })[0]));
 
   await act(() => {
@@ -62,11 +50,11 @@ it("reutiliza el mismo folio en el comprobante del cliente y en el panel adminis
   expect(screen.getByText("contacto@ejemplo.cl")).toBeInTheDocument();
 
   iniciarSesion(102);
-  await abrir(rutaCliente);
+  abrir(rutaCliente);
   expect(screen.queryByText("contacto@ejemplo.cl")).not.toBeInTheDocument();
 
   iniciarSesion(201, "ADMIN");
-  await abrir("/admin/solicitudes");
+  abrir("/admin/solicitudes");
   const fila = screen.getByText(folio).closest("tr");
   expect(within(fila).getByText("Ana de prueba")).toBeInTheDocument();
   expect(within(fila).getByText("Consulta general")).toBeInTheDocument();
@@ -99,14 +87,14 @@ it("actualiza el mismo registro al aprobar, postergar, completar y eliminar una 
   expect(() => gestionarCita({ ...datos, accion: "completar" })).toThrow(/estado actual/);
   expect(() => gestionarCita({ ...datos, accion: "postergar", fecha: "2099-11-30" })).toThrow(/fecha válida/);
   expect(() => gestionarCita({ ...datos, accion: "postergar", fecha: "2099-02-30" })).toThrow(/fecha válida/);
-  await abrir(`/admin/solicitudes/${cita.id}`);
+  abrir(`/admin/solicitudes/${cita.id}`);
   await confirmarOperacion("Aprobar cita");
   expect(screen.getByText("Confirmada", { exact: true })).toBeInTheDocument();
   await confirmarOperacion("Postergar cita", "2099-12-07");
   expect(screen.getByText("2099-12-07")).toBeInTheDocument();
   expect(screen.getByText("Reprogramada", { exact: true })).toBeInTheDocument();
 
-  await abrir("/admin/reporte");
+  abrir("/admin/reporte");
   verificarTotal("Solicitudes totales", 1);
   verificarTotal("Reprogramadas", 1);
   expect(screen.getByText("Gabriela Administradora")).toBeInTheDocument();
@@ -121,19 +109,19 @@ it("actualiza el mismo registro al aprobar, postergar, completar y eliminar una 
   expect(screen.queryByText("Gabriela Administradora")).not.toBeInTheDocument();
 
   listarUsuarios.mockResolvedValue([{ id: 201, rol: "ADMIN" }, { id: 101, rol: "CLIENTE" }]);
-  await abrir("/admin");
+  abrir("/admin");
   verificarTotal("Solicitudes", 1);
   verificarTotal("Fichas de clientes", 0);
-  verificarTotal("Usuarios", 2);
+  await waitFor(() => verificarTotal("Usuarios", 2));
   verificarTotal("Cuentas de clientes", 1);
 
   iniciarSesion(101);
-  await abrir(`/historial-citas/${cita.id}`);
+  abrir(`/historial-citas/${cita.id}`);
   expect(screen.getByText("2099-12-07")).toBeInTheDocument();
   expect(screen.getByText("Reprogramada")).toBeInTheDocument();
 
   iniciarSesion(201, "ADMIN");
-  await abrir(`/admin/solicitudes/${cita.id}`);
+  abrir(`/admin/solicitudes/${cita.id}`);
   await confirmarOperacion("Aprobar cita");
   await confirmarOperacion("Marcar completada");
   expect(screen.getByText("Completada", { exact: true })).toBeInTheDocument();
@@ -142,6 +130,45 @@ it("actualiza el mismo registro al aprobar, postergar, completar y eliminar una 
   expect(screen.queryByText(cita.id)).not.toBeInTheDocument();
 
   iniciarSesion(101);
-  await abrir(`/historial-citas/${cita.id}`);
+  abrir(`/historial-citas/${cita.id}`);
   expect(screen.getByText("No existe una solicitud con ese número.")).toBeInTheDocument();
+});
+
+it.each([undefined, "CLIENTE"])("redirige una sesión sin rol administrativo (%s)", (rol) => {
+  if (rol) iniciarSesion(101, rol);
+  abrir("/admin/solicitudes");
+  expect(window.location.pathname).toBe("/iniciar-sesion");
+  expect(screen.getByRole("heading", { name: rol ? "Sesión iniciada" : "Iniciar sesión" })).toBeInTheDocument();
+});
+
+it("abre un comprobante desde Mis citas y trata los folios inexistentes", () => {
+  iniciarSesion(101);
+  const cita = guardarCita({ servicio: "Control anual", fecha: "2099-12-01" }, "101");
+  abrir("/historial-citas");
+  fireEvent.click(screen.getByRole("link", { name: "Ver comprobante" }));
+  expect(window.location.pathname).toBe(`/historial-citas/${cita.id}`);
+  expect(screen.getByText(`Solicitud N° ${cita.id}`)).toBeInTheDocument();
+
+  iniciarSesion(201, "ADMIN");
+  abrir("/admin/solicitudes/inexistente");
+  expect(screen.getByText("No existe una solicitud con ese número.")).toBeInTheDocument();
+});
+
+it("muestra en el resumen tantos ítems críticos como productos lista el módulo", async () => {
+  iniciarSesion(201, "ADMIN");
+  listarUsuarios.mockResolvedValue([]);
+  localStorage.setItem("productos", JSON.stringify([
+    { id: 1, nombre: "Alimento A", categoria: "Alimento", stock: 5 },
+    { id: 2, nombre: "Alimento B", categoria: "Alimento", stock: 8 },
+    { id: 3, nombre: "Alimento C", categoria: "Alimento", stock: 20 },
+  ]));
+  abrir("/admin");
+  await waitFor(() => verificarTotal("Usuarios", 0));
+  verificarTotal("Ítems críticos", 2);
+  const tarjeta = screen.getByText("Ítems críticos", { selector: "small" }).closest(".card");
+  fireEvent.click(within(tarjeta).getByRole("button", { name: "Ver módulo" }));
+  const filas = within(screen.getByRole("table")).getAllByRole("row").slice(1);
+  expect(filas).toHaveLength(2);
+  expect(filas[0]).toHaveTextContent("Alimento A");
+  expect(filas[1]).toHaveTextContent("Alimento B");
 });

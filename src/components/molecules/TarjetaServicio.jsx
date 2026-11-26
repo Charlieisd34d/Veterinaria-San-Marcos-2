@@ -2,7 +2,7 @@ import Boton from '../atoms/Boton';
 
 function TarjetaServicio(props) {
   const iconoClase = props.claseIcono || props.icono;
-  const manejarClick = props.onAccion || props.onSolicitar;
+  const manejarClick = props.onAccion;
 
   return (
     <div className="card p-3 shadow-sm h-100">
